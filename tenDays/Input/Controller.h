@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include"DxLib.h"
 
 class Controller
 {
 private:
-	Controller();	//static‚Åg‚¤ƒNƒ‰ƒX‚¾‚Æ’ñ¦
-	static XINPUT_STATE XInput;			//XBoxƒRƒ“ƒgƒ[ƒ‰[‚Ì“ü—Íó‘Ô
-	static XINPUT_STATE oldXInput;		//1ƒtƒŒ[ƒ€‘O‚ÌXBoxƒRƒ“ƒgƒ[ƒ‰[‚Ì“ü—Íó‘Ô
+	Controller();	//staticã§ä½¿ã†ã‚¯ãƒ©ã‚¹ã ã¨æç¤º
+	static XINPUT_STATE XInput;			//XBoxã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹
+	static XINPUT_STATE oldXInput;		//1ãƒ•ãƒ¬ãƒ¼ãƒ å‰ã®XBoxã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹
 
 public:
-	/*ƒƒjƒ…[‘I‘ğŒn*/
-	//Aƒ{ƒ^ƒ“‚ğ‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠç³»*/
+	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	static bool Decision_A()
 	{
 		return XInput.Buttons[XINPUT_BUTTON_A] == 1 && oldXInput.Buttons[XINPUT_BUTTON_A] == 0;
@@ -20,7 +20,7 @@ public:
 		return XInput.Buttons[XINPUT_BUTTON_B] == 1 && oldXInput.Buttons[XINPUT_BUTTON_B] == 0;
 	}
 	/*
-	*‰E‚Éi‚ŞƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å³ã«é€²ã‚€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool SelectRight()
 	{
@@ -28,7 +28,7 @@ public:
 	}
 
 	/*
-	*¶‚Éi‚ŞƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å·¦ã«é€²ã‚€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool SelectLeft()
 	{
@@ -36,7 +36,7 @@ public:
 
 	}
 	/*
-	*ã‚Éi‚ŞƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*ä¸Šã«é€²ã‚€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool SelectUp()
 	{
@@ -44,7 +44,7 @@ public:
 	}
 
 	/*
-	*‰º‚Éi‚ŞƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*ä¸‹ã«é€²ã‚€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool SelectDown()
 	{
@@ -52,9 +52,9 @@ public:
 
 	}
 
-	/*ˆÚ“®Œn*/
+	/*ç§»å‹•ç³»*/
 	/*
-	*‰E‚Éi‚ŞƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å³ã«é€²ã‚€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool Right()
 	{
@@ -62,7 +62,7 @@ public:
 	}
 
 	/*
-	*¶‚Éi‚ŞƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å·¦ã«é€²ã‚€ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool Left()
 	{
@@ -71,7 +71,7 @@ public:
 	}
 
 	/*
-	*ƒWƒƒƒ“ƒv‚·‚éƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool Jump()
 	{
@@ -79,7 +79,7 @@ public:
 	}
 
 	/*
-	*’e‚ğŒ‚‚ÂƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å¼¾ã‚’æ’ƒã¤ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool Shoot()
 	{
@@ -87,9 +87,9 @@ public:
 	}
 
 
-	/*•ûŒü‚ğŒü‚­*/
+	/*æ–¹å‘ã‚’å‘ã*/
 	/*
-	*‰E‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å³ã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookRight()
 	{
@@ -97,7 +97,7 @@ public:
 	}
 
 	/*
-	*¶‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å·¦ã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookLeft()
 	{
@@ -105,7 +105,7 @@ public:
 	}
 
 	/*
-	*ã‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*ä¸Šã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookUp()
 	{
@@ -113,7 +113,7 @@ public:
 	}
 
 	/*
-	*‰º‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*ä¸‹ã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookDown()
 	{
@@ -121,16 +121,16 @@ public:
 	}
 
 
-	/*Î‚ßŒn*/
+	/*æ–œã‚ç³»*/
 	/*
-	*‰Eã‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å³ä¸Šã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookTopRight()
 	{
 		return XInput.ThumbRX > 18000 && XInput.ThumbRY > 18000;
 	}
 	/*
-	*‰E‰º‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å³ä¸‹ã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookLowerRight()
 	{
@@ -138,14 +138,14 @@ public:
 	}
 
 	/*
-	*¶ã‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å·¦ä¸Šã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookTopLeft()
 	{
 		return XInput.ThumbRX < -18000 && XInput.ThumbRY > 18000;
 	}
 	/*
-	*¶‰º‚ğŒü‚­ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚ğ•Ô‚·
+	*å·¦ä¸‹ã‚’å‘ãã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’è¿”ã™
 	*/
 	static bool LookLowerLeft()
 	{
@@ -155,21 +155,21 @@ public:
 
 
 
-	//XBoxƒRƒ“ƒgƒ[ƒ‰[‚Ì‚µ
+	//XBoxã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®è©¦ã—
 	static void Update()
 	{
-		oldXInput = XInput;		//1ƒtƒŒ[ƒ€‘O‚Ì“ü—Í‚ğ•Û
-		GetJoypadXInputState(DX_INPUT_PAD1, &XInput);//“ü—Í‚ÌXV
+		oldXInput = XInput;		//1ãƒ•ãƒ¬ãƒ¼ãƒ å‰ã®å…¥åŠ›ã‚’ä¿æŒ
+		GetJoypadXInputState(DX_INPUT_PAD1, &XInput);//å…¥åŠ›ã®æ›´æ–°
 	}
 
-	//XBox‚ÌƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éŠÖ”
+	//XBoxã®ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹é–¢æ•°
 	static int CheckBotton()
 	{
 		//return XInput.LeftTrigger;
 		return XInput.ThumbRY;
 	}
 
-	//XBox‚ÌƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©Šm”F‚·‚éŠÖ”
+	//XBoxã®ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹é–¢æ•°
 	static int CheckBottonX()
 	{
 		//return XInput.LeftTrigger;

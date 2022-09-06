@@ -1,8 +1,8 @@
-#include"Vec.h"
+ï»¿#include"Vec.h"
 #include<cmath>
 using namespace std;
 /// <summary>
-/// XMFLOAT2‚Ì•â•
+/// XMFLOAT2ã®è£œåŠ©
 /// </summary>
 Vec2::Vec2() :
 	Vec2(0, 0)
@@ -11,7 +11,7 @@ Vec2::Vec2() :
 Vec2::Vec2(float x, float y) :
 	XMFLOAT2{ x,y }
 {}
-//’P€‰‰ZqƒI[ƒo[ƒ[ƒh
+//å˜é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 Vec2 Vec2::operator+() const {
 	return *this;
 }
@@ -19,7 +19,7 @@ Vec2 Vec2::operator+() const {
 Vec2 Vec2::operator-() const {
 	return Vec2(-x, -y);
 }
-//‘ã“ü‰‰ZqƒI[ƒo[ƒ[ƒh
+//ä»£å…¥æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 Vec2& Vec2::operator+=(const Vec2& v) {
 	x += v.x;
 	y += v.y;
@@ -43,7 +43,7 @@ Vec2& Vec2::operator/=(float s) {
 	y /= s;
 	return *this;
 }
-//‚Q€‰‰ZqƒI[ƒo[ƒ[ƒh
+//ï¼’é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 const Vec2 operator+(const Vec2& v1, const Vec2& v2) {
 	Vec2 temp(v1);
 	return  temp += v2;
@@ -68,7 +68,7 @@ const Vec2 operator/(const Vec2& v, float s) {
 	return  temp /= s;
 }
 /// <summary>
-/// XMFLOAT3‚Ì•â•
+/// XMFLOAT3ã®è£œåŠ©
 /// </summary>
 Vec3::Vec3() :
 	Vec3(0, 0, 0)
@@ -101,7 +101,7 @@ Vec3 Vec3::cross(const Vec3& v) const {
 	temp.z = this->x * v.y - this->y * v.x;
 	return temp;
 }
-//’P€‰‰ZqƒI[ƒo[ƒ[ƒh
+//å˜é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 Vec3 Vec3::operator+() const {
 	return *this;
 }
@@ -109,7 +109,7 @@ Vec3 Vec3::operator+() const {
 Vec3 Vec3::operator-() const {
 	return Vec3(-x, -y, -z);
 }
-//‘ã“ü‰‰ZqƒI[ƒo[ƒ[ƒh
+//ä»£å…¥æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 Vec3& Vec3::operator+=(const Vec3& v) {
 	x += v.x;
 	y += v.y;
@@ -145,7 +145,7 @@ const bool operator==(const Vec3& v1, const Vec3& v2)
 	}
 	return false;
 }
-//‚Q€‰‰ZqƒI[ƒo[ƒ[ƒh
+//ï¼’é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 const Vec3 operator+(const Vec3& v1, const Vec3& v2) {
 	Vec3 temp(v1);
 	return  temp += v2;
@@ -192,7 +192,7 @@ const Vec3 easeInOut(const Vec3& start, const Vec3& end, const float t) {
 
 
 /// <summary>
-/// XMFLOAT4‚Ì•â•
+/// XMFLOAT4ã®è£œåŠ©
 /// </summary>
 Vec4::Vec4() :
 	Vec4(0, 0, 0, 0)
@@ -201,7 +201,7 @@ Vec4::Vec4() :
 Vec4::Vec4(float x, float y, float z, float w) :
 	XMFLOAT4{ x,y ,z,w }
 {}
-//’P€‰‰ZqƒI[ƒo[ƒ[ƒh
+//å˜é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 Vec4 Vec4::operator+() const {
 	return *this;
 }
@@ -209,7 +209,7 @@ Vec4 Vec4::operator+() const {
 Vec4 Vec4::operator-() const {
 	return Vec4(-x, -y, -z, -w);
 }
-//‘ã“ü‰‰ZqƒI[ƒo[ƒ[ƒh
+//ä»£å…¥æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 Vec4& Vec4::operator+=(const Vec4& v) {
 	x += v.x;
 	y += v.y;
@@ -241,7 +241,7 @@ Vec4& Vec4::operator/=(float s) {
 	w /= s;
 	return *this;
 }
-//‚Q€‰‰ZqƒI[ƒo[ƒ[ƒh
+//ï¼’é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 const Vec4 operator+(const Vec4& v1, const Vec4& v2)
 {
 	Vec4 temp(v1);

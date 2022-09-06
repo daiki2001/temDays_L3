@@ -1,52 +1,52 @@
-#pragma once
+ï»¿#pragma once
 #include<DirectXMath.h>
 /// <summary>
-///XMFLOAT2‚Ì•â•
+///XMFLOAT2ã®è£œåŠ©
 /// </summary>
 class Vec2 :public DirectX::XMFLOAT2
 {
 public:
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	Vec2();					//—ëƒxƒNƒgƒ‹‚Æ‚·‚é
-	Vec2(float x, float y);	//x¬•ªAy¬•ªAz¬•ª‚ğw’è‚µ‚Ä‚Ì¶¬
-	//’P€‰‰ZqƒI[ƒo[ƒ[ƒh
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	Vec2();					//é›¶ãƒ™ã‚¯ãƒˆãƒ«ã¨ã™ã‚‹
+	Vec2(float x, float y);	//xæˆåˆ†ã€yæˆåˆ†ã€zæˆåˆ†ã‚’æŒ‡å®šã—ã¦ã®ç”Ÿæˆ
+	//å˜é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 	Vec2 operator+() const;
 	Vec2 operator-() const;
 
-	//‘ã“ü‰‰ZqƒI[ƒo[ƒ[ƒh
+	//ä»£å…¥æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 	Vec2 &operator+=(const Vec2 &v);
 	Vec2 &operator-=(const Vec2 &v);
 	Vec2 &operator*=(float s);
 	Vec2 &operator/=(float s);
 
 };
-//‚Q€‰‰ZqƒI[ƒo[ƒ[ƒh
+//ï¼’é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 const Vec2 operator+(const Vec2 &v1, const Vec2 &v2);
 const Vec2 operator-(const Vec2 &v1, const Vec2 &v2);
 const Vec2 operator*(const Vec2 &v, float s);
 const Vec2 operator*(float s, const Vec2 &v);
 const Vec2 operator/(const Vec2 &v, float s);
 /// <summary>
-/// XMFLOAT3‚Ì•â•
+/// XMFLOAT3ã®è£œåŠ©
 /// </summary>
 class Vec3 :public DirectX::XMFLOAT3
 {
 public:
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	Vec3();							//—ëƒxƒNƒgƒ‹‚Æ‚·‚é
-	Vec3(float x, float y, float z);	//x¬•ªAy¬•ªAz¬•ª‚ğw’è‚µ‚Ä‚Ì¶¬
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	Vec3();							//é›¶ãƒ™ã‚¯ãƒˆãƒ«ã¨ã™ã‚‹
+	Vec3(float x, float y, float z);	//xæˆåˆ†ã€yæˆåˆ†ã€zæˆåˆ†ã‚’æŒ‡å®šã—ã¦ã®ç”Ÿæˆ
 
-	//ƒƒ“ƒoŠÖ”
-	float length() const;				//ƒmƒ‹ƒ€i’·‚³j‚ğ‹‚ß‚é
-	Vec3 &normalize();				//³‹K‰»‚·‚é
-	float dot(const Vec3 &v)const;	//“àÏ‚ğ‹‚ß‚é
-	Vec3 cross(const Vec3 &v)const;//ŠOÏ‚ğ‹‚ß‚é
+	//ãƒ¡ãƒ³ãƒé–¢æ•°
+	float length() const;				//ãƒãƒ«ãƒ ï¼ˆé•·ã•ï¼‰ã‚’æ±‚ã‚ã‚‹
+	Vec3 &normalize();				//æ­£è¦åŒ–ã™ã‚‹
+	float dot(const Vec3 &v)const;	//å†…ç©ã‚’æ±‚ã‚ã‚‹
+	Vec3 cross(const Vec3 &v)const;//å¤–ç©ã‚’æ±‚ã‚ã‚‹
 
-	//’P€‰‰ZqƒI[ƒo[ƒ[ƒh
+	//å˜é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 	Vec3 operator+() const;
 	Vec3 operator-() const;
 
-	//‘ã“ü‰‰ZqƒI[ƒo[ƒ[ƒh
+	//ä»£å…¥æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 	Vec3 &operator+=(const Vec3 &v);
 	Vec3 &operator-=(const Vec3 &v);
 	Vec3 &operator*=(float s);
@@ -54,33 +54,33 @@ public:
 
 };
 const bool operator==(const Vec3& v1, const Vec3& v2);
-//‚Q€‰‰ZqƒI[ƒo[ƒ[ƒh
+//ï¼’é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 const Vec3 operator+(const Vec3 &v1, const Vec3 &v2);
 const Vec3 operator-(const Vec3 &v1, const Vec3 &v2);
 const Vec3 operator*(const Vec3 &v, float s);
 const Vec3 operator*(float s, const Vec3 &v);
 const Vec3 operator/(const Vec3 &v, float s);
 /// <summary>
-/// XMFLOAT4‚Ì•â•
+/// XMFLOAT4ã®è£œåŠ©
 /// </summary>
 class Vec4 :public DirectX::XMFLOAT4
 {
 public:
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	Vec4();							//—ëƒxƒNƒgƒ‹‚Æ‚·‚é
-	Vec4(float x, float y, float z, float w);	//x¬•ªAy¬•ªAz¬•ª‚ğw’è‚µ‚Ä‚Ì¶¬
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	Vec4();							//é›¶ãƒ™ã‚¯ãƒˆãƒ«ã¨ã™ã‚‹
+	Vec4(float x, float y, float z, float w);	//xæˆåˆ†ã€yæˆåˆ†ã€zæˆåˆ†ã‚’æŒ‡å®šã—ã¦ã®ç”Ÿæˆ
 
-	//’P€‰‰ZqƒI[ƒo[ƒ[ƒh
+	//å˜é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 	Vec4 operator+() const;
 	Vec4 operator-() const;
 
-	//‘ã“ü‰‰ZqƒI[ƒo[ƒ[ƒh
+	//ä»£å…¥æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 	Vec4 &operator+=(const Vec4 &v);
 	Vec4 &operator-=(const Vec4 &v);
 	Vec4 &operator*=(float s);
 	Vec4 &operator/=(float s);
 };
-//‚Q€‰‰ZqƒI[ƒo[ƒ[ƒh
+//ï¼’é …æ¼”ç®—å­ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 const Vec4 operator+(const Vec4 &v1, const Vec4 &v2);
 const Vec4 operator-(const Vec4 &v1, const Vec4 &v2);
 const Vec4 operator*(const Vec4 &v, float s);

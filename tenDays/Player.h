@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include<DxLib.h>
 #include"Vec.h"
 class Player
 {
-public://ƒƒ“ƒoŠÖ”
+public://ãƒ¡ãƒ³ãƒé–¢æ•°
 	Player();
 
 	~Player();
@@ -11,16 +11,18 @@ public://ƒƒ“ƒoŠÖ”
 	void Update();
 
 	void Draw();
+
+	void Reset();
 private:
 
-public://æ“¾Œn
+public://å–å¾—ç³»
 
 	Vec2 GetPos() { return pos; }
 
-private://ƒƒ“ƒo•Ï”
-	Vec2 pos = { 680.0f,500.0f };		//ƒvƒŒƒCƒ„[‚ÌˆÊ’u
+private://ãƒ¡ãƒ³ãƒå¤‰æ•°
+	Vec2 pos = { 680.0f,500.0f };		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
 
-	float size = 10.0f;	//ƒvƒŒƒCƒ„[‚Ì‘å‚«‚³
+	float size = 10.0f;	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¤§ãã•
 
 
 };
