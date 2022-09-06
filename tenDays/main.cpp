@@ -3,6 +3,7 @@
 #include "./Input/KeyInput.h"
 #include "./Input/Controller.h"
 #include "Player.h"
+#include "Goal.h"
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "title";
@@ -35,6 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player player;
+	Goal goal = Goal(General::WIN_WIDTH - 50, General::WIN_HEIGHT / 2);
 
 	while (1)
 	{
@@ -48,6 +50,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		ClearDrawScreen();
 
 		//描画
+		goal.Draw();
 		player.Draw();
 
 		// (ダブルバッファ)裏面
