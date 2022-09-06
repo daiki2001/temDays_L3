@@ -1,79 +1,74 @@
-#include <DxLib.h>
-#include"Controller.h"
-#include"Player.h"
-// �E�B���h�E�̃^�C�g���ɕ\�����镶����
+﻿#include <DxLib.h>
+#include "General.h"
+#include "./Input/KeyInput.h"
+#include "./Input/Controller.h"
+#include "Player.h"
+
+// ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "title";
-
-// �E�B���h�E����
-const int WIN_WIDTH = 85 * 16;
-
-// �E�B���h�E�c��
-const int WIN_HEIGHT = 85 * 9;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
-	// �E�B���h�E���[�h�ɐݒ�
+	// ウィンドウモードに設定
 	ChangeWindowMode(TRUE);
 
-	// �E�B���h�E�T�C�Y���蓮�ł͕ύX�������A
-	// ���E�B���h�E�T�C�Y�ɍ��킹�Ċg��ł��Ȃ��悤�ɂ���
+	// ウィンドウサイズを手動では変更させず、
+	// かつウィンドウサイズに合わせて拡大できないようにする
 	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 
-	// �^�C�g����ύX
+	// タイトルを変更
 	SetMainWindowText(TITLE);
 
-	// ��ʃT�C�Y�̍ő�T�C�Y�A�J���[�r�b�g����ݒ�(���j�^�[�̉𑜓x�ɍ��킹��)
-	SetGraphMode(WIN_WIDTH, WIN_HEIGHT, 32);
+	// 画面サイズの最大サイズ、カラービット数を設定(モニターの解像度に合わせる)
+	SetGraphMode(General::WIN_WIDTH, General::WIN_HEIGHT, 32);
 
-	// ��ʃT�C�Y��ݒ�(�𑜓x�Ƃ̔䗦�Őݒ�)
+	// 画面サイズを設定(解像度との比率で設定)
 	SetWindowSizeExtendRate(1.0);
 
-	// ��ʂ̔w�i�F��ݒ肷��
+	// 画面の背景色を設定する
 	SetBackgroundColor(0x00, 0x00, 0xFF);
 
-	// DXlib�̏�����
+	// DXlibの初期化
 	if (DxLib_Init() == -1) { return -1; }
 
-	// (�_�u���o�b�t�@)�`���O���t�B�b�N�̈�͗��ʂ��w��
+	// (ダブルバッファ)描画先グラフィック領域は裏面を指定
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player player;
 
 	while (1)
 	{
-		//�X�V
+		//更新
+		KeyInput::Update();
 		Controller::Update();
 
 		player.Update();
 
-		// ��ʃN���A
+		// 画面クリア
 		ClearDrawScreen();
 
-		//�`��
-
+		//描画
 		player.Draw();
 
-
-
-		// (�_�u���o�b�t�@)����
+		// (ダブルバッファ)裏面
 		ScreenFlip();
 
-		// 20�~���b�ҋ@(�^��60FPS)
+		// 20ミリ秒待機(疑似60FPS)
 		WaitTimer(20);
 
-		// Windows�V�X�e�����炭�������������
+		// Windowsシステムからくる情報を処理する
 		if (ProcessMessage() == -1)
 		{
 			break;
 		}
 
-		// ESC�L�[�������ꂽ�烋�[�v���甲����
+		// ESCキーが押されたらループから抜ける
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == TRUE)
 		{
 			break;
 		}
 	}
-	// Dx���C�u�����I������
+	// Dxライブラリ終了処理
 	DxLib_End();
 
 	return 0;
