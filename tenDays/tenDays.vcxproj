@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Input\Controller.cpp" />
     <ClCompile Include="Input\KeyInput.cpp" />
     <ClCompile Include="main.cpp" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="General.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="Input\Controller.h" />
     <ClInclude Include="Input\KeyInput.h" />
     <ClInclude Include="Player.h" />
