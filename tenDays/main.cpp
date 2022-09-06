@@ -1,5 +1,6 @@
 #include <DxLib.h>
-
+#include"Controller.h"
+#include"Player.h"
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "title";
 
@@ -36,10 +37,21 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// (ダブルバッファ)描画先グラフィック領域は裏面を指定
 	SetDrawScreen(DX_SCREEN_BACK);
 
+	Player player;
+
 	while (1)
 	{
+		//更新
+		Controller::Update();
+
+		player.Update();
+
 		// 画面クリア
 		ClearDrawScreen();
+
+		//描画
+
+		player.Draw();
 
 
 
