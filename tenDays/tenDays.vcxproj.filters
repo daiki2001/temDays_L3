@@ -16,6 +16,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{3c98bcd5-5e25-4f3c-ad69-e46ac5005b04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{f9fa6a48-f030-42f2-9c50-a7dc1f35316f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,16 +39,16 @@
     <ClCompile Include="Goal.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\L3_10days\tenDays\Collision.cpp">
+    <ClCompile Include="Collision.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\L3_10days\tenDays\PushCollision.cpp">
+    <ClCompile Include="PushCollision.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\L3_10days\tenDays\Rod.cpp">
+    <ClCompile Include="Rod.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\L3_10days\tenDays\Stage.cpp">
+    <ClCompile Include="Stage.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,17 +71,20 @@
     <ClInclude Include="Goal.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\L3_10days\tenDays\Collision.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="Scene\BaseScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\L3_10days\tenDays\PushCollision.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="Collision.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\L3_10days\tenDays\Rod.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="PushCollision.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\L3_10days\tenDays\Stage.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="Rod.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
