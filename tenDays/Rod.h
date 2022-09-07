@@ -15,6 +15,8 @@ public:
 	void Update();
 
 	void Draw();
+
+	void Reset();
 public:
 	Vec2 GetPos() { return pos; }
 	Vec2 GetSize() { return size; }
@@ -26,5 +28,9 @@ private:
 	Vec2 size = { 20.0f,500.0f };
 
 	Vec2 speed = { 2.0f,2.0f };
+
+	float angle = {};//Šp“x
+
+	int rodGraph = 0;
 };
 
