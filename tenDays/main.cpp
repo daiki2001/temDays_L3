@@ -39,13 +39,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player player;
-	Goal goal = Goal(General::WIN_WIDTH - 50, General::WIN_HEIGHT / 2);
+	Goal goal = Goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2);
 	//ステージ
 	Stage stage;
 	stage.Init();
 	//棒
 	Rod rod;
 	rod.Init();
+
 	while (1)
 	{
 		//更新
@@ -78,14 +79,17 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			player.ChangeBoundFlag();
 		}
 
+		goal.Updata(player.GetPos());
+
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
 											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
 											Vec2(player.GetSize(), player.GetSize()),
 											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
-		if (isIn == false)
+		// リセット
+		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R))
 		{
-			player.Reset();
+			General::AllReset(&player, &goal);
 		}
 
 		// 画面クリア
@@ -98,7 +102,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		rod.Draw();
 
-		DrawFormatString(0, 0, GetColor(0xFF, 0xFF, 0xFF), "%d", isIn);
+		if (goal.GetGoal())
+		{
+			DrawString(0, 0, "Goal", GetColor(0xFF, 0xFF, 0xFF));
+		}
 		
 		// (ダブルバッファ)裏面
 		ScreenFlip();
