@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\L3_10days\tenDays\Collision.cpp" />
+    <ClCompile Include="..\..\L3_10days\tenDays\PushCollision.cpp" />
+    <ClCompile Include="..\..\L3_10days\tenDays\Rod.cpp" />
+    <ClCompile Include="..\..\L3_10days\tenDays\Stage.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Input\Controller.cpp" />
     <ClCompile Include="Input\KeyInput.cpp" />
@@ -28,6 +32,10 @@
     <ClCompile Include="Vec.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\L3_10days\tenDays\Collision.h" />
+    <ClInclude Include="..\..\L3_10days\tenDays\PushCollision.h" />
+    <ClInclude Include="..\..\L3_10days\tenDays\Rod.h" />
+    <ClInclude Include="..\..\L3_10days\tenDays\Stage.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Input\Controller.h" />

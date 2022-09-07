@@ -4,7 +4,9 @@
 #include "./Input/Controller.h"
 #include "Player.h"
 #include "Goal.h"
-
+#include"Stage.h"
+#include"PushCollision.h"
+#include"Rod.h"
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "title";
 
@@ -37,7 +39,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	Player player;
 	Goal goal = Goal(General::WIN_WIDTH - 50, General::WIN_HEIGHT / 2);
-
+	//ステージ
+	Stage stage;
+	stage.Init();
+	//棒
+	Rod rod;
+	rod.Init();
 	while (1)
 	{
 		//更新
@@ -46,13 +53,40 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		player.Update();
 
+		rod.Update();
+
+		bool IsHitWall = false;
+		bool IsHitGround = false;
+		for (int i = 0; i < stage.boxMax; i++)
+		{
+			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
+				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
+		}
+		//プレイヤーと棒
+		player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
+			rod.GetPos(), rod.GetSize(), IsHitWall, IsHitGround));
+
+		//壁にあたったら
+		if (IsHitWall)
+		{
+			player.ChangeFlag();
+		}
+		//地面に接している
+		if (IsHitGround)
+		{
+			player.ChangeBoundFlag();
+		}
+
 		// 画面クリア
 		ClearDrawScreen();
 
 		//描画
 		goal.Draw();
 		player.Draw();
+		stage.Draw();
 
+		rod.Draw();
+		
 		// (ダブルバッファ)裏面
 		ScreenFlip();
 
