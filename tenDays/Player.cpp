@@ -15,6 +15,7 @@ void Player::Update()
 	oldPos = pos;
 	Bound();
 	Move();
+	isBoundFlag = false;
 }
 
 void Player::Draw()
@@ -39,13 +40,26 @@ void Player::ChangeFlag()
 		isMoveFlag = true;
 	}
 	speed.x *= -1.0f;
+
 	boundPower = 30.0f;
 	bound = -boundPower;
+	gravity = gravityPower;
 }
 
 void Player::Move()
 {
-
+	if (isBoundFlag == true)
+	{
+		gravity = gravityPower;
+	}
+	else
+	{
+		gravity += gravityAdd;
+	}
+	if (gravity >= 10.0f)
+	{
+		gravity = 10.0f;
+	}
 	//重力
 	pos.y += gravity;
 	pos.x += speed.x;
@@ -55,7 +69,6 @@ void Player::Bound()
 {
 	if (isBoundFlag)
 	{
-		isBoundFlag = false;
 		boundPower *= 0.7f;
 		//跳ねる力が残っていたら
 		if (boundPower > 5.0f)

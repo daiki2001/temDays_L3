@@ -9,6 +9,10 @@ public:
 	//コンストラクタ
 	Vec2();					//零ベクトルとする
 	Vec2(float x, float y);	//x成分、y成分、z成分を指定しての生成
+	float length() const;				//ノルム（長さ）を求める
+	Vec2& normalize();				//正規化する
+	float dot(const Vec2& v)const;	//内積を求める
+	Vec2 cross(const Vec2& v)const;//外積を求める
 	//単項演算子オーバーロード
 	Vec2 operator+() const;
 	Vec2 operator-() const;

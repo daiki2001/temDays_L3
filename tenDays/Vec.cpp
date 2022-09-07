@@ -11,6 +11,23 @@ Vec2::Vec2() :
 Vec2::Vec2(float x, float y) :
 	XMFLOAT2{ x,y }
 {}
+float Vec2::length() const
+{
+	return (float)sqrt(x * x + y * y);
+}
+Vec2& Vec2::normalize()
+{
+	float len = length();
+	if (len != 0) {
+		return *this /= len;
+	}
+	return *this;
+}
+float Vec2::dot(const Vec2& v) const
+{
+	return x * v.x + y * v.y ;
+}
+
 //単項演算子オーバーロード
 Vec2 Vec2::operator+() const {
 	return *this;

@@ -39,7 +39,9 @@ private://メンバ変数
 
 	Vec2 oldPos = {};					//１つ前の位置
 
-	float gravity = 3.0f;				//重力
+	const float gravityPower = 4.0f;	//最低限かかる重力
+	float gravity = 4.0f;				//重力
+	float gravityAdd = 0.09f;			//加速度
 
 	//スピード
 	const float speedMax = 5.0f;
@@ -49,10 +51,12 @@ private://メンバ変数
 	bool isMoveFlag = false;
 	//地面に接しているか
 	bool isBoundFlag = false;
+	//壁に接しているか
+	bool isWallFlag = false;
 
 	//跳ねる力
 	float boundPower = 0.0f;
 	float bound = 0.0f;
-	float boundDecay = 0.8f;
+	float boundDecay = 0.9f;
 };
 

@@ -39,4 +39,8 @@ public:
 	/// <returns></returns>
 	static bool Circle2Box(Vec2 circle, float radius, Vec2 box, Vec2 size);
 
+	//ŽŽ‚µ
+	
+	static bool CollisionTrinangle();
+
 };

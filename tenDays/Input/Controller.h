@@ -69,19 +69,35 @@ public:
 		return  XInput.ThumbLX < -18000 ;
 
 	}
+	/*
+	*LBキーが押されたかを返す 
+	*/
+	static bool LB()
+	{
+		return XInput.Buttons[XINPUT_BUTTON_LEFT_SHOULDER] == 1;// && oldXInput.Buttons[XINPUT_BUTTON_LEFT_SHOULDER] == 0;
+	}
+	/*
+	*LBキーが押されたかを返す
+	*/
+	static bool RB()
+	{
+		return XInput.Buttons[XINPUT_BUTTON_RIGHT_SHOULDER] == 1 && oldXInput.Buttons[XINPUT_BUTTON_RIGHT_SHOULDER] == 0;
+	}
 
 	/*
-	*ジャンプするキーが押されたかを返す
+	*LTキーが押されたかを返す
 	*/
-	static bool Jump()
+	static bool LeftTrigger()
 	{
 		return  XInput.LeftTrigger > 70 ;
 	}
 
+
+
 	/*
-	*弾を撃つキーが押されたかを返す
+	*RTキーが押されたかを返す
 	*/
-	static bool Shoot()
+	static bool RightTrigger()
 	{
 		return  XInput.RightTrigger > 70 ;
 	}
