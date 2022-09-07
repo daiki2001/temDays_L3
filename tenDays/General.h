@@ -3,7 +3,7 @@
 namespace General
 {
 // ウィンドウ横幅
-const int WIN_WIDTH = 85 * 16;
+const int WIN_WIDTH = 1280;
 // ウィンドウ縦幅
-const int WIN_HEIGHT = 85 * 9;
+const int WIN_HEIGHT = 720;
 }

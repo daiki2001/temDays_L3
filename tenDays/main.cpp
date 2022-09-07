@@ -7,8 +7,9 @@
 #include"Stage.h"
 #include"PushCollision.h"
 #include"Rod.h"
+
 // ウィンドウのタイトルに表示する文字列
-const char TITLE[] = "鳥トリップ";
+const char TITLE[] = "とりトリップ";
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
@@ -77,6 +78,16 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			player.ChangeBoundFlag();
 		}
 
+		// 画面外判定
+		bool isIn = Collision::BoxCollision(player.GetPos(),
+											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+											Vec2(player.GetSize(), player.GetSize()),
+											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
+		if (isIn == false)
+		{
+			player.Reset();
+		}
+
 		// 画面クリア
 		ClearDrawScreen();
 
@@ -86,6 +97,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		stage.Draw();
 
 		rod.Draw();
+
+		DrawFormatString(0, 0, GetColor(0xFF, 0xFF, 0xFF), "%d", isIn);
 		
 		// (ダブルバッファ)裏面
 		ScreenFlip();
