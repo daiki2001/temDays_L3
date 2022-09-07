@@ -3,12 +3,14 @@
 
 Goal::Goal(const Vec2& pos) :
 	pos(pos),
+	isGoal(false),
 	graph(-1)
 {
 }
 
 Goal::Goal(const int& posX, const int& posY) :
 	pos(static_cast<float>(posX), static_cast<float>(posY)),
+	isGoal(false),
 	graph(-1)
 {
 }
@@ -17,8 +19,18 @@ void Goal::Init()
 {
 }
 
-void Goal::Updata()
+void Goal::Updata(const Vec2& playerPos)
 {
+	if (isGoal)
+	{
+		return;
+	}
+
+	static const int goalSize = 20;
+	static const int playerSize = 10;
+	Vec2 distance = playerPos - pos;
+
+	isGoal = sqrtf((distance.x * distance.x) + (distance.y * distance.y)) < (goalSize + playerSize);
 }
 
 void Goal::Draw(const Vec2& offset)
@@ -36,13 +48,4 @@ void Goal::Draw(const Vec2& offset)
 	{
 		DrawGraph(drawPos.x, drawPos.y, graph, true);
 	}
-}
-
-bool Goal::IsGoal(const Vec2& playerPos)
-{
-	static const int goalSize = 20;
-	static const int playerSize = 10;
-	Vec2 distance = playerPos - pos;
-
-	return sqrtf((distance.x * distance.x) + (distance.y * distance.y)) < (goalSize + playerSize);
 }
