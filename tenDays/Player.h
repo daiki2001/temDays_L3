@@ -14,7 +14,7 @@ public://メンバ関数
 
 	void Reset();
 
-	void SetPosition(Vec2 pos) { Player::pos = pos; }
+	void SetPosition(Vec2 pos) { this->pos = pos; }
 
 	void ChangeFlag();
 

@@ -19,29 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\L3_10days\tenDays\Collision.cpp" />
-    <ClCompile Include="..\..\L3_10days\tenDays\PushCollision.cpp" />
-    <ClCompile Include="..\..\L3_10days\tenDays\Rod.cpp" />
-    <ClCompile Include="..\..\L3_10days\tenDays\Stage.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Input\Controller.cpp" />
     <ClCompile Include="Input\KeyInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Scene\BaseScene.cpp" />
+    <ClCompile Include="PushCollision.cpp" />
+    <ClCompile Include="Rod.cpp" />
+    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Vec.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\L3_10days\tenDays\Collision.h" />
-    <ClInclude Include="..\..\L3_10days\tenDays\PushCollision.h" />
-    <ClInclude Include="..\..\L3_10days\tenDays\Rod.h" />
-    <ClInclude Include="..\..\L3_10days\tenDays\Stage.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Input\Controller.h" />
     <ClInclude Include="Input\KeyInput.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PushCollision.h" />
+    <ClInclude Include="Rod.h" />
     <ClInclude Include="Scene\BaseScene.h" />
+    <ClInclude Include="Stage.h" />
     <ClInclude Include="Vec.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -96,6 +95,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>鳥トリップ</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>鳥トリップ</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>鳥トリップ</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>鳥トリップ</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
