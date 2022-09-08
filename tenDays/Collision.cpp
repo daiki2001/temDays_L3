@@ -108,38 +108,32 @@ int side(int p1x, int p1y, int p2x, int p2y, int p3x, int p3y)
 	else              return  0; // 線上
 }
 
-//bool Collision::CollisionTrinangle(Vec2 pPos, Vec2 box, Vec2 size)
-//{
-//	//角度から座標を求める
-//
-//
-//	//左上の箱の座標
-//	int  LX = static_cast<int>(box.x - size.x), UY = static_cast<int>(box.y - size.y);
-//	int  RX = static_cast<int>(box.x + size.x), DY = static_cast<int>(box.y + size.y);
-//	float x1_a, x2_a, x3_a, y1_a, y2_a, y3_a;
-//	x1_a = LX, y1_a = UY;//左上
-//	x2_a = LX, y2_a = DY;//左下
-//	x3_a = RX, y3_a = DY;//右下
-//	//外積    Z成分だけ計算すればよいです
-//	//1つ目の三角形
-//	double c1_a = side(pPos.x, pPos.y, x1_a, y1_a, x2_a, y2_a);
-//	double c2_a = side(pPos.x, pPos.y, x2_a, y2_a, x3_a, y3_a);
-//	double c3_a = side(pPos.x, pPos.y, x3_a, y3_a, x1_a, y1_a);
-//	float x1_b, x2_b, x3_b, y1_b, y2_b, y3_b;
-//	x1_b = RX, y1_b = UY;
-//	x2_b = LX, y2_b = UY;
-//	x3_b = RX, y3_b = DY;
-//	//２つ目の三角形
-//	double c1_b = side(pPos.x, pPos.y, x1_b, y1_b, x2_b, y2_b);
-//	double c2_b = side(pPos.x, pPos.y, x2_b, y2_b, x3_b, y3_b);
-//	double c3_b = side(pPos.x, pPos.y, x3_b, y3_b, x1_b, y1_b);
-//
-//	if ((c1_a > 0 && c2_a > 0 && c3_a > 0) || (c1_a < 0 && c2_a < 0 && c3_a < 0))
-//	{
-//		if ((c1_b > 0 && c2_b > 0 && c3_b > 0) || (c1_b < 0 && c2_b < 0 && c3_b < 0))
-//		{
-//			return true;
-//		}
-//	}
-//	return false;
-//}
+bool Collision::CollisionTrinangle(Vec2 pPos, Vec2 box, Vec2 size, float angle)
+{
+	//回転の中心からの距離
+	int LX = -size.x;//左
+	int UY = -size.y;//上
+	int RX = size.x;//右
+	int DY = size.y;//下
+
+	float cos = cosf(-angle);
+	float sin = sinf(-angle);
+	//左上の箱の座標	
+	float x1, x2, x3, x4, y1, y2, y3, y4;
+	x1 = LX * cos - UY * sin + box.x, y1 = LX * sin + UY * cos + box.y;//左上
+	x2 = RX * cos - UY * sin + box.x, y2 = RX * sin + UY * cos + box.y;//右上
+	x3 = RX * cos - DY * sin + box.x, y3 = RX * sin + DY * cos + box.y;//右下
+	x4 = LX * cos - DY * sin + box.x, y4 = LX * sin + DY * cos + box.y;//左下
+
+	//外積    Z成分だけ計算すればよいです
+	double c1 = side(pPos.x, pPos.y, x1, y1, x2, y2);
+	double c2 = side(pPos.x, pPos.y, x2, y2, x3, y3);
+	double c3 = side(pPos.x, pPos.y, x3, y3, x4, y4);
+	double c4 = side(pPos.x, pPos.y, x4, y4, x1, y1);
+
+	if ((c1 > 0 && c2 > 0 && c3 > 0 && c4 > 0) || (c1 < 0 && c2 < 0 && c3 < 0 && c4 < 0))
+	{
+		return true;
+	}
+	return false;
+}

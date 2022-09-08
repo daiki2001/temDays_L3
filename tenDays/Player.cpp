@@ -10,6 +10,11 @@ Player::~Player()
 {
 }
 
+void Player::Init()
+{
+	playerGraph = LoadGraph("Resources/piyomaru.png");
+}
+
 void Player::Update()
 {
 	oldPos = pos;
@@ -20,7 +25,8 @@ void Player::Update()
 
 void Player::Draw()
 {
-	DrawCircle(pos.x, pos.y, size, GetColor(255, 0, 0));
+	//DrawCircle(pos.x, pos.y, size, GetColor(255, 0, 0));
+	DrawRotaGraph(pos.x, pos.y, 0.5, playerDrawAngle, playerGraph, TRUE);
 }
 
 void Player::Reset()
@@ -46,10 +52,28 @@ void Player::ChangeFlag()
 	gravity = gravityPower;
 }
 
+void Player::ChangeHitRod(float rodAngle)
+{
+	isMoveFlag = false;
+	if (speed.x > 0)
+	{
+		speed.x *= -1.0f;
+		pos.x += 3.0f;
+	}
+	else
+	{
+		pos.x -= 3.0f;
+	}
+	boundPower = 30.0f;
+	bound = -boundPower;
+	gravity = gravityPower;
+}
+
 void Player::Move()
 {
 	if (isBoundFlag == true)
 	{
+		gravityMemory = gravity;
 		gravity = gravityPower;
 	}
 	else
@@ -63,17 +87,25 @@ void Player::Move()
 	//重力
 	pos.y += gravity;
 	pos.x += speed.x;
+
+	if (speed.x>0)
+	{
+		playerDrawAngle += 0.07f;
+	}
+	else
+	{
+		playerDrawAngle -= 0.07f;
+	}
 }
 
 void Player::Bound()
 {
 	if (isBoundFlag)
 	{
-		boundPower *= 0.7f;
-		//跳ねる力が残っていたら
-		if (boundPower > 5.0f)
+		if (gravityMemory - gravityPower >= 1.0f)
 		{
-			bound = -boundPower;
+			bound = -((gravityMemory - gravityPower) * 5.0f);
+			gravityMemory = gravity;
 		}
 	}
 

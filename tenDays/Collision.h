@@ -41,6 +41,6 @@ public:
 
 	//ŽŽ‚µ
 	
-	static bool CollisionTrinangle();
+	static bool CollisionTrinangle(Vec2 pPos, Vec2 box, Vec2 size,float angle);
 
 };

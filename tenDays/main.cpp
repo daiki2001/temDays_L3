@@ -39,6 +39,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player player;
+	player.Init();
 	Goal goal = Goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2);
 	//ステージ
 	Stage stage;
@@ -64,9 +65,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
 				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
 		}
-		//プレイヤーと棒
-		player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-			rod.GetPos(), rod.GetSize(), IsHitWall, IsHitGround));
+		////プレイヤーと棒
+		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
+		{
+			IsHitWall = true;
+			player.ChangeHitRod(rod.GetAngle());
+		}
 
 		//壁にあたったら
 		if (IsHitWall)
@@ -83,13 +87,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-											Vec2(player.GetSize(), player.GetSize()),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+			Vec2(player.GetSize(), player.GetSize()),
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
 		// リセット
 		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R))
 		{
-			General::AllReset(&player, &goal);
+			General::AllReset(&player, &goal,&rod);
 		}
 
 		// 画面クリア
@@ -106,7 +110,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		{
 			DrawString(0, 0, "Goal", GetColor(0xFF, 0xFF, 0xFF));
 		}
-		
+
 		// (ダブルバッファ)裏面
 		ScreenFlip();
 
