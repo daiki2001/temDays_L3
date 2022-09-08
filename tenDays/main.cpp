@@ -89,7 +89,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// リセット
 		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R))
 		{
-			General::AllReset(&player, &goal);
+			General::AllReset(&player, &goal, &rod);
 		}
 
 		// 画面クリア
