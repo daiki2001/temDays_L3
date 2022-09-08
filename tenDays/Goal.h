@@ -1,29 +1,29 @@
-#pragma once
+ï»¿#pragma once
 #include "Vec.h"
 
 class Goal
 {
-private: //ƒƒ“ƒo•Ï”
-	Vec2 pos;    //À•W
-	bool isGoal; //ƒS[ƒ‹‚µ‚Ä‚é‚©‚Ç‚¤‚©
-	int graph;   //‰æ‘œ
+private: //ãƒ¡ãƒ³ãƒå¤‰æ•°
+	Vec2 pos;    //åº§æ¨™
+	bool isGoal; //ã‚´ãƒ¼ãƒ«ã—ã¦ã‚‹ã‹ã©ã†ã‹
+	int graph;   //ç”»åƒ
 
-public: //ƒƒ“ƒoŠÖ”
+public: //ãƒ¡ãƒ³ãƒé–¢æ•°
 	Goal(const Vec2& pos);
 	Goal(const int& posX, const int& posY);
 	~Goal() = default;
 
-	// ‰Šú‰»ˆ—
+	// åˆæœŸåŒ–å‡¦ç†
 	void Init();
-	// XVˆ—
-	void Updata(const Vec2& playerPos);
-	// •`‰æˆ—
+	// æ›´æ–°å‡¦ç†
+	void Update(const Vec2& playerPos);
+	// æç”»å‡¦ç†
 	void Draw(const Vec2& offset = {});
 
 	void Reset() { isGoal = false; }
 
-	// À•W‚Ìæ“¾
+	// åº§æ¨™ã®å–å¾—
 	Vec2 GetPos() { return pos; }
-	// À•W‚Ìæ“¾
+	// åº§æ¨™ã®å–å¾—
 	bool GetGoal() { return isGoal; }
 };
