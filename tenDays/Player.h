@@ -17,6 +17,8 @@ public://メンバ関数
 	void SetPosition(Vec2 pos) { this->pos = pos; }
 
 	void ChangeFlag();
+	//棒に触れたとき
+	void ChangeHitRod(float rodAngle);
 
 	void ChangeBoundFlag() { isBoundFlag = true; }
 private:
@@ -47,7 +49,7 @@ private://メンバ変数
 	const float speedMax = 5.0f;
 	Vec2 speed = { 3.0f ,0.0f };
 
-	//進む方向
+	//進む方向 false：右　true：左
 	bool isMoveFlag = false;
 	//地面に接しているか
 	bool isBoundFlag = false;

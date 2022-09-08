@@ -46,6 +46,23 @@ void Player::ChangeFlag()
 	gravity = gravityPower;
 }
 
+void Player::ChangeHitRod(float rodAngle)
+{
+	isMoveFlag = false;
+	if (speed.x > 0)
+	{
+		speed.x *= -1.0f;
+		pos.x += 3.0f;
+	}
+	else
+	{
+		pos.x -= 3.0f;
+	}
+	boundPower = 30.0f;
+	bound = -boundPower;
+	gravity = gravityPower;
+}
+
 void Player::Move()
 {
 	if (isBoundFlag == true)
