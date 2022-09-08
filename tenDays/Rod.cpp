@@ -1,4 +1,4 @@
-#include "Rod.h"
+﻿#include "Rod.h"
 
 Rod::Rod()
 {
@@ -20,17 +20,15 @@ void Rod::Update()
 
 void Rod::Draw()
 {
-	/*DrawBox(pos.x - size.x, pos.y - size.y,
-		pos.x + size.x, pos.y + size.y,
-		GetColor(255, 0, 0), true);*/
 
-		//
 	DrawRotaGraph(pos.x, pos.y, 1.0f, 3.14 - angle, rodGraph, true);
 }
 
 void Rod::Reset()
 {
 	pos = { 100.0f,382.5f };
+	angle = 0.0f;
+	isResetAngleFlag = false;
 }
 
 void Rod::Move()
@@ -44,10 +42,10 @@ void Rod::Move()
 		pos.x += speed.x;
 	}
 
-	//��]
+	//回転
 	if (Controller::LB())
 	{
-		angle += 0.01f;
+		angle += 0.015f;
 		if (0.7854 <= angle)
 		{
 			angle = 0.7854;
@@ -56,7 +54,17 @@ void Rod::Move()
 	}
 	if (Controller::RB())
 	{
-		angle = 0.0f;
+		isResetAngleFlag = true;
+	}
+	//角度を戻す
+	if (isResetAngleFlag == true && angle > 0.0f)
+	{
+		angle -= 0.025f;
+		if (angle <= 0.0f)
+		{
+			isResetAngleFlag = false;
+			angle = 0.0f;
+		}
 	}
 
 }

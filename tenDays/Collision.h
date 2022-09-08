@@ -1,46 +1,46 @@
-#pragma once
+ï»¿#pragma once
 #include"Vec.h"
 ///<summary>
-///“–‚½‚è”»’èƒwƒ‹ƒp[ƒNƒ‰ƒX
+///å½“ãŸã‚Šåˆ¤å®šãƒ˜ãƒ«ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹
 ///</summary>
 class Collision
 {
 public:
 	
-	//2D“–‚½‚è”»’è
+	//2Då½“ãŸã‚Šåˆ¤å®š
 	/// <summary>
-	/// ‰~‚Æ‰~‚Ì“–‚½‚è”»’è
+	/// å††ã¨å††ã®å½“ãŸã‚Šåˆ¤å®š
 	/// </summary>
-	/// <param name="circle1">‚P‚Â–Ú‚Ì‰~‚Ì’†SˆÊ’u</param>
-	/// <param name="circle2">‚Q‚Â–Ú‚Ì‰~‚Ì’†SˆÊ’u</param>
-	/// <param name="radius1">‚P‚Â–Ú‚Ì‰~‚Ì‘å‚«‚³</param>
-	/// <param name="radius2">‚Q‚Â–Ú‚Ì‰~‚Ì‘å‚«‚³</param>
+	/// <param name="circle1">ï¼‘ã¤ç›®ã®å††ã®ä¸­å¿ƒä½ç½®</param>
+	/// <param name="circle2">ï¼’ã¤ç›®ã®å††ã®ä¸­å¿ƒä½ç½®</param>
+	/// <param name="radius1">ï¼‘ã¤ç›®ã®å††ã®å¤§ãã•</param>
+	/// <param name="radius2">ï¼’ã¤ç›®ã®å††ã®å¤§ãã•</param>
 	/// <returns></returns>
 	static bool CircleCollision(Vec2 circle1, Vec2 circle2, float radius1, float radius2);
 
 	static float DistanceSqrf(const float t_x1, const float t_y1, const float t_x2, const float t_y2);
 	/// <summary>
-	/// lŠpŒ`‚ÆlŠpŒ`
+	/// å››è§’å½¢ã¨å››è§’å½¢
 	/// </summary>
-	/// <param name="box1">1‚Â–Ú‚ÌlŠpŒ`‚ÌˆÊ’u</param>
-	/// <param name="box2">‚Q‚Â–Ú‚ÌlŠpŒ`‚ÌˆÊ’u</param>
-	/// <param name="size1">‚P‚Â–Ú‚ÌlŠpŒ`‚Ì‘å‚«‚³</param>
-	/// <param name="size2">‚Q‚Â–Ú‚ÌlŠpŒ`‚Ì‘å‚«‚³</param>
+	/// <param name="box1">1ã¤ç›®ã®å››è§’å½¢ã®ä½ç½®</param>
+	/// <param name="box2">ï¼’ã¤ç›®ã®å››è§’å½¢ã®ä½ç½®</param>
+	/// <param name="size1">ï¼‘ã¤ç›®ã®å››è§’å½¢ã®å¤§ãã•</param>
+	/// <param name="size2">ï¼’ã¤ç›®ã®å››è§’å½¢ã®å¤§ãã•</param>
 	/// <returns></returns>
 	static bool BoxCollision(Vec2 box1, Vec2 box2, Vec2 size1, Vec2 size2);
 
 	/// <summary>
-	/// ‰~‚ÆlŠpŒ`
+	/// å††ã¨å››è§’å½¢
 	/// </summary>
-	/// <param name="circle">‰~‚ÌˆÊ’u</param>
-	/// <param name="radius">‰~‚Ì‘å‚«‚³</param>
-	/// <param name="box">lŠpŒ`‚ÌˆÊ’u</param>
-	/// <param name="size">lŠpŒ`‚Ì‘å‚«‚³</param>
+	/// <param name="circle">å††ã®ä½ç½®</param>
+	/// <param name="radius">å††ã®å¤§ãã•</param>
+	/// <param name="box">å››è§’å½¢ã®ä½ç½®</param>
+	/// <param name="size">å››è§’å½¢ã®å¤§ãã•</param>
 	/// <returns></returns>
 	static bool Circle2Box(Vec2 circle, float radius, Vec2 box, Vec2 size);
 
-	//‚µ
+	//è©¦ã—
 	
-	static bool CollisionTrinangle();
+	static bool CollisionTrinangle(Vec2 pPos, Vec2 box, Vec2 size,float angle);
 
 };

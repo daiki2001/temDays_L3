@@ -8,6 +8,8 @@ public://メンバ関数
 
 	~Player();
 
+	void Init();
+
 	void Update();
 
 	void Draw();
@@ -17,6 +19,8 @@ public://メンバ関数
 	void SetPosition(Vec2 pos) { this->pos = pos; }
 
 	void ChangeFlag();
+	//棒に触れたとき
+	void ChangeHitRod(float rodAngle);
 
 	void ChangeBoundFlag() { isBoundFlag = true; }
 private:
@@ -35,19 +39,20 @@ public://取得系
 private://メンバ変数
 	Vec2 pos = { 680.0f,500.0f };		//プレイヤーの位置
 
-	float size = 10.0f;	//プレイヤーの大きさ
+	float size = 16.0f;	//プレイヤーの大きさ
 
 	Vec2 oldPos = {};					//１つ前の位置
 
 	const float gravityPower = 4.0f;	//最低限かかる重力
 	float gravity = 4.0f;				//重力
+	float gravityMemory = gravity;		//重力保存用
 	float gravityAdd = 0.09f;			//加速度
 
 	//スピード
 	const float speedMax = 5.0f;
 	Vec2 speed = { 3.0f ,0.0f };
 
-	//進む方向
+	//進む方向 false：右　true：左
 	bool isMoveFlag = false;
 	//地面に接しているか
 	bool isBoundFlag = false;
@@ -58,5 +63,8 @@ private://メンバ変数
 	float boundPower = 0.0f;
 	float bound = 0.0f;
 	float boundDecay = 0.9f;
+	//描画
+	int playerGraph = 0;
+	float playerDrawAngle = 0.0f;
 };
 

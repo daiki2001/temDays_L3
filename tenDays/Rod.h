@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 #include<DxLib.h>
 #include"Vec.h"
 #include"Input/Controller.h"
-//–_
+//æ£’
 class Rod
 {
 public:
@@ -20,6 +20,7 @@ public:
 public:
 	Vec2 GetPos() { return pos; }
 	Vec2 GetSize() { return size; }
+	float GetAngle() { return angle; }
 private:
 	void Move();
 private:
@@ -29,8 +30,10 @@ private:
 
 	Vec2 speed = { 2.0f,2.0f };
 
-	float angle = {};//Šp“x
+	float angle = 0.0f;//è§’åº¦
 
 	int rodGraph = 0;
+
+	bool isResetAngleFlag = false;
 };
 

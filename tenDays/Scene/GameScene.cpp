@@ -23,6 +23,7 @@ GameScene::~GameScene()
 void GameScene::Init()
 {
 	Load();
+	player.Init();
 	stage.Init();
 	rod.Init();
 }
@@ -49,8 +50,11 @@ void GameScene::Update()
 															 stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
 		}
 		//プレイヤーと棒
-		player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-														 rod.GetPos(), rod.GetSize(), IsHitWall, IsHitGround));
+		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
+		{
+			IsHitWall = true;
+			player.ChangeHitRod(rod.GetAngle());
+		}
 
 		//壁にあたったら
 		if (IsHitWall)
@@ -86,7 +90,7 @@ void GameScene::Draw()
 	// 背景
 	//DrawGraph(0, 0, background, false);
 
-	//オブジェクト
+	// オブジェクト
 	goal.Draw();
 	player.Draw();
 	stage.Draw();
