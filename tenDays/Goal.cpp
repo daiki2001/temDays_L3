@@ -1,4 +1,4 @@
-#include "Goal.h"
+﻿#include "Goal.h"
 #include <DxLib.h>
 
 Goal::Goal(const Vec2& pos) :
@@ -19,7 +19,7 @@ void Goal::Init()
 {
 }
 
-void Goal::Updata(const Vec2& playerPos)
+void Goal::Update(const Vec2& playerPos)
 {
 	if (isGoal)
 	{

@@ -2,11 +2,7 @@
 #include "General.h"
 #include "./Input/KeyInput.h"
 #include "./Input/Controller.h"
-#include "Player.h"
-#include "Goal.h"
-#include"Stage.h"
-#include"PushCollision.h"
-#include"Rod.h"
+#include "./Scene/SceneManager.h"
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "とりトリップ";
@@ -38,15 +34,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// (ダブルバッファ)描画先グラフィック領域は裏面を指定
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	Player player;
-	player.Init();
-	Goal goal = Goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2);
-	//ステージ
-	Stage stage;
-	stage.Init();
-	//棒
-	Rod rod;
-	rod.Init();
+	SceneManager sceneManager;
 
 	while (1)
 	{
@@ -54,65 +42,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		KeyInput::Update();
 		Controller::Update();
 
-		player.Update();
-
-		rod.Update();
-
-		bool IsHitWall = false;
-		bool IsHitGround = false;
-		for (int i = 0; i < stage.boxMax; i++)
-		{
-			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
-		}
-		////プレイヤーと棒
-		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
-		{
-			IsHitWall = true;
-			player.ChangeHitRod(rod.GetAngle());
-		}
-
-		//壁にあたったら
-		if (IsHitWall)
-		{
-			player.ChangeFlag();
-		}
-		//地面に接している
-		if (IsHitGround)
-		{
-			player.ChangeBoundFlag();
-		}
-
-		goal.Updata(player.GetPos());
-
-		// 画面外判定
-		bool isIn = Collision::BoxCollision(player.GetPos(),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-			Vec2(player.GetSize(), player.GetSize()),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
-		// リセット
-		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R))
-		{
-			General::AllReset(&player, &goal,&rod);
-		}
-
-		// 画面クリア
-		ClearDrawScreen();
-
-		//描画
-		goal.Draw();
-		player.Draw();
-		stage.Draw();
-
-		rod.Draw();
-
-		if (goal.GetGoal())
-		{
-			DrawString(0, 0, "Goal", GetColor(0xFF, 0xFF, 0xFF));
-		}
-
-		// (ダブルバッファ)裏面
-		ScreenFlip();
+		sceneManager.Loop();
 
 		// 20ミリ秒待機(疑似60FPS)
 		WaitTimer(20);

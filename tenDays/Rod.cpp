@@ -1,4 +1,4 @@
-#include "Rod.h"
+ï»¿#include "Rod.h"
 
 Rod::Rod()
 {
@@ -42,7 +42,7 @@ void Rod::Move()
 		pos.x += speed.x;
 	}
 
-	//‰ñ“]
+	//å›žè»¢
 	if (Controller::LB())
 	{
 		angle += 0.015f;
@@ -56,7 +56,7 @@ void Rod::Move()
 	{
 		isResetAngleFlag = true;
 	}
-	//Šp“x‚ð–ß‚·
+	//è§’åº¦ã‚’æˆ»ã™
 	if (isResetAngleFlag == true && angle > 0.0f)
 	{
 		angle -= 0.025f;
