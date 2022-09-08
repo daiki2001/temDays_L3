@@ -63,6 +63,7 @@ void Rod::Move()
 		if (angle <= 0.0f)
 		{
 			isResetAngleFlag = false;
+			angle = 0.0f;
 		}
 	}
 

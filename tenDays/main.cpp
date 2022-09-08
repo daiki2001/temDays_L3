@@ -39,6 +39,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player player;
+	player.Init();
 	Goal goal = Goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2);
 	//ステージ
 	Stage stage;
