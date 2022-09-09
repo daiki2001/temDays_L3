@@ -1,6 +1,8 @@
 ﻿#pragma once
-#include<DxLib.h>
-#include"Vec.h"
+#include <DxLib.h>
+#include "Vec.h"
+#include "./Effect/PlayerLocus.h"
+
 class Player
 {
 public://メンバ関数
@@ -64,5 +66,6 @@ private://メンバ変数
 	//描画
 	int playerGraph = 0;
 	float playerDrawAngle = 0.0f;
-};
 
+	PlayerLocus locus; //軌跡
+};

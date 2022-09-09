@@ -42,6 +42,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		KeyInput::Update();
 		Controller::Update();
 
+		// フレーム数の加算
+		General::Frame::Update();
+
 		sceneManager.Loop();
 
 		// 20ミリ秒待機(疑似60FPS)
@@ -52,12 +55,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		{
 			break;
 		}
-
+#ifdef _DEBUG
 		// ESCキーが押されたらループから抜ける
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == TRUE)
 		{
 			break;
 		}
+#endif // _DEBUG
 	}
 	// Dxライブラリ終了処理
 	DxLib_End();

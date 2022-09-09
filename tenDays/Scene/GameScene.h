@@ -13,6 +13,15 @@ private: //メンバ変数
 	Goal goal;     //ゴール
 	Stage stage;   //ステージ
 
+	/*背景の小物の画像*/
+	int bigLeaf;   //大きい葉
+	int smallLeaf; //小さい葉
+	int groundAndTree;
+
+	/*背景の小物の情報*/
+	Vec2 bigLeafPos;   //大きい葉の座標
+	Vec2 smallLeafPos; //小さい葉の座標
+
 public: //メンバ関数
 	GameScene(SceneChenger* sceneChenger);
 	~GameScene() override;
@@ -28,4 +37,9 @@ public: //メンバ関数
 	void Load() override;
 	// 読み込んだファイルを全て開放
 	void Release() override;
+private:
+	// 大きい葉のアニメーション
+	void BigLeafAnimation();
+	// 小さい葉のアニメーション
+	void SmallLeafAnimation();
 };
