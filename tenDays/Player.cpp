@@ -33,18 +33,16 @@ void Player::Reset()
 {
 	pos.x = General::WIN_WIDTH / 2.0f;
 	pos.y = 100.0f;
+	bound = 0.0f;
+	gravity = gravityPower;
+	if (speed.x < 0)
+	{
+		speed.x *= -1.0f;
+	}
 }
 
 void Player::ChangeFlag()
 {
-	if (isMoveFlag == true)
-	{
-		isMoveFlag = false;
-	}
-	else
-	{
-		isMoveFlag = true;
-	}
 	speed.x *= -1.0f;
 
 	boundPower = 30.0f;
@@ -54,18 +52,18 @@ void Player::ChangeFlag()
 
 void Player::ChangeHitRod(float rodAngle)
 {
-	isMoveFlag = false;
 	if (speed.x > 0)
 	{
-		speed.x *= -1.0f;
 		pos.x += 3.0f;
 	}
 	else
 	{
+		speed.x *= -1.0f;
 		pos.x -= 3.0f;
 	}
+	float deg = rodAngle * (180 / 3.14);
 	boundPower = 30.0f;
-	bound = -boundPower;
+	bound = -boundPower * (1- deg / 80.0);
 	gravity = gravityPower;
 }
 
@@ -88,7 +86,7 @@ void Player::Move()
 	pos.y += gravity;
 	pos.x += speed.x;
 
-	if (speed.x>0)
+	if (speed.x > 0)
 	{
 		playerDrawAngle += 0.07f;
 	}

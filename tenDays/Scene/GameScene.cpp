@@ -44,23 +44,29 @@ void GameScene::Update()
 
 		bool IsHitWall = false;
 		bool IsHitGround = false;
+		//挟まったかどうか
+		bool IsGetCaught = false;
 		for (int i = 0; i < stage.boxMax; i++)
 		{
 			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-															 stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
+				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
 		}
-		//プレイヤーと棒
-		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
-		{
-			IsHitWall = true;
-			player.ChangeHitRod(rod.GetAngle());
-		}
-
 		//壁にあたったら
 		if (IsHitWall)
 		{
 			player.ChangeFlag();
 		}
+		//プレイヤーと棒
+		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
+		{
+			if (IsHitWall)
+			{
+				IsGetCaught = true;
+			}
+			IsHitWall = true;
+			player.ChangeHitRod(rod.GetAngle());
+		}
+
 		//地面に接している
 		if (IsHitGround)
 		{
@@ -71,11 +77,11 @@ void GameScene::Update()
 
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-											Vec2(player.GetSize(), player.GetSize()),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+			Vec2(player.GetSize(), player.GetSize()),
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
 		// リセット
-		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R))
+		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
 		{
 			General::AllReset(&player, &goal, &rod);
 		}
@@ -103,7 +109,7 @@ void GameScene::Draw()
 	}
 
 	// 前景
-	
+
 	// (ダブルバッファ)裏面
 	ScreenFlip();
 }
