@@ -10,8 +10,14 @@ GameScene::GameScene(SceneChenger* sceneChenger) :
 	player{},
 	rod{},
 	goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2),
-	stage{}
+	stage{},
+	bigLeaf(-1),
+	smallLeaf(-1),
+	groundAndTree(-1),
+	bigLeafPos(740.0f, 404.0f),
+	smallLeafPos(776.0f, 364.0f)
 {
+	Load();
 	Init();
 }
 
@@ -22,7 +28,6 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
-	Load();
 	player.Init();
 	stage.Init();
 	rod.Init();
@@ -30,6 +35,9 @@ void GameScene::Init()
 
 void GameScene::Update()
 {
+	BigLeafAnimation();
+	SmallLeafAnimation();
+
 	if (goal.GetGoal())
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
@@ -88,7 +96,10 @@ void GameScene::Draw()
 	ClearDrawScreen();
 
 	// 背景
-	//DrawGraph(0, 0, background, false);
+	DrawGraph(0, 0, background, false);
+	DrawGraph(static_cast<int>(bigLeafPos.x), static_cast<int>(bigLeafPos.y), bigLeaf, true);
+	DrawGraph(static_cast<int>(smallLeafPos.x), static_cast<int>(smallLeafPos.y), smallLeaf, true);
+	DrawGraph(0, 0, groundAndTree, true);
 
 	// オブジェクト
 	goal.Draw();
@@ -112,11 +123,83 @@ void GameScene::Load()
 {
 	if (background == -1)
 	{
-		LoadGraph("./Resources/Title.png");
+		background = LoadGraph("./Resources/forestback/forestback.png");
+	}
+	if (bigLeaf == -1)
+	{
+		bigLeaf = LoadGraph("./Resources/forestback/BigLeaf.png");
+	}
+	if (smallLeaf == -1)
+	{
+		smallLeaf = LoadGraph("./Resources/forestback/SmallLeaf.png");
+	}
+	if (groundAndTree == -1)
+	{
+		groundAndTree = LoadGraph("./Resources/forestback/ground_tree.png");
 	}
 }
 
 void GameScene::Release()
 {
 	DeleteGraph(background);
+}
+
+void GameScene::BigLeafAnimation()
+{
+	static const int maxCount = 16;
+	static int animationCount = 0;
+
+	if ((General::Frame::GetFrame() % 6) == 0)
+	{
+		animationCount++;
+
+		if (animationCount >= maxCount)
+		{
+			bigLeafPos.x = 740.0f;
+			bigLeafPos.y = 404.0f;
+			animationCount -= maxCount;
+		}
+		else
+		{
+			bigLeafPos.x -= 14.0f;
+			bigLeafPos.y += 8.0f;
+		}
+	}
+}
+
+void GameScene::SmallLeafAnimation()
+{
+	static const int maxCount = 16;
+	static int animationCount = 0;
+
+	if ((General::Frame::GetFrame() % 6) == 0)
+	{
+		animationCount++;
+
+		if (animationCount >= maxCount)
+		{
+			smallLeafPos.x = 776.0f;
+			smallLeafPos.y = 364.0f;
+			animationCount -= maxCount;
+		}
+		else
+		{
+			if ((animationCount % 4) == 0)
+			{
+				smallLeafPos.x += 2.0f * animationCount;
+			}
+			else
+			{
+				smallLeafPos.x -= 2.0f * animationCount;
+			}
+			if ((animationCount % 2) == 0)
+			{
+				smallLeafPos.y += 14.0f;
+			}
+			else
+			{
+				smallLeafPos.y += 26.0f;
+			}
+		}
+	}
 }

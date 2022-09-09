@@ -6,6 +6,7 @@
 TitleScene::TitleScene(SceneChenger* sceneChenger) :
 	BaseScene(sceneChenger)
 {
+	Load();
 	Init();
 }
 
@@ -16,7 +17,6 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-	Load();
 }
 
 void TitleScene::Update()
