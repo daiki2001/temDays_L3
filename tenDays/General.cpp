@@ -1,8 +1,13 @@
 ﻿#include "General.h"
 
-void General::AllReset(Player* player, Goal* goal, Rod* rod)
+namespace General
+{
+int Frame::frame = 0;
+
+void AllReset(Player* player, Goal* goal, Rod* rod)
 {
 	player->Reset();
 	goal->Reset();
 	rod->Reset();
 }
+} //General

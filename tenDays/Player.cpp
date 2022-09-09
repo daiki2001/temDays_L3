@@ -2,7 +2,8 @@
 #include "General.h"
 #include "./Input/Controller.h"
 
-Player::Player()
+Player::Player() :
+	locus{}
 {
 }
 
@@ -21,12 +22,19 @@ void Player::Update()
 	Bound();
 	Move();
 	isBoundFlag = false;
+
+	if ((General::Frame::GetFrame() % 5) == 0)
+	{
+		locus.Update(pos);
+	}
 }
 
 void Player::Draw()
 {
+	locus.Draw();
+
 	//DrawCircle(pos.x, pos.y, size, GetColor(255, 0, 0));
-	DrawRotaGraph(pos.x, pos.y, 0.5, playerDrawAngle, playerGraph, TRUE);
+	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 0.5, playerDrawAngle, playerGraph, TRUE);
 }
 
 void Player::Reset()
