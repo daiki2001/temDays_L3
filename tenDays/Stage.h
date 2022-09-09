@@ -24,7 +24,7 @@ public:
 
 	Vec2 GetBoxSize(int i) { return boxData[i].size; }
 public:
-	static const int boxMax = 2;
+	static const int boxMax = 4;
 private:
 	BoxData boxData[boxMax];
 	
