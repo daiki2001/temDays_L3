@@ -1,5 +1,5 @@
 ﻿#include "Rod.h"
-
+#include"General.h"
 Rod::Rod()
 {
 }
@@ -36,10 +36,18 @@ void Rod::Move()
 	if (Controller::Left())
 	{
 		pos.x -= speed.x;
+		if (pos.x <= size.x)
+		{
+			pos.x = size.x;
+		}
 	}
 	if (Controller::Right())
 	{
 		pos.x += speed.x;
+		if (pos.x >= static_cast<float>(General::WIN_WIDTH) - size.x)
+		{
+			pos.x = static_cast<float>(General::WIN_WIDTH) - size.x;
+		}
 	}
 
 	//回転
