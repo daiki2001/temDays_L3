@@ -43,6 +43,8 @@ void GameScene::Update()
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
 			sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+			/*stage.StageAddOne();
+			stage.CreateStage();*/
 		}
 	}
 	else
@@ -54,7 +56,7 @@ void GameScene::Update()
 		bool IsHitGround = false;
 		//挟まったかどうか
 		bool IsGetCaught = false;
-		for (int i = 0; i < stage.boxMax; i++)
+		for (int i = 0; i < stage.GetBoxDataNum(); i++)
 		{
 			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
 				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
