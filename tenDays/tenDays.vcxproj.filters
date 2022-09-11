@@ -75,6 +75,9 @@
     <ClCompile Include="Effect\Particle.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Effect\PlayerClash.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -126,6 +129,9 @@
       <Filter>Effect</Filter>
     </ClInclude>
     <ClInclude Include="Effect\Particle.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect\PlayerClash.h">
       <Filter>Effect</Filter>
     </ClInclude>
   </ItemGroup>

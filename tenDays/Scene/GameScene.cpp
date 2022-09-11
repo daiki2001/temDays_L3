@@ -111,10 +111,10 @@ void GameScene::Draw()
 
 	// オブジェクト
 	goal.Draw();
-	player.Draw();
 	stage.Draw();
 
 	rod.Draw();
+	player.Draw();
 
 	if (goal.GetGoal())
 	{
