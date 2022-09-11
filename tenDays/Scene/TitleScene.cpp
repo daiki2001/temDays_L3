@@ -7,14 +7,15 @@
 
 namespace
 {
-int animationCount = 0;
+int backAnimation = 0;
 }
 
 TitleScene::TitleScene(SceneChenger* sceneChenger) :
 	BaseScene(sceneChenger),
 	back{},
 	cloud(-1),
-	player{}
+	player{},
+	cloudPos{}
 {
 	Load();
 	Init();
@@ -34,10 +35,17 @@ void TitleScene::Update()
 {
 	if ((General::Frame::GetFrame() % 5) == 0)
 	{
-		++animationCount %= 8;
+		++backAnimation %= 8;
+	}
+
+	cloudPos.x += 1.0f;
+	if (cloudPos.x >= 1280.0f)
+	{
+		cloudPos.x -= 1280.0f;
 	}
 
 	player.Update();
+	player.EffectUpdate();
 
 	static const Vec2 groundPos = Vec2(General::WIN_WIDTH / 2, General::WIN_HEIGHT - 70);
 	static const Vec2 groundSize = Vec2(General::WIN_WIDTH, 70);
@@ -76,8 +84,9 @@ void TitleScene::Draw()
 	ClearDrawScreen();
 
 	// 背景
-	DrawGraph(0, 0, back[animationCount], false);
-	DrawGraph(16, 0, cloud, true);
+	DrawGraph(0, 0, back[backAnimation], false);
+	DrawGraph(static_cast<int>(cloudPos.x), static_cast<int>(cloudPos.y), cloud, true);
+	DrawGraph(static_cast<int>(cloudPos.x) - 1280, static_cast<int>(cloudPos.y), cloud, true);
 
 	// オブジェクト
 	player.Draw();

@@ -28,6 +28,8 @@ public://メンバ関数
 	void ChangeBoundFlag() { isBoundFlag = true; }
 	//プレイヤースピード変化
 	void WalkSpeedAccel();
+
+	void EffectUpdate();
 private:
 	//移動
 	void Move();
