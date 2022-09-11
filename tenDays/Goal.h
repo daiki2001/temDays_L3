@@ -26,4 +26,6 @@ public: //メンバ関数
 	Vec2 GetPos() { return pos; }
 	// 座標の取得
 	bool GetGoal() { return isGoal; }
+
+	void SetGoalPos(int stageNum);
 };

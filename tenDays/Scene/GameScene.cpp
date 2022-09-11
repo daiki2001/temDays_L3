@@ -31,6 +31,7 @@ void GameScene::Init()
 	player.Init();
 	stage.Init();
 	rod.Init();
+	goal.SetGoalPos(stage.GetStageNum());
 }
 
 void GameScene::Update()
@@ -42,9 +43,17 @@ void GameScene::Update()
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
-			/*stage.StageAddOne();
-			stage.CreateStage();*/
+			if (stage.GetStageNum() == 2)
+			{
+				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+			}
+			else
+			{
+				stage.StageAddOne();
+				stage.CreateStage();
+				goal.SetGoalPos(stage.GetStageNum());
+				General::AllReset(&player, &goal, &rod);
+			}
 		}
 	}
 	else
@@ -61,7 +70,7 @@ void GameScene::Update()
 		{
 			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
 				stage.GetBoxPos(i), stage.GetBoxSize(i), stage.GetType(i),
-				IsHitWall, IsHitGround,IsHitTriangle));
+				IsHitWall, IsHitGround, IsHitTriangle));
 		}
 		//壁にあたったら
 		if (IsHitWall)

@@ -25,6 +25,8 @@ public:
 	void Draw();
 
 	void StageAddOne();
+
+	int GetStageNum() { return stageNum; }
 private://メンバ関数
 	//１ステージ目
 	void StageOne();

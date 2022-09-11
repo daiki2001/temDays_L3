@@ -49,3 +49,15 @@ void Goal::Draw(const Vec2& offset)
 		DrawGraph(drawPos.x, drawPos.y, graph, true);
 	}
 }
+
+void Goal::SetGoalPos(int stageNum)
+{
+	if (stageNum == 1)
+	{
+		pos = { 1000.0f,300 };
+	}
+	else if (stageNum == 2)
+	{
+		pos = { 1000.0f,50 };
+	}
+}
