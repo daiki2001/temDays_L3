@@ -28,7 +28,7 @@ private:
 
 	Vec2 size = { 20.0f,500.0f };
 
-	Vec2 speed = { 2.0f,2.0f };
+	Vec2 speed = { 2.5f,2.0f };
 
 	float angle = 0.0f;//角度
 

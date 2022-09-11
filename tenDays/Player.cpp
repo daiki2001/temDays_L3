@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "General.h"
 #include "./Input/Controller.h"
-
+#include<cmath>
 Player::Player() :
 	locusEffect{},
 	clashEffect{}
@@ -20,9 +20,11 @@ void Player::Init()
 void Player::Update()
 {
 	oldPos = pos;
+	speed = {};
 	Bound();
 	Move();
 	isBoundFlag = false;
+	pos += speed;
 
 	if ((General::Frame::GetFrame() % 5) == 0)
 	{
@@ -36,7 +38,6 @@ void Player::Draw()
 	locusEffect.Draw();
 	clashEffect.Draw();
 
-	//DrawCircle(pos.x, pos.y, size, GetColor(255, 0, 0));
 	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 0.5, playerDrawAngle, playerGraph, TRUE);
 }
 
@@ -46,9 +47,10 @@ void Player::Reset()
 	pos.y = 100.0f;
 	bound = 0.0f;
 	gravity = gravityPower;
-	if (speed.x < 0)
+	walkSpeed = speedNormal;
+	if (walkSpeed < 0)
 	{
-		speed.x *= -1.0f;
+		walkSpeed *= -1.0f;
 	}
 }
 
@@ -57,7 +59,7 @@ void Player::ChangeFlag()
 	// 衝突時のエフェクト生成
 	clashEffect.Create(pos, speed);
 
-	speed.x *= -1.0f;
+	walkSpeed *= -1.0f;
 
 	boundPower = 30.0f;
 	bound = -boundPower;
@@ -69,19 +71,38 @@ void Player::ChangeHitRod(float rodAngle)
 	// 衝突時のエフェクト生成
 	//clashEffect.Create(pos, speed);
 
-	if (speed.x > 0)
+	if (walkSpeed > 0)
 	{
-		pos.x += 3.0f;
 	}
 	else
 	{
-		speed.x *= -1.0f;
-		pos.x -= 3.0f;
+		walkSpeed *= -1.0f;
+		pos.x += 6.0f;
 	}
 	float deg = rodAngle * (180 / 3.14);
-	boundPower = 30.0f;
+	boundPower = 30.0f * (fabs(walkSpeed) / speedNormal);
 	bound = -boundPower * (1 - deg / 80.0);
 	gravity = gravityPower;
+}
+
+void Player::WalkSpeedAccel()
+{
+	/*if (walkSpeed > 0)
+	{
+		walkSpeed -= 0.1f;
+		if (fabs(walkSpeed) <= speedMin)
+		{
+			walkSpeed = speedMin;
+		}
+	}
+	else
+	{
+		walkSpeed -= 0.1f;
+		if (fabs(walkSpeed) >= speedMax)
+		{
+			walkSpeed = speedMax;
+		}
+	}*/
 }
 
 void Player::Move()
@@ -100,9 +121,11 @@ void Player::Move()
 		gravity = 10.0f;
 	}
 	//重力
-	pos.y += gravity;
-	pos.x += speed.x;
+	speed.y += gravity;
+	speed.x += walkSpeed;
 
+
+	//描画
 	if (speed.x > 0)
 	{
 		playerDrawAngle += 0.07f;
@@ -133,5 +156,5 @@ void Player::Bound()
 		}
 	}
 
-	pos.y += bound;
+	speed.y += bound;
 }

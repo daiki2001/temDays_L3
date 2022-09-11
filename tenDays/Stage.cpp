@@ -54,38 +54,47 @@ void Stage::Draw()
 		//DrawBox(boxData[i]->pos.x - boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
 		//	boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
 		//	GetColor(255, 255, 255), true);
-
-		for (size_t y = 0; y * graphSize < boxData[i]->size.y * 2; y++)
+		if (boxData[i]->type == 0)
 		{
-			int up = (boxData[i]->pos.y - boxData[i]->size.y) + (y * graphSize);
-			bool isRect = (up + graphSize) > (boxData[i]->pos.y + boxData[i]->size.y);
-
-			for (size_t x = 0; x * graphSize < boxData[i]->size.x * 2; x++)
+			for (size_t y = 0; y * graphSize < boxData[i]->size.y * 2; y++)
 			{
-				int left = (boxData[i]->pos.x - boxData[i]->size.x) + (x * graphSize);
-				isRect |= (left + graphSize) > (boxData[i]->pos.x + boxData[i]->size.x);
+				int up = (boxData[i]->pos.y - boxData[i]->size.y) + (y * graphSize);
+				bool isRect = (up + graphSize) > (boxData[i]->pos.y + boxData[i]->size.y);
 
-				if (isRect)
+				for (size_t x = 0; x * graphSize < boxData[i]->size.x * 2; x++)
 				{
-					int width = graphSize;
-					int height = graphSize;
+					int left = (boxData[i]->pos.x - boxData[i]->size.x) + (x * graphSize);
+					isRect |= (left + graphSize) > (boxData[i]->pos.x + boxData[i]->size.x);
 
-					if ((left + graphSize) > static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x))
+					if (isRect)
 					{
-						width -= (left + graphSize) - static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x);
-					}
-					if ((up + graphSize) > static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y))
-					{
-						height -= (up + graphSize) - static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y);
-					}
+						int width = graphSize;
+						int height = graphSize;
 
-					DrawRectGraph(left, up, 0, 0, width, height, cubeBlock, true);
-				}
-				else
-				{
-					DrawGraph(left, up, cubeBlock, true);
+						if ((left + graphSize) > static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x))
+						{
+							width -= (left + graphSize) - static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x);
+						}
+						if ((up + graphSize) > static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y))
+						{
+							height -= (up + graphSize) - static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y);
+						}
+
+						DrawRectGraph(left, up, 0, 0, width, height, cubeBlock, true);
+					}
+					else
+					{
+						DrawGraph(left, up, cubeBlock, true);
+					}
 				}
 			}
+		}
+		else if (boxData[i]->type == 1)
+		{
+			DrawTriangle(boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
+				boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
+				boxData[i]->pos.x - boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
+				GetColor(255, 255, 255), TRUE);
 		}
 	}
 }
@@ -115,10 +124,23 @@ void Stage::StageOne()
 
 void Stage::StageTwo()
 {
-	boxData.push_back(new BoxData);
-	boxData[boxData.size() - 1]->pos = { 80.0f,560.0f };
+	boxData.push_back(new BoxData);//床
+	boxData[boxData.size() - 1]->pos = { 500.0f,600.0f };
 	boxData[boxData.size() - 1]->size = { 1000.0f,20.0f };
-	boxData.push_back(new BoxData);
-	boxData[boxData.size() - 1]->pos = { 100.0f,440.0f };
-	boxData[boxData.size() - 1]->size = { 120.0f,100.0f };
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1000.0f,490.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,100.0f };
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 1000.0f,290.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 1000.0f,140.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1080.0f,80.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,100.0f };
+	boxData.push_back(new BoxData);//三角形
+	boxData[boxData.size() - 1]->size = { 80.0f,80.0f };
+	boxData[boxData.size() - 1]->type = 1;
+	boxData[boxData.size() - 1]->pos = { 880.0f,510.0f };
 }

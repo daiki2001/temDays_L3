@@ -31,6 +31,7 @@ void GameScene::Init()
 	player.Init();
 	stage.Init();
 	rod.Init();
+	goal.SetGoalPos(stage.GetStageNum());
 }
 
 void GameScene::Update()
@@ -38,62 +39,88 @@ void GameScene::Update()
 	BigLeafAnimation();
 	SmallLeafAnimation();
 
-	player.Update();
-	rod.Update();
-
-	bool IsHitWall = false;
-	bool IsHitGround = false;
-	//挟まったかどうか
-	bool IsGetCaught = false;
-	for (int i = 0; i < stage.GetBoxDataNum(); i++)
-	{
-		player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-														 stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
-	}
-	//壁にあたったら
-	if (IsHitWall)
-	{
-		player.ChangeFlag();
-	}
-	//プレイヤーと棒
-	if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
-	{
-		if (IsHitWall)
-		{
-			IsGetCaught = true;
-		}
-		IsHitWall = true;
-		player.ChangeHitRod(rod.GetAngle());
-	}
-
-	//地面に接している
-	if (IsHitGround)
-	{
-		player.ChangeBoundFlag();
-	}
-
-	goal.Update(player.GetPos());
-
 	if (goal.GetGoal())
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
-			/*stage.StageAddOne();
-			stage.CreateStage();*/
+			if (stage.GetStageNum() == 2)
+			{
+				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+			}
+			else
+			{
+				stage.StageAddOne();
+				stage.CreateStage();
+				goal.SetGoalPos(stage.GetStageNum());
+				General::AllReset(&player, &goal, &rod);
+			}
 		}
 	}
 	else
 	{
-		// 画面外判定
-		bool isIn = Collision::BoxCollision(player.GetPos(),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-			Vec2(player.GetSize(), player.GetSize()),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
-		// リセット
-		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
+		player.Update();
+		rod.Update();
+
+		bool IsHitWall = false;
+		bool IsHitGround = false;
+		//挟まったかどうか
+		bool IsGetCaught = false;
+		bool IsHitTriangle = false;
+		for (int i = 0; i < stage.GetBoxDataNum(); i++)
 		{
-			General::AllReset(&player, &goal, &rod);
+			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
+				stage.GetBoxPos(i), stage.GetBoxSize(i), stage.GetType(i),
+				IsHitWall, IsHitGround, IsHitTriangle));
+		}
+		//壁にあたったら
+		if (IsHitWall)
+		{
+			player.ChangeFlag();
+		}
+		if (IsHitTriangle)
+		{
+			player.WalkSpeedAccel();
+		}
+		//プレイヤーと棒
+		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
+		{
+			if (IsHitWall)
+			{
+				IsGetCaught = true;
+			}
+			IsHitWall = true;
+			player.ChangeHitRod(rod.GetAngle());
+		}
+
+		//地面に接している
+		if (IsHitGround)
+		{
+			player.ChangeBoundFlag();
+		}
+
+		goal.Update(player.GetPos());
+
+		if (goal.GetGoal())
+		{
+			if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+			{
+				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+				/*stage.StageAddOne();
+				stage.CreateStage();*/
+			}
+		}
+		else
+		{
+			// 画面外判定
+			bool isIn = Collision::BoxCollision(player.GetPos(),
+				Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+				Vec2(player.GetSize(), player.GetSize()),
+				Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
+			// リセット
+			if (isIn == false || KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
+			{
+				General::AllReset(&player, &goal, &rod);
+			}
 		}
 	}
 }

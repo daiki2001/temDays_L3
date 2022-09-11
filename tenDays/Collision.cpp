@@ -137,3 +137,20 @@ bool Collision::CollisionTrinangle(Vec2 pPos, Vec2 box, Vec2 size, float angle)
 	}
 	return false;
 }
+
+bool Collision::CollisionTriangle(Vec2 pPos, Vec2 box, Vec2 size)
+{
+	Vec2 pos1 = { box.x + size.x,box.y - size.y };
+	Vec2 pos2 = { box.x + size.x,box.y + size.y };
+	Vec2 pos3 = { box.x - size.x,box.y + size.y };
+	//外積    Z成分だけ計算すればよいです
+	double c1 = side(pPos.x, pPos.y, pos1.x, pos1.y, pos2.x, pos2.y);//右上
+	double c2 = side(pPos.x, pPos.y, pos2.x, pos2.y, pos3.x, pos3.y);//右下
+	double c3 = side(pPos.x, pPos.y, pos3.x, pos3.y, pos1.x, pos1.y);//左下
+
+	if ((c1 > 0 && c2 > 0 && c3 > 0) || (c1 < 0 && c2 < 0 && c3 < 0))
+	{
+		return true;
+	}
+	return false;
+}
