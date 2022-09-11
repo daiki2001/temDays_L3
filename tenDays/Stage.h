@@ -2,7 +2,12 @@
 #include "Vec.h"
 #include <DxLib.h>
 #include <vector>
-
+enum StageType
+{
+	BOX,
+	TRIANGLE,
+	FLOOR,
+};
 struct BoxData
 {
 	Vec2 pos;

@@ -54,7 +54,7 @@ void Stage::Draw()
 		//DrawBox(boxData[i]->pos.x - boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
 		//	boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
 		//	GetColor(255, 255, 255), true);
-		if (boxData[i]->type == 0)
+		if (boxData[i]->type == BOX)
 		{
 			for (size_t y = 0; y * graphSize < boxData[i]->size.y * 2; y++)
 			{
@@ -89,7 +89,7 @@ void Stage::Draw()
 				}
 			}
 		}
-		else if (boxData[i]->type == 1)
+		else if (boxData[i]->type == TRIANGLE)
 		{
 			DrawTriangle(boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
 				boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
@@ -115,10 +115,11 @@ void Stage::Load()
 void Stage::StageOne()
 {
 	boxData.push_back(new BoxData);
-	boxData[boxData.size() - 1]->pos = { 680.0f,560.0f };
+	boxData[boxData.size() - 1]->pos = { 680.0f,600.0f };
 	boxData[boxData.size() - 1]->size = { 1000.0f,20.0f };
+	boxData[boxData.size() - 1]->type = FLOOR;
 	boxData.push_back(new BoxData);
-	boxData[boxData.size() - 1]->pos = { 1000.0f,440.0f };
+	boxData[boxData.size() - 1]->pos = { 1000.0f,480.0f };
 	boxData[boxData.size() - 1]->size = { 120.0f,100.0f };
 }
 
@@ -127,6 +128,7 @@ void Stage::StageTwo()
 	boxData.push_back(new BoxData);//床
 	boxData[boxData.size() - 1]->pos = { 500.0f,600.0f };
 	boxData[boxData.size() - 1]->size = { 1000.0f,20.0f };
+	boxData[boxData.size()-1]->type = FLOOR;
 	boxData.push_back(new BoxData);//長方形
 	boxData[boxData.size() - 1]->pos = { 1000.0f,490.0f };
 	boxData[boxData.size() - 1]->size = { 40.0f,100.0f };
@@ -141,6 +143,6 @@ void Stage::StageTwo()
 	boxData[boxData.size() - 1]->size = { 40.0f,100.0f };
 	boxData.push_back(new BoxData);//三角形
 	boxData[boxData.size() - 1]->size = { 80.0f,80.0f };
-	boxData[boxData.size() - 1]->type = 1;
+	boxData[boxData.size() - 1]->type = TRIANGLE;
 	boxData[boxData.size() - 1]->pos = { 880.0f,510.0f };
 }
