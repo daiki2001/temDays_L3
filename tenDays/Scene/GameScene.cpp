@@ -9,7 +9,7 @@ GameScene::GameScene(SceneChenger* sceneChenger) :
 	BaseScene(sceneChenger),
 	player{},
 	rod{},
-	goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2),
+	goal(General::WIN_WIDTH - 200, General::WIN_HEIGHT / 2 - 50),
 	stage{},
 	bigLeaf(-1),
 	smallLeaf(-1),
@@ -38,6 +38,42 @@ void GameScene::Update()
 	BigLeafAnimation();
 	SmallLeafAnimation();
 
+	player.Update();
+	rod.Update();
+
+	bool IsHitWall = false;
+	bool IsHitGround = false;
+	//挟まったかどうか
+	bool IsGetCaught = false;
+	for (int i = 0; i < stage.GetBoxDataNum(); i++)
+	{
+		player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
+														 stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
+	}
+	//壁にあたったら
+	if (IsHitWall)
+	{
+		player.ChangeFlag();
+	}
+	//プレイヤーと棒
+	if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
+	{
+		if (IsHitWall)
+		{
+			IsGetCaught = true;
+		}
+		IsHitWall = true;
+		player.ChangeHitRod(rod.GetAngle());
+	}
+
+	//地面に接している
+	if (IsHitGround)
+	{
+		player.ChangeBoundFlag();
+	}
+
+	goal.Update(player.GetPos());
+
 	if (goal.GetGoal())
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
@@ -49,42 +85,6 @@ void GameScene::Update()
 	}
 	else
 	{
-		player.Update();
-		rod.Update();
-
-		bool IsHitWall = false;
-		bool IsHitGround = false;
-		//挟まったかどうか
-		bool IsGetCaught = false;
-		for (int i = 0; i < stage.GetBoxDataNum(); i++)
-		{
-			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
-		}
-		//壁にあたったら
-		if (IsHitWall)
-		{
-			player.ChangeFlag();
-		}
-		//プレイヤーと棒
-		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
-		{
-			if (IsHitWall)
-			{
-				IsGetCaught = true;
-			}
-			IsHitWall = true;
-			player.ChangeHitRod(rod.GetAngle());
-		}
-
-		//地面に接している
-		if (IsHitGround)
-		{
-			player.ChangeBoundFlag();
-		}
-
-		goal.Update(player.GetPos());
-
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
 			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
