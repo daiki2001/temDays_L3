@@ -3,7 +3,8 @@
 #include "./Input/Controller.h"
 #include<cmath>
 Player::Player() :
-	locus{}
+	locusEffect{},
+	clashEffect{}
 {
 }
 
@@ -27,13 +28,15 @@ void Player::Update()
 
 	if ((General::Frame::GetFrame() % 5) == 0)
 	{
-		locus.Update(pos);
+		locusEffect.Update(pos);
 	}
+	clashEffect.Update();
 }
 
 void Player::Draw()
 {
-	locus.Draw();
+	locusEffect.Draw();
+	clashEffect.Draw();
 
 	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 0.5, playerDrawAngle, playerGraph, TRUE);
 }
@@ -53,7 +56,11 @@ void Player::Reset()
 
 void Player::ChangeFlag()
 {
+	// 衝突時のエフェクト生成
+	clashEffect.Create(pos, speed);
+
 	walkSpeed *= -1.0f;
+
 	boundPower = 30.0f;
 	bound = -boundPower;
 	gravity = gravityPower;
@@ -61,6 +68,9 @@ void Player::ChangeFlag()
 
 void Player::ChangeHitRod(float rodAngle)
 {
+	// 衝突時のエフェクト生成
+	//clashEffect.Create(pos, speed);
+
 	if (walkSpeed > 0)
 	{
 	}

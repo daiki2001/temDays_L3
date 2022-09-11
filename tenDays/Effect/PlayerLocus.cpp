@@ -29,7 +29,7 @@ void PlayerLocus::Update(const Vec2& playerPos)
 
 		if (particle[i].GetAlive() == false && j < 1)
 		{
-			particle[i].Create(playerPos);
+			particle[i].Create(playerPos, { 4.0f, 0.0f });
 			j++;
 		}
 	}
@@ -45,11 +45,11 @@ void PlayerLocus::Draw(const int& offsetX, const int& offsetY)
 		}
 
 		float par = (particle[i].GetTime() == 0) ? 0.0f : (static_cast<float>(particle[i].GetTime()) / static_cast<float>(aliveTime));
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0xFF - (0xFF * par));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0xFF - static_cast<int>(0xFF * par));
 
 		DrawCircle(static_cast<int>(particle[i].GetPos().x) + offsetX,
 				   static_cast<int>(particle[i].GetPos().y) + offsetY,
-				   4,
+				   static_cast<int>(particle[i].GetSize().x),
 				   GetColor(0xFF, 0xFF, 0xFF),
 				   true);
 	}

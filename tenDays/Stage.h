@@ -1,7 +1,8 @@
-#pragma once
-#include"Vec.h"
-#include<DxLib.h>
-#include<vector>
+ï»¿#pragma once
+#include "Vec.h"
+#include <DxLib.h>
+#include <vector>
+
 struct BoxData
 {
 	Vec2 pos;
@@ -26,11 +27,14 @@ public:
 
 	void StageAddOne();
 
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+	void Load();
+
 	int GetStageNum() { return stageNum; }
-private://ƒƒ“ƒoŠÖ”
-	//‚PƒXƒe[ƒW–Ú
+private://ãƒ¡ãƒ³ãƒé–¢æ•°
+	//ï¼‘ã‚¹ãƒ†ãƒ¼ã‚¸ç›®
 	void StageOne();
-	//2ƒXƒe[ƒW–Ú
+	//2ã‚¹ãƒ†ãƒ¼ã‚¸ç›®
 	void StageTwo();
 public:
 	Vec2 GetBoxPos(int i) { if (boxData.size() > i) { return boxData[i]->pos; } return Vec2(); }
@@ -40,9 +44,11 @@ public:
 	int GetBoxDataNum() { return boxData.size(); }
 
 	int GetType(int i) { if (boxData.size() > i) { return boxData[i]->type; }return 0; }
-private://ƒƒ“ƒo•Ï”
+private://ãƒ¡ãƒ³ãƒå¤‰æ•°
 	std::vector<BoxData*>boxData;
-	//Œ»İ‚ÌƒXƒe[ƒW”Ô†
+	//ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ç•ªå·
 	int stageNum = 1;
+
+	int cubeBlock = -1; //ãƒ–ãƒ­ãƒƒã‚¯ã®ç”»åƒ(æ­£æ–¹å½¢)
 };
 

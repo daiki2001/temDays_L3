@@ -1,4 +1,5 @@
 ﻿#include <DxLib.h>
+#include <time.h>
 #include "General.h"
 #include "./Input/KeyInput.h"
 #include "./Input/Controller.h"
@@ -33,6 +34,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// (ダブルバッファ)描画先グラフィック領域は裏面を指定
 	SetDrawScreen(DX_SCREEN_BACK);
+
+	srand(time(nullptr));
 
 	SceneManager sceneManager;
 

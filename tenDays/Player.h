@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include "Vec.h"
 #include "./Effect/PlayerLocus.h"
+#include "./Effect/PlayerClash.h"
 
 class Player
 {
@@ -74,5 +75,6 @@ private://メンバ変数
 	int playerGraph = 0;
 	float playerDrawAngle = 0.0f;
 
-	PlayerLocus locus; //軌跡
+	PlayerLocus locusEffect; //軌跡
+	PlayerClash clashEffect; //衝突時のエフェクト
 };

@@ -9,7 +9,7 @@ GameScene::GameScene(SceneChenger* sceneChenger) :
 	BaseScene(sceneChenger),
 	player{},
 	rod{},
-	goal(General::WIN_WIDTH - 100, General::WIN_HEIGHT / 2),
+	goal(General::WIN_WIDTH - 200, General::WIN_HEIGHT / 2 - 50),
 	stage{},
 	bigLeaf(-1),
 	smallLeaf(-1),
@@ -92,14 +92,25 @@ void GameScene::Update()
 			player.ChangeHitRod(rod.GetAngle());
 		}
 
-		//地面に接している
-		if (IsHitGround)
+	//地面に接している
+	if (IsHitGround)
+	{
+		player.ChangeBoundFlag();
+	}
+
+	goal.Update(player.GetPos());
+
+	if (goal.GetGoal())
+	{
+		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			player.ChangeBoundFlag();
+			sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+			/*stage.StageAddOne();
+			stage.CreateStage();*/
 		}
-
-		goal.Update(player.GetPos());
-
+	}
+	else
+	{
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
 			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
@@ -126,10 +137,10 @@ void GameScene::Draw()
 
 	// オブジェクト
 	goal.Draw();
-	player.Draw();
 	stage.Draw();
 
 	rod.Draw();
+	player.Draw();
 
 	if (goal.GetGoal())
 	{
