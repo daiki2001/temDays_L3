@@ -15,6 +15,7 @@ Player::~Player()
 void Player::Init()
 {
 	playerGraph = LoadGraph("Resources/piyomaru.png");
+	locusEffect.Init();
 }
 
 void Player::Update()
@@ -25,12 +26,6 @@ void Player::Update()
 	Move();
 	isBoundFlag = false;
 	pos += speed;
-
-	if ((General::Frame::GetFrame() % 5) == 0)
-	{
-		locusEffect.Update(pos);
-	}
-	clashEffect.Update();
 }
 
 void Player::Draw()
@@ -52,6 +47,9 @@ void Player::Reset()
 	{
 		walkSpeed *= -1.0f;
 	}
+
+	locusEffect.Init();
+	clashEffect.Init();
 }
 
 void Player::ChangeFlag()
@@ -103,6 +101,15 @@ void Player::WalkSpeedAccel()
 			walkSpeed = speedMax;
 		}
 	}*/
+}
+
+void Player::EffectUpdate()
+{
+	if ((General::Frame::GetFrame() % 5) == 0)
+	{
+		locusEffect.Update(pos);
+	}
+	clashEffect.Update();
 }
 
 void Player::Move()

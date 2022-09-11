@@ -45,6 +45,7 @@ void TitleScene::Update()
 	}
 
 	player.Update();
+	player.EffectUpdate();
 
 	static const Vec2 groundPos = Vec2(General::WIN_WIDTH / 2, General::WIN_HEIGHT - 70);
 	static const Vec2 groundSize = Vec2(General::WIN_WIDTH, 70);

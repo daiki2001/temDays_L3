@@ -129,6 +129,8 @@ void GameScene::Update()
 			}
 		}
 	}
+
+	player.EffectUpdate();
 }
 
 void GameScene::Draw()
