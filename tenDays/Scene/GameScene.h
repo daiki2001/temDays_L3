@@ -22,6 +22,8 @@ private: //メンバ変数
 	Vec2 bigLeafPos;   //大きい葉の座標
 	Vec2 smallLeafPos; //小さい葉の座標
 
+	int clear; //クリア時のテキスト
+
 public: //メンバ関数
 	GameScene(SceneChenger* sceneChenger);
 	~GameScene() override;
