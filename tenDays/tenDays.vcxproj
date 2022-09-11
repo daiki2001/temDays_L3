@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Effect\Particle.cpp" />
+    <ClCompile Include="Effect\PlayerClash.cpp" />
     <ClCompile Include="Effect\PlayerLocus.cpp" />
     <ClCompile Include="General.cpp" />
     <ClCompile Include="Goal.cpp" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Effect\Particle.h" />
+    <ClInclude Include="Effect\PlayerClash.h" />
     <ClInclude Include="Effect\PlayerLocus.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="Goal.h" />
