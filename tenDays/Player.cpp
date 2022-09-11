@@ -66,18 +66,19 @@ void Player::ChangeFlag()
 	gravity = gravityPower;
 }
 
-void Player::ChangeHitRod(float rodAngle)
+void Player::ChangeHitRod(float rodAngle, Vec2 rodSpeed)
 {
 	// 衝突時のエフェクト生成
 	//clashEffect.Create(pos, speed);
 
 	if (walkSpeed > 0)
 	{
+
 	}
 	else
 	{
 		walkSpeed *= -1.0f;
-		pos.x += 6.0f;
+		pos.x += rodSpeed.x + walkSpeed;
 	}
 	float deg = rodAngle * (180 / 3.14);
 	boundPower = 30.0f * (fabs(walkSpeed) / speedNormal);

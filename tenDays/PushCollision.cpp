@@ -1,13 +1,15 @@
 #include "PushCollision.h"
-
+#include"Stage.h"
 Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 	Vec2 boxPos, Vec2 boxSize, int boxType,
 	bool& isHit, bool& isHitGround, bool& isHitTriangle)
 {
 	Vec2 pos = pPos;
-	//プレイヤーと箱
-	if (boxType == 0)
+	switch (boxType)
 	{
+	case BOX:
+	case FLOOR:
+		//プレイヤーと箱
 		if (Collision::BoxCollision(pPos, boxPos, Vec2(pSize, pSize), boxSize))
 		{
 			//上の面
@@ -40,9 +42,8 @@ Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 				isHit = true;
 			}
 		}
-	}
-	else if (boxType == 1)
-	{
+		break;
+	case TRIANGLE:
 		Vec2 trianglePos = pPos;
 		while (Collision::CollisionTriangle(trianglePos, boxPos, boxSize) == true)
 		{
@@ -51,6 +52,7 @@ Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 			isHitTriangle = true;
 		}
 		pos = trianglePos;
+		break;
 	}
 	return pos;
 }

@@ -89,7 +89,7 @@ void GameScene::Update()
 				IsGetCaught = true;
 			}
 			IsHitWall = true;
-			player.ChangeHitRod(rod.GetAngle());
+			player.ChangeHitRod(rod.GetAngle(),rod.GetSpeedMemory());
 		}
 
 		//地面に接している
