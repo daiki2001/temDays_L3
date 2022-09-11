@@ -56,15 +56,21 @@ void GameScene::Update()
 		bool IsHitGround = false;
 		//挟まったかどうか
 		bool IsGetCaught = false;
+		bool IsHitTriangle = false;
 		for (int i = 0; i < stage.GetBoxDataNum(); i++)
 		{
 			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
-				stage.GetBoxPos(i), stage.GetBoxSize(i), IsHitWall, IsHitGround));
+				stage.GetBoxPos(i), stage.GetBoxSize(i), stage.GetType(i),
+				IsHitWall, IsHitGround,IsHitTriangle));
 		}
 		//壁にあたったら
 		if (IsHitWall)
 		{
 			player.ChangeFlag();
+		}
+		if (IsHitTriangle)
+		{
+			player.WalkSpeedAccel();
 		}
 		//プレイヤーと棒
 		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))

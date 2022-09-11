@@ -25,6 +25,8 @@ public://メンバ関数
 	void ChangeHitRod(float rodAngle);
 
 	void ChangeBoundFlag() { isBoundFlag = true; }
+	//プレイヤースピード変化
+	void WalkSpeedAccel();
 private:
 	//移動
 	void Move();
@@ -51,8 +53,13 @@ private://メンバ変数
 	float gravityAdd = 0.09f;			//加速度
 
 	//スピード
-	const float speedMax = 5.0f;
-	Vec2 speed = { 3.0f ,0.0f };
+	const float speedNormal = 3.0f;
+	const float speedMax = 5.0f;	//最高スピード
+	const float speedMin = 1.0f;	//最低スピード
+	Vec2 speed = { 0.0f ,0.0f };
+
+	//通常時
+	float walkSpeed = 3.0f;
 
 	//地面に接しているか
 	bool isBoundFlag = false;

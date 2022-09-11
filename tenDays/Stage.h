@@ -6,6 +6,7 @@ struct BoxData
 {
 	Vec2 pos;
 	Vec2 size;
+	int type = 0;
 };
 
 class Stage
@@ -35,6 +36,8 @@ public:
 	Vec2 GetBoxSize(int i) { if (boxData.size() > i) { return boxData[i]->size; }return Vec2(); }
 
 	int GetBoxDataNum() { return boxData.size(); }
+
+	int GetType(int i) { if (boxData.size() > i) { return boxData[i]->type; }return 0; }
 private://メンバ変数
 	std::vector<BoxData*>boxData;
 	//現在のステージ番号
