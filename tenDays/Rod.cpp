@@ -33,9 +33,11 @@ void Rod::Reset()
 
 void Rod::Move()
 {
+	speedMemory = {};
 	if (Controller::Left())
 	{
 		pos.x -= speed.x;
+		speedMemory.x -= speed.x;
 		if (pos.x <= size.x)
 		{
 			pos.x = size.x;
@@ -44,6 +46,7 @@ void Rod::Move()
 	if (Controller::Right())
 	{
 		pos.x += speed.x;
+		speedMemory.x += speed.x;
 		if (pos.x >= static_cast<float>(General::WIN_WIDTH) - size.x)
 		{
 			pos.x = static_cast<float>(General::WIN_WIDTH) - size.x;
@@ -62,15 +65,9 @@ void Rod::Move()
 	}
 	if (Controller::RB())
 	{
-		isResetAngleFlag = true;
-	}
-	//角度を戻す
-	if (isResetAngleFlag == true && angle > 0.0f)
-	{
-		angle -= 0.025f;
-		if (angle <= 0.0f)
+		angle -= 0.015f;
+		if (angle < 0.0f)
 		{
-			isResetAngleFlag = false;
 			angle = 0.0f;
 		}
 	}

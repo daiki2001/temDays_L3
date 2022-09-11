@@ -23,7 +23,7 @@ public://メンバ関数
 
 	void ChangeFlag();
 	//棒に触れたとき
-	void ChangeHitRod(float rodAngle);
+	void ChangeHitRod(float rodAngle, Vec2 rodSpeed);
 
 	void ChangeBoundFlag() { isBoundFlag = true; }
 	//プレイヤースピード変化

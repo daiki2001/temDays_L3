@@ -21,6 +21,7 @@ public:
 	Vec2 GetPos() { return pos; }
 	Vec2 GetSize() { return size; }
 	float GetAngle() { return angle; }
+	Vec2 GetSpeedMemory() { return speedMemory; }
 private:
 	void Move();
 private:
@@ -28,7 +29,9 @@ private:
 
 	Vec2 size = { 20.0f,500.0f };
 
-	Vec2 speed = { 2.5f,2.0f };
+	Vec2 speed = { 3.0f,2.0f };
+
+	Vec2 speedMemory = {};
 
 	float angle = 0.0f;//角度
 

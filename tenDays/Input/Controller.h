@@ -40,7 +40,7 @@ public:
 	*/
 	static bool SelectUp()
 	{
-		return (XInput.ThumbLY > 18000 && oldXInput.ThumbLY < 18000) ;
+		return (XInput.ThumbLY > 18000 && oldXInput.ThumbLY < 18000);
 	}
 
 	/*
@@ -48,7 +48,7 @@ public:
 	*/
 	static bool SelectDown()
 	{
-		return  (XInput.ThumbLY < -18000 && oldXInput.ThumbLY > -18000) ;
+		return  (XInput.ThumbLY < -18000 && oldXInput.ThumbLY > -18000);
 
 	}
 
@@ -58,7 +58,7 @@ public:
 	*/
 	static bool Right()
 	{
-		return XInput.ThumbLX > 18000 ;
+		return XInput.ThumbLX > 18000;
 	}
 
 	/*
@@ -66,11 +66,11 @@ public:
 	*/
 	static bool Left()
 	{
-		return  XInput.ThumbLX < -18000 ;
+		return  XInput.ThumbLX < -18000;
 
 	}
 	/*
-	*LBキーが押されたかを返す 
+	*LBキーが押されたかを返す
 	*/
 	static bool LB()
 	{
@@ -81,7 +81,7 @@ public:
 	*/
 	static bool RB()
 	{
-		return XInput.Buttons[XINPUT_BUTTON_RIGHT_SHOULDER] == 1 && oldXInput.Buttons[XINPUT_BUTTON_RIGHT_SHOULDER] == 0;
+		return XInput.Buttons[XINPUT_BUTTON_RIGHT_SHOULDER] == 1;// && oldXInput.Buttons[XINPUT_BUTTON_RIGHT_SHOULDER] == 0;
 	}
 
 	/*
@@ -89,7 +89,7 @@ public:
 	*/
 	static bool LeftTrigger()
 	{
-		return  XInput.LeftTrigger > 70 ;
+		return  XInput.LeftTrigger > 70;
 	}
 
 
@@ -99,7 +99,7 @@ public:
 	*/
 	static bool RightTrigger()
 	{
-		return  XInput.RightTrigger > 70 ;
+		return  XInput.RightTrigger > 70;
 	}
 
 
