@@ -69,7 +69,7 @@ void Player::ChangeFlag()
 void Player::ChangeHitRod(float rodAngle, Vec2 rodSpeed)
 {
 	// 衝突時のエフェクト生成
-	//clashEffect.Create(pos, speed);
+	clashEffect.Create(pos, speed);
 
 	if (walkSpeed > 0)
 	{

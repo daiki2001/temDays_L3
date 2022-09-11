@@ -15,7 +15,8 @@ GameScene::GameScene(SceneChenger* sceneChenger) :
 	smallLeaf(-1),
 	groundAndTree(-1),
 	bigLeafPos(740.0f, 404.0f),
-	smallLeafPos(776.0f, 364.0f)
+	smallLeafPos(776.0f, 364.0f),
+	clear(-1)
 {
 	Load();
 	Init();
@@ -100,6 +101,23 @@ void GameScene::Update()
 
 		goal.Update(player.GetPos());
 
+		// 画面外判定
+		bool isIn = Collision::BoxCollision(player.GetPos(),
+											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+											Vec2(player.GetSize(), player.GetSize()),
+											Vec2(General::WIN_WIDTH / 2.0f - 20.0f, General::WIN_HEIGHT / 2.0f));
+		if (isIn == false)
+		{
+			if (player.GetPos().y < 0)
+			{
+				General::AllReset(&player, &goal, &rod);
+			}
+			else
+			{
+				player.ChangeFlag();
+			}
+		}
+
 		if (goal.GetGoal())
 		{
 			if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
@@ -111,13 +129,8 @@ void GameScene::Update()
 		}
 		else
 		{
-			// 画面外判定
-			bool isIn = Collision::BoxCollision(player.GetPos(),
-				Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-				Vec2(player.GetSize(), player.GetSize()),
-				Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
 			// リセット
-			if (isIn == false || KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
+			if (KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
 			{
 				General::AllReset(&player, &goal, &rod);
 			}
@@ -145,7 +158,8 @@ void GameScene::Draw()
 
 	if (goal.GetGoal())
 	{
-		DrawString(0, 0, "Goal", GetColor(0xFF, 0xFF, 0xFF));
+		//DrawString(0, 0, "Goal", GetColor(0xFF, 0xFF, 0xFF));
+		DrawGraph(General::WIN_WIDTH / 2 - 301, General::WIN_HEIGHT / 2 - 95, clear, true);
 	}
 
 	// 前景
@@ -172,11 +186,19 @@ void GameScene::Load()
 	{
 		groundAndTree = LoadGraph("./Resources/forestback/ground_tree.png");
 	}
+	if (clear == -1)
+	{
+		clear = LoadGraph("./Resources/Clear.png");
+	}
 }
 
 void GameScene::Release()
 {
 	DeleteGraph(background);
+	DeleteGraph(bigLeaf);
+	DeleteGraph(smallLeaf);
+	DeleteGraph(groundAndTree);
+	DeleteGraph(clear);
 }
 
 void GameScene::BigLeafAnimation()
