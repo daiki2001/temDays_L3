@@ -1,14 +1,16 @@
 ﻿#pragma once
 #include "BaseScene.h"
 #include "Player.h"
+#include "Vec.h"
 
 class TitleScene : public BaseScene
 {
 private: //メンバ関数
-	int back[8];
-	int cloud;
+	int back[8]; //背景
+	int cloud;   //雲
 
 	Player player;
+	Vec2 cloudPos;
 
 public: //メンバ関数
 	TitleScene(SceneChenger* sceneChenger);
