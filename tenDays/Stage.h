@@ -27,10 +27,11 @@ public:
 
 	void StageAddOne();
 
+	int GetStageNum() { return stageNum; }
+private:
+
 	// ファイルの読み込み
 	void Load();
-
-	int GetStageNum() { return stageNum; }
 private://メンバ関数
 	//１ステージ目
 	void StageOne();
@@ -43,8 +44,12 @@ public:
 
 	int GetBoxDataNum() { return boxData.size(); }
 
+
 	int GetType(int i) { if (boxData.size() > i) { return boxData[i]->type; }return 0; }
+private:
+
 private://メンバ変数
+
 	std::vector<BoxData*>boxData;
 	//現在のステージ番号
 	int stageNum = 1;

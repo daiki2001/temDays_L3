@@ -92,34 +92,35 @@ void GameScene::Update()
 			player.ChangeHitRod(rod.GetAngle());
 		}
 
-	//地面に接している
-	if (IsHitGround)
-	{
-		player.ChangeBoundFlag();
-	}
-
-	goal.Update(player.GetPos());
-
-	if (goal.GetGoal())
-	{
-		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+		//地面に接している
+		if (IsHitGround)
 		{
-			sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
-			/*stage.StageAddOne();
-			stage.CreateStage();*/
+			player.ChangeBoundFlag();
 		}
-	}
-	else
-	{
-		// 画面外判定
-		bool isIn = Collision::BoxCollision(player.GetPos(),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-			Vec2(player.GetSize(), player.GetSize()),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
-		// リセット
-		if (isIn == false || KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
+
+		goal.Update(player.GetPos());
+
+		if (goal.GetGoal())
 		{
-			General::AllReset(&player, &goal, &rod);
+			if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+			{
+				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+				/*stage.StageAddOne();
+				stage.CreateStage();*/
+			}
+		}
+		else
+		{
+			// 画面外判定
+			bool isIn = Collision::BoxCollision(player.GetPos(),
+				Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+				Vec2(player.GetSize(), player.GetSize()),
+				Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f));
+			// リセット
+			if (isIn == false || KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
+			{
+				General::AllReset(&player, &goal, &rod);
+			}
 		}
 	}
 }
