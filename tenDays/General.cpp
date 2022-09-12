@@ -3,21 +3,21 @@
 
 namespace General
 {
-int Frame::frame = 0;
+	int Frame::frame = 0;
 
-void AllReset(Player* player, Goal* goal, Rod* rod)
-{
-	player->Reset();
-	goal->Reset();
-	rod->Reset();
-}
+	void AllReset(Player* player, Goal* goal, Rod* rod, const int stageNum)
+	{
+		player->Reset(stageNum);
+		goal->Reset();
+		rod->Reset();
+	}
 
-void TiringDraw(const Vec2& pos, const Vec2& drawSize, const int& graph, const Vec2& graphSize)
-{
-	static int left = 0;
-	static int up = 0;
-	static int width = 0;
-	static int height = 0;
+	void TiringDraw(const Vec2& pos, const Vec2& drawSize, const int& graph, const Vec2& graphSize)
+	{
+		static int left = 0;
+		static int up = 0;
+		static int width = 0;
+		static int height = 0;
 
 	if (drawSize.x == drawSize.y)
 	{
