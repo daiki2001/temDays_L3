@@ -29,7 +29,7 @@ private:
 
 	Vec2 size = { 20.0f,500.0f };
 
-	Vec2 speed = { 5.0f,2.0f };
+	Vec2 speed = { 5.5f,2.0f };
 
 	Vec2 speedMemory = {};
 
