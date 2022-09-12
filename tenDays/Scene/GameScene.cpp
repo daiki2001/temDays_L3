@@ -5,8 +5,8 @@
 #include "./Input/Controller.h"
 #include "PushCollision.h"
 
-GameScene::GameScene(SceneChenger* sceneChenger) :
-	BaseScene(sceneChenger),
+GameScene::GameScene(SceneChanger* sceneChanger) :
+	BaseScene(sceneChanger),
 	player{},
 	rod{},
 	goal(General::WIN_WIDTH - 200, General::WIN_HEIGHT / 2 - 50),
@@ -46,7 +46,7 @@ void GameScene::Update()
 		{
 			if (stage.GetStageNum() == 3)
 			{
-				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+				sceneChanger->SceneChange(SceneChanger::Scene::Title, true);
 			}
 			else
 			{
@@ -115,7 +115,7 @@ void GameScene::Update()
 		{
 			if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 			{
-				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
+				sceneChanger->SceneChange(SceneChanger::Scene::Title, true);
 				/*stage.StageAddOne();
 				stage.CreateStage();*/
 			}
@@ -158,6 +158,9 @@ void GameScene::Draw()
 	}
 
 	// 前景
+
+	// シーン遷移
+	changeEffect.Draw();
 
 	// (ダブルバッファ)裏面
 	ScreenFlip();

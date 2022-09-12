@@ -25,7 +25,7 @@ private: //メンバ変数
 	int clear; //クリア時のテキスト
 
 public: //メンバ関数
-	GameScene(SceneChenger* sceneChenger);
+	GameScene(SceneChanger* sceneChanger);
 	~GameScene() override;
 
 	// 初期化処理

@@ -13,7 +13,7 @@ private: //メンバ関数
 	Vec2 cloudPos;
 
 public: //メンバ関数
-	TitleScene(SceneChenger* sceneChenger);
+	TitleScene(SceneChanger* sceneChanger);
 	~TitleScene() override;
 
 	// 初期化処理

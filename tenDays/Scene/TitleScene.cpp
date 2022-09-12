@@ -10,8 +10,8 @@ namespace
 int backAnimation = 0;
 }
 
-TitleScene::TitleScene(SceneChenger* sceneChenger) :
-	BaseScene(sceneChenger),
+TitleScene::TitleScene(SceneChanger* sceneChanger) :
+	BaseScene(sceneChanger),
 	back{},
 	cloud(-1),
 	player{},
@@ -74,7 +74,7 @@ void TitleScene::Update()
 
 	if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 	{
-		sceneChenger->SceneChenge(SceneChenger::Scene::Game, true);
+		sceneChanger->SceneChange(SceneChanger::Scene::Game, true);
 	}
 }
 
@@ -90,6 +90,9 @@ void TitleScene::Draw()
 
 	// オブジェクト
 	player.Draw();
+
+	// シーン遷移
+	changeEffect.Draw();
 
 	// (ダブルバッファ)裏面
 	ScreenFlip();

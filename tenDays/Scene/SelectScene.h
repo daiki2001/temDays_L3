@@ -4,7 +4,7 @@
 class SelectScene : public BaseScene
 {
 public: //メンバ関数
-	SelectScene(SceneChenger* sceneChenger);
+	SelectScene(SceneChanger* sceneChanger);
 	~SelectScene() override;
 
 	// 初期化処理

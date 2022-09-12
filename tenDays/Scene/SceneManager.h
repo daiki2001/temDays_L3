@@ -1,17 +1,17 @@
 ﻿#pragma once
-#include "SceneChenge.h"
+#include "SceneChange.h"
 #include "BaseScene.h"
 #include <memory>
 #include <stack>
 
-class SceneManager : public SceneChenger
+class SceneManager : public SceneChanger
 {
 public: // メンバ関数
 	SceneManager();
 	~SceneManager() {}
 
 	void Loop() const;
-	void SceneChenge(const SceneChenger::Scene scene, const bool stackClear) override;
+	void SceneChange(const SceneChanger::Scene scene, const bool stackClear) override;
 	int PopScene() override;
 
 private: // メンバ変数
