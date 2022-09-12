@@ -71,7 +71,7 @@ void Player::ChangeFlag()
 	walkSpeed *= -1.0f;
 
 	boundPower = boundPowerMax;
-	bound = -boundPower -(1 + fabs(walkSpeed) / speedNormal);
+	bound = -boundPower * fabs(walkSpeed / speedNormal);
 	gravity = gravityPower;
 }
 
@@ -138,6 +138,27 @@ void Player::EffectUpdate()
 		locusEffect.Update(pos);
 	}
 	clashEffect.Update();
+}
+
+void Player::SlopeSpeed()
+{
+	//上り坂
+	if (walkSpeed > 0)
+	{
+		walkSpeed -= 0.01f;
+		if (walkSpeed < speedMin)
+		{
+			walkSpeed = speedMin;
+		}
+	}//下り坂
+	else
+	{
+		walkSpeed -= 0.01f;
+		if (fabs(walkSpeed) > speedMax)
+		{
+			walkSpeed = -speedMax;
+		}
+	}
 }
 
 void Player::Move()
