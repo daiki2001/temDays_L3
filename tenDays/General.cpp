@@ -19,38 +19,60 @@ void TiringDraw(const Vec2& pos, const Vec2& drawSize, const int& graph, const V
 	static int width = 0;
 	static int height = 0;
 
-	width = static_cast<int>(graphSize.x);
-	height = static_cast<int>(graphSize.y);
-
-	for (size_t y = 0; y * height < drawSize.y * 2; y++)
+	if (drawSize.x == drawSize.y)
 	{
-		up = pos.y + (y * height);
-		bool isRect = (up + height) > (pos.y + drawSize.y);
-
-		for (size_t x = 0; x * width < drawSize.x * 2; x++)
+		DrawExtendGraph(static_cast<int>(pos.x), static_cast<int>(pos.y),
+						static_cast<int>(pos.x + drawSize.x), static_cast<int>(pos.y + drawSize.y),
+						graph, true);
+	}
+	else
+	{
+		if (drawSize.x < drawSize.y)
 		{
-			int drawWidth = width;
-			int drawHeight = height;
+			width = static_cast<int>(drawSize.x);
+			height = static_cast<int>(drawSize.x);
+		}
+		else
+		{
+			width = static_cast<int>(drawSize.y);
+			height = static_cast<int>(drawSize.y);
+		}
 
-			left = pos.x + (x * width);
-			isRect |= (left + width) > (pos.x + drawSize.x);
+		for (size_t y = 0; y * height < drawSize.y * 2; y++)
+		{
+			up = pos.y + (y * height);
+			bool isRect = (up + height) > (pos.y + drawSize.y);
 
-			if (isRect)
+			for (size_t x = 0; x * width < drawSize.x * 2; x++)
 			{
-				if ((left + width) > static_cast<int>(pos.x + drawSize.x))
-				{
-					drawWidth -= (left + width) - static_cast<int>(pos.x + drawSize.x);
-				}
-				if ((up + height) > static_cast<int>(pos.y + drawSize.y))
-				{
-					drawHeight -= (up + height) - static_cast<int>(pos.y + drawSize.y);
-				}
+				int drawWidth = width;
+				int drawHeight = height;
 
-				DrawRectGraph(left, up, 0, 0, drawWidth, drawHeight, graph, true);
-			}
-			else
-			{
-				DrawGraph(left, up, graph, true);
+				left = pos.x + (x * width);
+				isRect |= (left + width) > (pos.x + drawSize.x);
+
+				if (isRect)
+				{
+					if ((left + width) > static_cast<int>(pos.x + drawSize.x))
+					{
+						drawWidth -= (left + width) - static_cast<int>(pos.x + drawSize.x);
+					}
+					if ((up + height) > static_cast<int>(pos.y + drawSize.y))
+					{
+						drawHeight -= (up + height) - static_cast<int>(pos.y + drawSize.y);
+					}
+
+					DrawRectExtendGraph(left, up,
+										left + drawWidth, up + drawHeight,
+										0, 0,
+										static_cast<int>(graphSize.x * (static_cast<float>(drawWidth) / static_cast<float>(width))),
+										static_cast<int>(graphSize.y * (static_cast<float>(drawHeight) / static_cast<float>(height))),
+										graph, true);
+				}
+				else
+				{
+					DrawExtendGraph(left, up, left + width, up + height, graph, true);
+				}
 			}
 		}
 	}
