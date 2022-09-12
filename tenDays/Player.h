@@ -30,6 +30,8 @@ public://メンバ関数
 	void WalkSpeedAccel();
 
 	void EffectUpdate();
+
+	void SlopeSpeed();
 private:
 	//移動
 	void Move();
@@ -46,7 +48,7 @@ public://取得系
 private://メンバ変数
 	Vec2 pos = { 680.0f,500.0f };		//プレイヤーの位置
 
-	float size = 16.0f;	//プレイヤーの大きさ
+	float size = 16.0f;					//プレイヤーの大きさ
 
 	Vec2 oldPos = {};					//１つ前の位置
 
@@ -57,8 +59,8 @@ private://メンバ変数
 
 	//スピード
 	const float speedNormal = 4.0f;
-	const float speedMax = 6.0f;	//最高スピード
-	const float speedMin = 2.0f;	//最低スピード
+	const float speedMax = 6.0f;		//最高スピード
+	const float speedMin = 1.0f;		//最低スピード
 	Vec2 speed = { 0.0f ,0.0f };
 	//空気抵抗
 	float airResistance = 0.95f;

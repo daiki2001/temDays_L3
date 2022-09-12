@@ -80,7 +80,8 @@ void GameScene::Update()
 		}
 		if (IsHitTriangle)
 		{
-			player.WalkSpeedAccel();
+			//player.WalkSpeedAccel();
+			player.SlopeSpeed();
 		}
 		//プレイヤーと棒
 		if (Collision::CollisionTrinangle(player.GetPos(), rod.GetPos(), rod.GetSize(), rod.GetAngle()))
