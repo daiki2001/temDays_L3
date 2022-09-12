@@ -16,7 +16,7 @@ Stage::~Stage()
 
 void Stage::Init()
 {
-	stageNum = 3;
+	stageNum = 1;
 	Load();
 	CreateStage();
 }
