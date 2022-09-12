@@ -12,10 +12,11 @@ SceneManager::SceneManager()
 void SceneManager::Loop() const
 {
 	sceneStack.top()->Update();
+	BaseScene::ChangeEffectUpdate();
 	sceneStack.top()->Draw();
 }
 
-void SceneManager::SceneChenge(const SceneChenger::Scene scene, const bool stackClear)
+void SceneManager::SceneChange(const SceneChanger::Scene scene, const bool stackClear)
 {
 	using namespace std;
 
@@ -29,13 +30,13 @@ void SceneManager::SceneChenge(const SceneChenger::Scene scene, const bool stack
 
 	switch (scene)
 	{
-	case SceneChenger::Scene::Title:
+	case SceneChanger::Scene::Title:
 		sceneStack.push(make_shared<TitleScene>(this));
 		break;
-	case SceneChenger::Scene::Game:
+	case SceneChanger::Scene::Game:
 		sceneStack.push(make_shared<GameScene>(this));
 		break;
-	case SceneChenger::Scene::Select:
+	case SceneChanger::Scene::Select:
 		sceneStack.push(make_shared<SelectScene>(this));
 		break;
 	default:

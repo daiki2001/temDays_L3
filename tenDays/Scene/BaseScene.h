@@ -1,14 +1,21 @@
 ﻿#pragma once
-#include "SceneChenge.h"
+#include "SceneChange.h"
+#include "./Effect/SceneChangeEffect.h"
 
 class BaseScene
 {
+protected: //静的メンバ変数
+	static SceneChangeEffect changeEffect;
+
+public: //静的メンバ関数
+	static void ChangeEffectUpdate() { changeEffect.Update(); }
+
 protected: //メンバ変数
-	SceneChenger* sceneChenger;
+	SceneChanger* sceneChanger;
 	int background; //背景画像
 
 public: //メンバ関数
-	BaseScene(SceneChenger* sceneChenger);
+	BaseScene(SceneChanger* sceneChanger);
 	virtual ~BaseScene();
 
 	// 初期化処理
