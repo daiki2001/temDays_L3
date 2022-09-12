@@ -17,6 +17,7 @@ Goal::Goal(const int& posX, const int& posY) :
 
 void Goal::Init()
 {
+	graph = LoadGraph("./Resources/goal/goal1.png");
 }
 
 void Goal::Update(const Vec2& playerPos)

@@ -26,4 +26,6 @@ private: //メンバ関数
 };
 
 void AllReset(Player* player, Goal* goal, Rod* rod);
+
+void TiringDraw(const Vec2& pos, const Vec2& drawSize, const int& graph, const Vec2& graphSize);
 }

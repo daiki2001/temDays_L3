@@ -105,17 +105,10 @@ void GameScene::Update()
 		bool isIn = Collision::BoxCollision(player.GetPos(),
 											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
 											Vec2(player.GetSize(), player.GetSize()),
-											Vec2(General::WIN_WIDTH / 2.0f - 20.0f, General::WIN_HEIGHT / 2.0f));
+											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 30));
 		if (isIn == false)
 		{
-			if (player.GetPos().y < 0)
-			{
-				General::AllReset(&player, &goal, &rod);
-			}
-			else
-			{
-				player.ChangeFlag();
-			}
+			General::AllReset(&player, &goal, &rod);
 		}
 
 		if (goal.GetGoal())
@@ -136,6 +129,8 @@ void GameScene::Update()
 			}
 		}
 	}
+
+	player.EffectUpdate();
 }
 
 void GameScene::Draw()
