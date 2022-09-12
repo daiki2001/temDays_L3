@@ -16,7 +16,7 @@ Stage::~Stage()
 
 void Stage::Init()
 {
-	stageNum = 1;
+	stageNum = 3;
 	Load();
 	CreateStage();
 }
@@ -144,4 +144,8 @@ void Stage::StageThree()
 	boxData.push_back(new BoxData);//長方形
 	boxData[boxData.size() - 1]->pos = { 1130.0f,310.0f };
 	boxData[boxData.size() - 1]->size = { 40.0f,270.0f };
+}
+
+void Stage::StageFour()
+{
 }

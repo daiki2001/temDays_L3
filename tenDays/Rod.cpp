@@ -56,7 +56,7 @@ void Rod::Move()
 	//回転
 	if (Controller::LB())
 	{
-		angle += 0.015f;
+		angle += 0.030f;
 		if (0.7854 <= angle)
 		{
 			angle = 0.7854;

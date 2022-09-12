@@ -44,6 +44,8 @@ private://メンバ関数
 	void StageTwo();
 	//３ステージ目
 	void StageThree();
+	//４ステージ目
+	void StageFour();
 public:
 	Vec2 GetBoxPos(int i) { if (boxData.size() > i) { return boxData[i]->pos; } return Vec2(); }
 
