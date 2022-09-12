@@ -65,7 +65,7 @@ void Rod::Move()
 	}
 	if (Controller::RB())
 	{
-		angle -= 0.015f;
+		angle -= 0.030f;
 		if (angle < 0.0f)
 		{
 			angle = 0.0f;
