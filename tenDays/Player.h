@@ -17,13 +17,13 @@ public://メンバ関数
 
 	void Draw();
 
-	void Reset();
+	void Reset(const int stageNum);
 
 	void SetPosition(Vec2 pos) { this->pos = pos; }
 
 	void ChangeFlag();
 	//棒に触れたとき
-	void ChangeHitRod(float rodAngle, Vec2 rodSpeed);
+	void ChangeHitRod(const float rodAngle, const  Vec2 rodSpeed);
 
 	void ChangeBoundFlag() { isBoundFlag = true; }
 	//プレイヤースピード変化

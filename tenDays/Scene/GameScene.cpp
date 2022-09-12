@@ -44,7 +44,7 @@ void GameScene::Update()
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			if (stage.GetStageNum() == 2)
+			if (stage.GetStageNum() == 3)
 			{
 				sceneChenger->SceneChenge(SceneChenger::Scene::Title, true);
 			}
@@ -53,7 +53,7 @@ void GameScene::Update()
 				stage.StageAddOne();
 				stage.CreateStage();
 				goal.SetGoalPos(stage.GetStageNum());
-				General::AllReset(&player, &goal, &rod);
+				General::AllReset(&player, &goal, &rod, stage.GetStageNum());
 			}
 		}
 	}
@@ -90,7 +90,7 @@ void GameScene::Update()
 				IsGetCaught = true;
 			}
 			IsHitWall = true;
-			player.ChangeHitRod(rod.GetAngle(),rod.GetSpeedMemory());
+			player.ChangeHitRod(rod.GetAngle(), rod.GetSpeedMemory());
 		}
 
 		//地面に接している
@@ -103,12 +103,12 @@ void GameScene::Update()
 
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-											Vec2(player.GetSize(), player.GetSize()),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 30));
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+			Vec2(player.GetSize(), player.GetSize()),
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 30));
 		if (isIn == false)
 		{
-			General::AllReset(&player, &goal, &rod);
+			General::AllReset(&player, &goal, &rod,stage.GetStageNum());
 		}
 
 		if (goal.GetGoal())
@@ -125,7 +125,7 @@ void GameScene::Update()
 			// リセット
 			if (KeyInput::IsKey(KEY_INPUT_R) || IsGetCaught == true)
 			{
-				General::AllReset(&player, &goal, &rod);
+				General::AllReset(&player, &goal, &rod, stage.GetStageNum());
 			}
 		}
 	}
