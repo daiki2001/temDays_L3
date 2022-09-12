@@ -56,10 +56,9 @@ void Stage::Draw()
 		}
 		else if (boxData[i]->type == TRIANGLE)
 		{
-			DrawTriangle(boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
-				boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
-				boxData[i]->pos.x - boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
-				GetColor(255, 255, 255), TRUE);
+			DrawExtendGraph(boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
+							boxData[i]->pos.x - boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
+							triangleBlock, true);
 		}
 	}
 }
@@ -74,6 +73,10 @@ void Stage::Load()
 	if (cubeBlock == -1)
 	{
 		cubeBlock = LoadGraph("./Resources/block/cube/groundcube1.png");
+	}
+	if (triangleBlock == -1)
+	{
+		triangleBlock = LoadGraph("./Resources/block/triangle/wallcube2.png");
 	}
 }
 

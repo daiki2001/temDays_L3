@@ -60,5 +60,6 @@ private://メンバ変数
 	int stageNum = 1;
 
 	int cubeBlock = -1; //ブロックの画像(正方形)
+	int triangleBlock = -1; //ブロックの画像(三角形)
 };
 
