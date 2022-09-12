@@ -21,7 +21,7 @@ void Rod::Update()
 void Rod::Draw()
 {
 
-	DrawRotaGraph(pos.x, pos.y, 1.0f, 3.14 - angle, rodGraph, true);
+	DrawRotaGraph(pos.x, pos.y, 1.0f, -angle, rodGraph, true);
 }
 
 void Rod::Reset()
