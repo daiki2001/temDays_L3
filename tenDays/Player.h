@@ -56,11 +56,12 @@ private://メンバ変数
 	float gravityAdd = 0.09f;			//加速度
 
 	//スピード
-	const float speedNormal = 3.0f;
-	const float speedMax = 5.0f;	//最高スピード
-	const float speedMin = 1.0f;	//最低スピード
+	const float speedNormal = 4.0f;
+	const float speedMax = 6.0f;	//最高スピード
+	const float speedMin = 2.0f;	//最低スピード
 	Vec2 speed = { 0.0f ,0.0f };
-
+	//空気抵抗
+	float airResistance = 0.95f;
 	//通常時
 	float walkSpeed = 3.0f;
 
@@ -70,6 +71,7 @@ private://メンバ変数
 	bool isWallFlag = false;
 
 	//跳ねる力
+	const float boundPowerMax = 20.0f;
 	float boundPower = 0.0f;
 	float bound = 0.0f;
 	float boundDecay = 0.9f;

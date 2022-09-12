@@ -24,6 +24,7 @@ void Player::Update()
 	speed = {};
 	Bound();
 	Move();
+	WalkSpeedAccel();
 	isBoundFlag = false;
 	pos += speed;
 }
@@ -59,7 +60,7 @@ void Player::ChangeFlag()
 
 	walkSpeed *= -1.0f;
 
-	boundPower = 30.0f;
+	boundPower = boundPowerMax;
 	bound = -boundPower;
 	gravity = gravityPower;
 }
@@ -71,37 +72,53 @@ void Player::ChangeHitRod(float rodAngle, Vec2 rodSpeed)
 
 	if (walkSpeed > 0)
 	{
-
+		walkSpeed += rodSpeed.x;
+		if (walkSpeed > speedMax)
+		{//スピードを上げすぎないように
+			walkSpeed = speedMax;
+		}
 	}
 	else
 	{
+		walkSpeed -= rodSpeed.x;
+		if (walkSpeed < -speedMax)
+		{//スピードを上げすぎないように
+			walkSpeed = -speedMax;
+		}
 		walkSpeed *= -1.0f;
-		pos.x += rodSpeed.x + walkSpeed;
+		pos.x = oldPos.x;
+		pos.x += rodSpeed.x;
 	}
 	float deg = rodAngle * (180 / 3.14);
-	boundPower = 30.0f * (fabs(walkSpeed) / speedNormal);
+
+	boundPower = boundPowerMax * (fabs(walkSpeed) / speedNormal);
 	bound = -boundPower * (1 - deg / 80.0);
+	walkSpeed += speedNormal * (deg / 90.0f);
 	gravity = gravityPower;
 }
 
 void Player::WalkSpeedAccel()
 {
-	/*if (walkSpeed > 0)
+	//地面についている間普通のスピードに戻っていく
+	if (isBoundFlag == true)
 	{
-		walkSpeed -= 0.1f;
-		if (fabs(walkSpeed) <= speedMin)
+		if (walkSpeed > 0 && walkSpeed > speedNormal)
 		{
-			walkSpeed = speedMin;
+			walkSpeed -= 0.1f;
+			if (walkSpeed <= speedNormal)
+			{
+				walkSpeed = speedNormal;
+			}
+		}
+		else if (walkSpeed < 0 && walkSpeed < -speedNormal)
+		{
+			walkSpeed += 0.1f;
+			if (walkSpeed >= -speedNormal)
+			{
+				walkSpeed = -speedNormal;
+			}
 		}
 	}
-	else
-	{
-		walkSpeed -= 0.1f;
-		if (fabs(walkSpeed) >= speedMax)
-		{
-			walkSpeed = speedMax;
-		}
-	}*/
 }
 
 void Player::EffectUpdate()
