@@ -34,6 +34,7 @@
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\SelectScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Vec.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneChenge.h" />
     <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\SelectScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Vec.h" />

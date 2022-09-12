@@ -2,6 +2,7 @@
 
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "SelectScene.h"
 
 SceneManager::SceneManager()
 {
@@ -33,6 +34,9 @@ void SceneManager::SceneChenge(const SceneChenger::Scene scene, const bool stack
 		break;
 	case SceneChenger::Scene::Game:
 		sceneStack.push(make_shared<GameScene>(this));
+		break;
+	case SceneChenger::Scene::Select:
+		sceneStack.push(make_shared<SelectScene>(this));
 		break;
 	default:
 		OutputDebugStringA("存在しないシーンが呼ばれました\n");

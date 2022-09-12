@@ -6,7 +6,8 @@ public: // サブクラス
 	enum Scene
 	{
 		Title,
-		Game
+		Game,
+		Select
 	};
 
 public: // メンバ関数

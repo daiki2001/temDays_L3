@@ -78,6 +78,9 @@
     <ClCompile Include="Effect\PlayerClash.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\SelectScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Effect\PlayerClash.h">
       <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SelectScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

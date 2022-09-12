@@ -19,8 +19,24 @@ namespace General
 		static int width = 0;
 		static int height = 0;
 
-		width = static_cast<int>(graphSize.x);
-		height = static_cast<int>(graphSize.y);
+	if (drawSize.x == drawSize.y)
+	{
+		DrawExtendGraph(static_cast<int>(pos.x), static_cast<int>(pos.y),
+						static_cast<int>(pos.x + drawSize.x), static_cast<int>(pos.y + drawSize.y),
+						graph, true);
+	}
+	else
+	{
+		if (drawSize.x < drawSize.y)
+		{
+			width = static_cast<int>(drawSize.x);
+			height = static_cast<int>(drawSize.x);
+		}
+		else
+		{
+			width = static_cast<int>(drawSize.y);
+			height = static_cast<int>(drawSize.y);
+		}
 
 		for (size_t y = 0; y * height < drawSize.y * 2; y++)
 		{
@@ -46,13 +62,19 @@ namespace General
 						drawHeight -= (up + height) - static_cast<int>(pos.y + drawSize.y);
 					}
 
-					DrawRectGraph(left, up, 0, 0, drawWidth, drawHeight, graph, true);
+					DrawRectExtendGraph(left, up,
+										left + drawWidth, up + drawHeight,
+										0, 0,
+										static_cast<int>(graphSize.x * (static_cast<float>(drawWidth) / static_cast<float>(width))),
+										static_cast<int>(graphSize.y * (static_cast<float>(drawHeight) / static_cast<float>(height))),
+										graph, true);
 				}
 				else
 				{
-					DrawGraph(left, up, graph, true);
+					DrawExtendGraph(left, up, left + width, up + height, graph, true);
 				}
 			}
 		}
 	}
+}
 } //General

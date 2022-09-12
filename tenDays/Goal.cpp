@@ -6,6 +6,7 @@ Goal::Goal(const Vec2& pos) :
 	isGoal(false),
 	graph(-1)
 {
+	Init();
 }
 
 Goal::Goal(const int& posX, const int& posY) :
@@ -13,11 +14,15 @@ Goal::Goal(const int& posX, const int& posY) :
 	isGoal(false),
 	graph(-1)
 {
+	Init();
 }
 
 void Goal::Init()
 {
-	graph = LoadGraph("./Resources/goal/goal1.png");
+	if (graph == -1)
+	{
+		graph = LoadGraph("./Resources/goal/goal0912.png");
+	}
 }
 
 void Goal::Update(const Vec2& playerPos)
@@ -38,7 +43,7 @@ void Goal::Draw(const Vec2& offset)
 {
 	Vec2 drawPos = pos + offset;
 
-	if (graph)
+	if (graph == -1)
 	{
 		DrawTriangle(drawPos.x - 10, drawPos.y - 10,
 					 drawPos.x - 10, drawPos.y + 10,
@@ -47,7 +52,7 @@ void Goal::Draw(const Vec2& offset)
 	}
 	else
 	{
-		DrawGraph(drawPos.x, drawPos.y, graph, true);
+		DrawGraph(drawPos.x - 32, drawPos.y - 32, graph, true);
 	}
 }
 
@@ -55,7 +60,7 @@ void Goal::SetGoalPos(int stageNum)
 {
 	if (stageNum == 1)
 	{
-		pos = { 1000.0f,340.0f };
+		pos = { 1000.0f,360.0f };
 	}
 	else if (stageNum == 2)
 	{

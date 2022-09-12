@@ -103,9 +103,9 @@ void GameScene::Update()
 
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-			Vec2(player.GetSize(), player.GetSize()),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 30));
+											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+											Vec2(player.GetSize(), player.GetSize()),
+											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 50));
 		if (isIn == false)
 		{
 			General::AllReset(&player, &goal, &rod,stage.GetStageNum());
