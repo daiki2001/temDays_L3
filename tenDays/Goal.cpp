@@ -1,5 +1,6 @@
 ﻿#include "Goal.h"
 #include <DxLib.h>
+#include "Collision.h"
 
 Goal::Goal(const Vec2& pos) :
 	pos(pos),
@@ -32,11 +33,10 @@ void Goal::Update(const Vec2& playerPos)
 		return;
 	}
 
-	static const int goalSize = 20;
-	static const int playerSize = 10;
-	Vec2 distance = playerPos - pos;
+	static const int goalSize = 16;
+	static const int playerSize = 16;
 
-	isGoal = sqrtf((distance.x * distance.x) + (distance.y * distance.y)) < (goalSize + playerSize);
+	isGoal = Collision::BoxCollision(pos, playerPos, { goalSize, goalSize }, { playerSize, playerSize });
 }
 
 void Goal::Draw(const Vec2& offset)

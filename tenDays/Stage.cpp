@@ -58,8 +58,8 @@ void Stage::Draw()
 		}
 		else if (boxData[i]->type == TRIANGLE)
 		{
-			DrawExtendGraph(boxData[i]->pos.x + boxData[i]->size.x, boxData[i]->pos.y - boxData[i]->size.y,
-							boxData[i]->pos.x - boxData[i]->size.x, boxData[i]->pos.y + boxData[i]->size.y,
+			DrawExtendGraph(static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y - boxData[i]->size.y),
+							static_cast<int>(boxData[i]->pos.x - boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y),
 							triangleBlock, true);
 		}
 	}

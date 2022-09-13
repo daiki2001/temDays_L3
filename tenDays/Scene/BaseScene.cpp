@@ -1,12 +1,14 @@
 ﻿#include "BaseScene.h"
 
-BaseScene::BaseScene(SceneChenger* sceneChenger) :
-	sceneChenger(sceneChenger),
+SceneChangeEffect BaseScene::changeEffect = {};
+
+BaseScene::BaseScene(SceneChanger* sceneChanger) :
+	sceneChanger(sceneChanger),
 	background(-1)
 {
 }
 
 BaseScene::~BaseScene()
 {
-	sceneChenger = nullptr;
+	sceneChanger = nullptr;
 }
