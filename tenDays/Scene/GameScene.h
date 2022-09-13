@@ -13,6 +13,9 @@ private: //メンバ変数
 	Goal goal;     //ゴール
 	Stage stage;   //ステージ
 	Evaluate evaluate;//評価
+
+	bool isNext; //次のステージに行くかどうか
+
 	/*背景の小物の画像*/
 	int bigLeaf;   //大きい葉
 	int smallLeaf; //小さい葉

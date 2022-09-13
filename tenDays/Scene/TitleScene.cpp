@@ -74,15 +74,19 @@ void TitleScene::Update()
 
 	if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 	{
-		sceneChanger->SceneChange(SceneChanger::Scene::Game, true);
+		isSceneDest = true;
+		nextScene = SceneChanger::Scene::Game;
+		changeAnimation.Start();
+	}
+
+	if (isSceneDest && changeAnimation.GetChange())
+	{
+		sceneChanger->SceneChange(nextScene, true);
 	}
 }
 
 void TitleScene::Draw()
 {
-	// 画面クリア
-	ClearDrawScreen();
-
 	// 背景
 	DrawGraph(0, 0, back[backAnimation], false);
 	DrawGraph(static_cast<int>(cloudPos.x), static_cast<int>(cloudPos.y), cloud, true);
@@ -90,12 +94,6 @@ void TitleScene::Draw()
 
 	// オブジェクト
 	player.Draw();
-
-	// シーン遷移
-	changeEffect.Draw();
-
-	// (ダブルバッファ)裏面
-	ScreenFlip();
 }
 
 void TitleScene::Load()

@@ -6,9 +6,11 @@
 namespace General
 {
 // ウィンドウ横幅
-const int WIN_WIDTH = 1280;
+constexpr int WIN_WIDTH = 1280;
 // ウィンドウ縦幅
-const int WIN_HEIGHT = 720;
+constexpr int WIN_HEIGHT = 720;
+// デグリー角 → ラジアン角
+constexpr float degree = 3.141592f / 180.0f;
 
 // フレーム数
 class Frame
