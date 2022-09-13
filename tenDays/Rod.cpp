@@ -21,7 +21,7 @@ void Rod::Update()
 void Rod::Draw()
 {
 
-	DrawRotaGraph(pos.x, pos.y, 1.0f, -angle, rodGraph, true);
+	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, -angle, rodGraph, true);
 }
 
 void Rod::Reset()
@@ -59,7 +59,7 @@ void Rod::Move()
 		angle += 0.030f;
 		if (0.7854 <= angle)
 		{
-			angle = 0.7854;
+			angle = 0.7854f;
 		}
 
 	}

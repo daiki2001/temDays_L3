@@ -99,10 +99,10 @@ void Player::ChangeHitRod(const float rodAngle, const Vec2 rodSpeed)
 		pos.x = oldPos.x;
 		pos.x += rodSpeed.x;
 	}
-	float deg = rodAngle * (180 / 3.14);
+	float deg = rodAngle * (180.0f / 3.14f);
 
 	boundPower = boundPowerMax * (fabs(walkSpeed) / speedNormal);
-	bound = -boundPower * (1 - deg / 80.0);
+	bound = -boundPower * (1.0f - deg / 80.0f);
 	walkSpeed += speedNormal * (deg / 90.0f);
 	gravity = gravityPower;
 }
@@ -145,12 +145,19 @@ void Player::SlopeSpeed()
 	//上り坂
 	if (walkSpeed > 0)
 	{
-		walkSpeed -= 0.05f;	
+		walkSpeed -= 0.05f;
 	}//下り坂
 	else
 	{
 		walkSpeed -= 0.05f;
 	}
+}
+
+void Player::BoundPowerZero()
+{
+	gravity -= bound;
+	bound = 0.0f;
+	clashEffect.Create(pos, speed);
 }
 
 void Player::Move()

@@ -24,6 +24,7 @@
     <ClCompile Include="Effect\PlayerClash.cpp" />
     <ClCompile Include="Effect\PlayerLocus.cpp" />
     <ClCompile Include="Effect\SceneChangeAnimation.cpp" />
+     <ClCompile Include="Evaluate.cpp" />
     <ClCompile Include="ForestResources.cpp" />
     <ClCompile Include="General.cpp" />
     <ClCompile Include="Goal.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="Effect\PlayerClash.h" />
     <ClInclude Include="Effect\PlayerLocus.h" />
     <ClInclude Include="Effect\SceneChangeAnimation.h" />
+      <ClInclude Include="Evaluate.h" />
     <ClInclude Include="ForestResources.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="Goal.h" />

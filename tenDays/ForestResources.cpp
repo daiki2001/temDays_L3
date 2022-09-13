@@ -71,7 +71,7 @@ void ForestResources::Release()
 	{
 		groundAndTree = -1;
 	}
-	if (DeleteSoundMem(groundAndTree) == 0)
+	if (DeleteSoundMem(bgm) == 0)
 	{
 		bgm = -1;
 	}

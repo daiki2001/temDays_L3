@@ -32,6 +32,8 @@ public://メンバ関数
 	void EffectUpdate();
 
 	void SlopeSpeed();
+
+	void BoundPowerZero();
 private:
 	//移動
 	void Move();
@@ -71,7 +73,8 @@ private://メンバ変数
 	bool isBoundFlag = false;
 	//壁に接しているか
 	bool isWallFlag = false;
-
+	//天井にぶつかったか
+	bool isCeiling = false;
 	//跳ねる力
 	const float boundPowerMax = 20.0f;
 	float boundPower = 0.0f;
