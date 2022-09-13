@@ -13,13 +13,15 @@ SceneChangeAnimation::SceneChangeAnimation() :
 	isChange(false),
 	radius(1),
 	maskScreen(-1),
-	tempScreen(-1)
+	tempScreen(-1),
+	sound(-1)
 {
 	Init();
 }
 
 SceneChangeAnimation::~SceneChangeAnimation()
 {
+	Release();
 }
 
 void SceneChangeAnimation::Init()
@@ -28,7 +30,7 @@ void SceneChangeAnimation::Init()
 	isChange = false;
 	radius = maxSize;
 
-	ScreenInit();
+	Load();
 }
 
 void SceneChangeAnimation::Update()
@@ -105,6 +107,33 @@ void SceneChangeAnimation::Start()
 	isAnimation = true;
 	isChange = false;
 	radius = maxSize;
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
+}
+
+void SceneChangeAnimation::Load()
+{
+	ScreenInit();
+	if (sound == -1)
+	{
+		sound = LoadSoundMem("./Resources/sound/SE/changescene.mp3");
+		ChangeVolumeSoundMem(0x80, sound);
+	}
+}
+
+void SceneChangeAnimation::Release()
+{
+	if (DeleteGraph(maskScreen) == 0)
+	{
+		maskScreen = -1;
+	}
+	if (DeleteGraph(tempScreen) == 0)
+	{
+		tempScreen = -1;
+	}
+	if (DeleteSoundMem(sound) == 0)
+	{
+		sound = -1;
+	}
 }
 
 void SceneChangeAnimation::ScreenInit()

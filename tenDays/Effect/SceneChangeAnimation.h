@@ -11,6 +11,8 @@ private: //メンバ変数
 	int maskScreen; //マスク用のスクリーン
 	int tempScreen; //一時保存用のスクリーン
 
+	int sound; //SE
+
 public: //メンバ関数
 	SceneChangeAnimation();
 	~SceneChangeAnimation();
@@ -20,7 +22,10 @@ public: //メンバ関数
 	void Draw();
 	void Start();
 
-	void ScreenInit();
+	void Load();
+	void Release();
 
 	bool GetChange() { return isChange; }
+private:
+	void ScreenInit();
 };

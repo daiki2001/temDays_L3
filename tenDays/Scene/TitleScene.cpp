@@ -12,10 +12,12 @@ int backAnimation = 0;
 
 TitleScene::TitleScene(SceneChanger* sceneChanger) :
 	BaseScene(sceneChanger),
+	player{},
+	cloudPos{},
+	volume(0x80),
 	back{},
 	cloud(-1),
-	player{},
-	cloudPos{}
+	sound(-1)
 {
 	Load();
 	Init();
@@ -29,6 +31,8 @@ TitleScene::~TitleScene()
 void TitleScene::Init()
 {
 	player.Init();
+	ChangeVolumeSoundMem(volume, sound);
+	PlaySoundMem(sound, DX_PLAYTYPE_LOOP);
 }
 
 void TitleScene::Update()
@@ -106,12 +110,28 @@ void TitleScene::Load()
 	{
 		cloud = LoadGraph("./Resources/forestback/cloud.png");
 	}
+	if (sound == -1)
+	{
+		sound = LoadSoundMem("./Resources/sound/BGM/0titlestageoption.mp3");
+	}
 }
 
 void TitleScene::Release()
 {
+	background = -1;
 	for (size_t i = 0; i < 8; i++)
 	{
-		DeleteGraph(back[i]);
+		if (DeleteGraph(back[i]) == 0)
+		{
+			back[i] = -1;
+		}
+	}
+	if (DeleteGraph(cloud) == 0)
+	{
+		cloud = -1;
+	}
+	if (DeleteSoundMem(sound) == 0)
+	{
+		sound = -1;
 	}
 }

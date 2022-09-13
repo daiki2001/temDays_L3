@@ -8,7 +8,7 @@ BaseScene::BaseScene(SceneChanger* sceneChanger) :
 	nextScene(SceneChanger::Scene::Title),
 	background(-1)
 {
-	changeAnimation.ScreenInit();
+	changeAnimation.Load();
 }
 
 BaseScene::~BaseScene()
