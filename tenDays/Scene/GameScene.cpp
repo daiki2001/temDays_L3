@@ -58,7 +58,7 @@ void GameScene::Update()
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			if (stage.GetStageNum() == 3)
+			if (stage.GetStageNum() == 4)
 			{
 				isSceneDest = true;
 				nextScene = SceneChanger::Scene::Title;
@@ -76,8 +76,10 @@ void GameScene::Update()
 		if (nowAnimation == false)
 		{
 			player.Update();
-			rod.Update();
+			rod.Update(scroll.GetScroll());
+			stage.Update();
 			evaluate.Update();
+			scroll.Update(player.GetPos(), stage.GetStageNum());
 		}
 
 		bool IsHitWall = false;
@@ -129,7 +131,7 @@ void GameScene::Update()
 		bool isIn = Collision::BoxCollision(player.GetPos(),
 			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
 			Vec2(player.GetSize(), player.GetSize()),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 50));
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT + 500));
 		if (isIn == false)
 		{
 			General::AllReset(&player, &goal, &rod, stage.GetStageNum());
@@ -182,11 +184,11 @@ void GameScene::Draw()
 	}
 
 	// オブジェクト
-	goal.Draw();
-	stage.Draw();
+	goal.Draw(scroll.GetScroll());
+	stage.Draw(scroll.GetScroll());
 
-	rod.Draw();
-	player.Draw();
+	rod.Draw(scroll.GetScroll());
+	player.Draw(scroll.GetScroll());
 
 	// 前景
 	if (goal.GetGoal())

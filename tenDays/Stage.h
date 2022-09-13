@@ -7,12 +7,16 @@ enum StageType
 	BOX,
 	TRIANGLE,
 	FLOOR,
+	MOVEBOX,
 };
 struct BoxData
 {
 	Vec2 pos;
 	Vec2 size;
 	int type = 0;
+	Vec2 minPos = {};
+	Vec2 maxPos = {};
+	bool isMoveFlag = false;
 };
 
 class Stage
@@ -28,7 +32,7 @@ public:
 
 	void Update();
 
-	void Draw();
+	void Draw(Vec2 scroll);
 
 	void StageAddOne();
 

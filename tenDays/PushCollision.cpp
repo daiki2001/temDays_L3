@@ -9,6 +9,7 @@ Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 	{
 	case BOX:
 	case FLOOR:
+	case MOVEBOX:
 		//ÉvÉåÉCÉÑÅ[Ç∆î†
 		if (Collision::BoxCollision(pPos, boxPos, Vec2(pSize, pSize), boxSize))
 		{

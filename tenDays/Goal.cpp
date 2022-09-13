@@ -41,7 +41,7 @@ void Goal::Update(const Vec2& playerPos)
 
 void Goal::Draw(const Vec2& offset)
 {
-	Vec2 drawPos = pos + offset;
+	Vec2 drawPos = pos - offset;
 
 	if (graph == -1)
 	{
@@ -69,5 +69,9 @@ void Goal::SetGoalPos(int stageNum)
 	else if (stageNum == 3)
 	{
 		pos = { 1050.0f,120.0f };
+	}
+	else if (stageNum == 4)
+	{
+		pos = { 300.0f,-420.0f };
 	}
 }

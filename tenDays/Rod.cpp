@@ -13,15 +13,16 @@ void Rod::Init()
 	rodGraph = LoadGraph("Resources/Rod.png");
 }
 
-void Rod::Update()
+void Rod::Update(Vec2 scroll)
 {
+	pos.y = ofset.y + scroll.y;
 	Move();
 }
 
-void Rod::Draw()
+void Rod::Draw(Vec2 scroll)
 {
 
-	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, -angle, rodGraph, true);
+	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y) - static_cast<int>(scroll.y), 1.0f, -angle, rodGraph, true);
 }
 
 void Rod::Reset()

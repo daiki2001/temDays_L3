@@ -29,12 +29,12 @@ void Player::Update()
 	pos += speed;
 }
 
-void Player::Draw()
+void Player::Draw(Vec2 scroll)
 {
-	locusEffect.Draw();
-	clashEffect.Draw();
+	locusEffect.Draw(0.0f,-scroll.y);
+	clashEffect.Draw(0.0f, -scroll.y);
 
-	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 0.5, playerDrawAngle, playerGraph, TRUE);
+	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y) - static_cast<int>(scroll.y), 0.5, playerDrawAngle, playerGraph, TRUE);
 }
 
 void Player::Reset(const int stageNum)
@@ -49,6 +49,9 @@ void Player::Reset(const int stageNum)
 	case 3:
 		pos.x = 800.0f;
 		pos.y = 400.0f;
+		break;
+	case 4:
+		pos = { 400.0f,200.0f };
 		break;
 	}
 	bound = 0.0f;
