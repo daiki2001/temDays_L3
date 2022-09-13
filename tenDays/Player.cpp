@@ -145,12 +145,19 @@ void Player::SlopeSpeed()
 	//上り坂
 	if (walkSpeed > 0)
 	{
-		walkSpeed -= 0.05f;	
+		walkSpeed -= 0.05f;
 	}//下り坂
 	else
 	{
 		walkSpeed -= 0.05f;
 	}
+}
+
+void Player::BoundPowerZero()
+{
+	gravity -= bound;
+	bound = 0.0f;
+	clashEffect.Create(pos, speed);
 }
 
 void Player::Move()

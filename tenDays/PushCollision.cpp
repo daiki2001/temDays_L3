@@ -2,7 +2,7 @@
 #include"Stage.h"
 Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 	Vec2 boxPos, Vec2 boxSize, int boxType,
-	bool& isHit, bool& isHitGround, bool& isHitTriangle)
+	bool& isHit, bool& isHitGround, bool& isHitTriangle, bool& isCeiling)
 {
 	Vec2 pos = pPos;
 	switch (boxType)
@@ -25,7 +25,7 @@ Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 				oldPos.x + pSize > boxPos.x - boxSize.x && oldPos.x - pSize < boxPos.x + boxSize.x)
 			{
 				pos.y = boxPos.y + boxSize.y + pSize;
-
+				isCeiling = true;
 			}
 			//¶‚Ì–Ê
 			if (pPos.x + pSize > boxPos.x - boxSize.x && oldPos.x<pPos.x &&//speed.x > 0 &&

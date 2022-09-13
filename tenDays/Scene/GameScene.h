@@ -4,7 +4,7 @@
 #include "Goal.h"
 #include "Stage.h"
 #include "Rod.h"
-
+#include"Evaluate.h"
 class GameScene : public BaseScene
 {
 private: //メンバ変数
@@ -12,6 +12,7 @@ private: //メンバ変数
 	Rod rod;       //棒
 	Goal goal;     //ゴール
 	Stage stage;   //ステージ
+	Evaluate evaluate;//評価
 
 	bool isNext; //次のステージに行くかどうか
 
