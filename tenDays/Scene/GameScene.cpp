@@ -33,6 +33,8 @@ void GameScene::Init()
 	stage.Init();
 	rod.Init();
 	goal.SetGoalPos(stage.GetStageNum());
+	evaluate.Init(stage.GetStageNum());
+	evaluate.Start();
 }
 
 void GameScene::Update()
@@ -53,6 +55,7 @@ void GameScene::Update()
 				stage.StageAddOne();
 				stage.CreateStage();
 				goal.SetGoalPos(stage.GetStageNum());
+				evaluate.SetEvaluate(stage.GetStageNum());
 				General::AllReset(&player, &goal, &rod, stage.GetStageNum());
 			}
 		}
@@ -61,9 +64,10 @@ void GameScene::Update()
 	{
 		player.Update();
 		rod.Update();
-
+		evaluate.Update();
 		bool IsHitWall = false;
 		bool IsHitGround = false;
+		bool IsHitCeiling = false;
 		//挟まったかどうか
 		bool IsGetCaught = false;
 		bool IsHitTriangle = false;
@@ -71,12 +75,16 @@ void GameScene::Update()
 		{
 			player.SetPosition(PushCollision::PushPlayer2Box(player.GetPos(), player.GetSize(), player.GetOldPos(),
 				stage.GetBoxPos(i), stage.GetBoxSize(i), stage.GetType(i),
-				IsHitWall, IsHitGround, IsHitTriangle));
+				IsHitWall, IsHitGround, IsHitTriangle, IsHitCeiling));
 		}
 		//壁にあたったら
 		if (IsHitWall)
 		{
 			player.ChangeFlag();
+		}
+		if (IsHitCeiling)
+		{
+			player.BoundPowerZero();
 		}
 		if (IsHitTriangle)
 		{
@@ -104,12 +112,12 @@ void GameScene::Update()
 
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
-											Vec2(player.GetSize(), player.GetSize()),
-											Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 50));
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+			Vec2(player.GetSize(), player.GetSize()),
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f + 50));
 		if (isIn == false)
 		{
-			General::AllReset(&player, &goal, &rod,stage.GetStageNum());
+			General::AllReset(&player, &goal, &rod, stage.GetStageNum());
 		}
 
 		if (goal.GetGoal())
@@ -152,13 +160,17 @@ void GameScene::Draw()
 	rod.Draw();
 	player.Draw();
 
+	// 前景
 	if (goal.GetGoal())
 	{
+		evaluate.GoalDraw();
 		//DrawString(0, 0, "Goal", GetColor(0xFF, 0xFF, 0xFF));
-		DrawGraph(General::WIN_WIDTH / 2 - 301, General::WIN_HEIGHT / 2 - 95, clear, true);
+		//DrawGraph(General::WIN_WIDTH / 2 - 301, General::WIN_HEIGHT / 2 - 95, clear, true);
 	}
-
-	// 前景
+	else
+	{
+		evaluate.PlayDraw();
+	}
 
 	// シーン遷移
 	changeEffect.Draw();
