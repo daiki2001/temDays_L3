@@ -24,7 +24,7 @@
     <ClCompile Include="Effect\PlayerClash.cpp" />
     <ClCompile Include="Effect\PlayerLocus.cpp" />
     <ClCompile Include="Effect\SceneChangeAnimation.cpp" />
-     <ClCompile Include="Evaluate.cpp" />
+    <ClCompile Include="Evaluate.cpp" />
     <ClCompile Include="ForestResources.cpp" />
     <ClCompile Include="General.cpp" />
     <ClCompile Include="Goal.cpp" />
@@ -39,6 +39,7 @@
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\SelectScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="Scroll.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Vec.cpp" />
   </ItemGroup>
@@ -48,7 +49,7 @@
     <ClInclude Include="Effect\PlayerClash.h" />
     <ClInclude Include="Effect\PlayerLocus.h" />
     <ClInclude Include="Effect\SceneChangeAnimation.h" />
-      <ClInclude Include="Evaluate.h" />
+    <ClInclude Include="Evaluate.h" />
     <ClInclude Include="ForestResources.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="Goal.h" />
@@ -63,6 +64,7 @@
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\SelectScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="Scroll.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Vec.h" />
   </ItemGroup>

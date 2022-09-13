@@ -15,7 +15,7 @@ public://メンバ関数
 
 	void Update();
 
-	void Draw();
+	void Draw(Vec2 scroll);
 
 	void Reset(const int stageNum);
 
@@ -60,8 +60,8 @@ private://メンバ変数
 	float gravityAdd = 0.09f;			//加速度
 
 	//スピード
-	const float speedNormal = 4.0f;
-	const float speedMax = 6.0f;		//最高スピード
+	const float speedNormal = 5.0f;
+	const float speedMax = 8.1f;		//最高スピード
 	const float speedMin = 1.0f;		//最低スピード
 	Vec2 speed = { 0.0f ,0.0f };
 	//空気抵抗

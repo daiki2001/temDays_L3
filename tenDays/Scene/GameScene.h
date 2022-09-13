@@ -5,7 +5,7 @@
 #include "Stage.h"
 #include "Rod.h"
 #include"Evaluate.h"
-
+#include"Scroll.h"
 #include "ForestResources.h"
 
 class GameScene : public BaseScene
@@ -16,7 +16,7 @@ private: //メンバ変数
 	Goal goal;     //ゴール
 	Stage stage;   //ステージ
 	Evaluate evaluate;//評価
-
+	Scroll scroll;	//スクロール
 	bool isNext; //次のステージに行くかどうか
 
 	int clear; //クリア時のテキスト

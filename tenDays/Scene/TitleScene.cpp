@@ -97,7 +97,7 @@ void TitleScene::Draw()
 	DrawGraph(static_cast<int>(cloudPos.x) - 1280, static_cast<int>(cloudPos.y), cloud, true);
 
 	// オブジェクト
-	player.Draw();
+	player.Draw(Vec2());
 }
 
 void TitleScene::Load()

@@ -12,9 +12,9 @@ public:
 
 	void Init();
 
-	void Update();
+	void Update(Vec2 scroll);
 
-	void Draw();
+	void Draw(Vec2 scroll);
 
 	void Reset();
 public:
@@ -27,9 +27,11 @@ private:
 private:
 	Vec2 pos = { 100.0f,382.5f };
 
+	const Vec2 ofset = { 100.0f,382.5f };
+
 	Vec2 size = { 20.0f,500.0f };
 
-	Vec2 speed = { 5.5f,2.0f };
+	Vec2 speed = { 8.0f,2.0f };
 
 	Vec2 speedMemory = {};
 
