@@ -145,6 +145,7 @@ void GameScene::Update()
 	{
 		stage.StageAddOne();
 		stage.CreateStage();
+		evaluate.SetEvaluate(stage.GetStageNum());
 		goal.SetGoalPos(stage.GetStageNum());
 		General::AllReset(&player, &goal, &rod, stage.GetStageNum());
 
@@ -182,8 +183,6 @@ void GameScene::Draw()
 	{
 		evaluate.PlayDraw();
 	}
-
-	// 前景
 }
 
 void GameScene::Load()
