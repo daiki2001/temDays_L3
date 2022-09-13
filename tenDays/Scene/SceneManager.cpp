@@ -12,8 +12,16 @@ SceneManager::SceneManager()
 void SceneManager::Loop() const
 {
 	sceneStack.top()->Update();
-	BaseScene::ChangeEffectUpdate();
+	BaseScene::ChangeAnimationUpdate();
+
+	// 画面クリア
+	ClearDrawScreen();
+
 	sceneStack.top()->Draw();
+	BaseScene::ChangeAnimationDraw();
+
+	// (ダブルバッファ)裏面
+	ScreenFlip();
 }
 
 void SceneManager::SceneChange(const SceneChanger::Scene scene, const bool stackClear)

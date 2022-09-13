@@ -1,10 +1,6 @@
 ﻿#include "PlayerClash.h"
 #include <DxLib.h>
-
-namespace
-{
-constexpr float degree = DX_PI_F / 180.f;
-}
+#include "General.h"
 
 const int PlayerClash::aliveTime = 15;
 const int PlayerClash::createNum = 50;
@@ -81,8 +77,8 @@ void PlayerClash::Create(const Vec2& playerPos, const Vec2& playerSpeed)
 		speedAngle = (rand() % (speedAngleRange / 2 - (-speedAngleRange / 2) + 1)) + (-speedAngleRange / 2);
 		normVec = playerSpeed;
 		normVec.normalize();
-		normVec.x = cosf(speedAngle * degree) * normVec.x - sinf(speedAngle * degree) * normVec.y;
-		normVec.y = sinf(speedAngle * degree) * normVec.x + cosf(speedAngle * degree) * normVec.y;
+		normVec.x = cosf(speedAngle * General::degree) * normVec.x - sinf(speedAngle * General::degree) * normVec.y;
+		normVec.y = sinf(speedAngle * General::degree) * normVec.x + cosf(speedAngle * General::degree) * normVec.y;
 
 		size.x = static_cast<float>((rand() % (sizeMax - sizeMin + 1)) + sizeMin);
 		size.y = static_cast<float>((rand() % (sizeMax - sizeMin + 1)) + sizeMin);
