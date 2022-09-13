@@ -41,6 +41,17 @@ void GameScene::Init()
 
 void GameScene::Update()
 {
+	static bool nowAnimation = changeAnimation.GetAnimation(); //現在の遷移アニメーションの有無
+	static bool oldAnimation = nowAnimation; //前フレームの遷移アニメーションの有無
+
+	oldAnimation = nowAnimation;
+	nowAnimation = changeAnimation.GetAnimation();
+
+	if ((nowAnimation == false) && (oldAnimation == true))
+	{
+		evaluate.Start();
+	}
+
 	forestRes.Update();
 
 	if (goal.GetGoal())
@@ -62,9 +73,13 @@ void GameScene::Update()
 	}
 	else
 	{
-		player.Update();
-		rod.Update();
-		evaluate.Update();
+		if (nowAnimation == false)
+		{
+			player.Update();
+			rod.Update();
+			evaluate.Update();
+		}
+
 		bool IsHitWall = false;
 		bool IsHitGround = false;
 		bool IsHitCeiling = false;

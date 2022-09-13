@@ -40,7 +40,7 @@ void SceneChangeAnimation::Update()
 		return;
 	}
 
-	static const int changeSpeed = 10;
+	static const int changeSpeed = 22;
 
 	if (isChange)
 	{
@@ -53,7 +53,7 @@ void SceneChangeAnimation::Update()
 	else
 	{
 		radius -= changeSpeed;
-		if (radius < -50)
+		if (radius < -30)
 		{
 			isChange = true;
 		}

@@ -25,6 +25,7 @@ public: //メンバ関数
 	void Load();
 	void Release();
 
+	bool GetAnimation() { return isAnimation; }
 	bool GetChange() { return isChange; }
 private:
 	void ScreenInit();
