@@ -1,17 +1,21 @@
 ﻿#pragma once
 #include "SceneChange.h"
-#include "./Effect/SceneChangeEffect.h"
+#include "./Effect/SceneChangeAnimation.h"
 
 class BaseScene
 {
 protected: //静的メンバ変数
-	static SceneChangeEffect changeEffect;
+	static SceneChangeAnimation changeAnimation;
 
 public: //静的メンバ関数
-	static void ChangeEffectUpdate() { changeEffect.Update(); }
+	static void ChangeAnimationUpdate() { changeAnimation.Update(); }
+	static void ChangeAnimationDraw() { changeAnimation.Draw(); }
 
 protected: //メンバ変数
 	SceneChanger* sceneChanger;
+	bool isSceneDest;              //シーンを破棄するかどうか
+	SceneChanger::Scene nextScene; //次のシーンの遷移先
+
 	int background; //背景画像
 
 public: //メンバ関数

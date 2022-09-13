@@ -11,6 +11,7 @@ GameScene::GameScene(SceneChanger* sceneChanger) :
 	rod{},
 	goal(General::WIN_WIDTH - 200, General::WIN_HEIGHT / 2 - 50),
 	stage{},
+	isNext(false),
 	bigLeaf(-1),
 	smallLeaf(-1),
 	groundAndTree(-1),
@@ -46,14 +47,14 @@ void GameScene::Update()
 		{
 			if (stage.GetStageNum() == 3)
 			{
-				sceneChanger->SceneChange(SceneChanger::Scene::Title, true);
+				isSceneDest = true;
+				nextScene = SceneChanger::Scene::Title;
+				changeAnimation.Start();
 			}
 			else
 			{
-				stage.StageAddOne();
-				stage.CreateStage();
-				goal.SetGoalPos(stage.GetStageNum());
-				General::AllReset(&player, &goal, &rod, stage.GetStageNum());
+				isNext = true;
+				changeAnimation.Start();
 			}
 		}
 	}
@@ -116,9 +117,9 @@ void GameScene::Update()
 		{
 			if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 			{
-				sceneChanger->SceneChange(SceneChanger::Scene::Title, true);
-				/*stage.StageAddOne();
-				stage.CreateStage();*/
+				isSceneDest = true;
+				nextScene = SceneChanger::Scene::Title;
+				changeAnimation.Start();
 			}
 		}
 		else
@@ -132,13 +133,24 @@ void GameScene::Update()
 	}
 
 	player.EffectUpdate();
+
+	if (isNext && changeAnimation.GetChange())
+	{
+		stage.StageAddOne();
+		stage.CreateStage();
+		goal.SetGoalPos(stage.GetStageNum());
+		General::AllReset(&player, &goal, &rod, stage.GetStageNum());
+
+		isNext = false;
+	}
+	if (isSceneDest && changeAnimation.GetChange())
+	{
+		sceneChanger->SceneChange(nextScene, true);
+	}
 }
 
 void GameScene::Draw()
 {
-	// 画面クリア
-	ClearDrawScreen();
-
 	// 背景
 	DrawGraph(0, 0, background, false);
 	DrawGraph(static_cast<int>(bigLeafPos.x), static_cast<int>(bigLeafPos.y), bigLeaf, true);
@@ -159,12 +171,6 @@ void GameScene::Draw()
 	}
 
 	// 前景
-
-	// シーン遷移
-	changeEffect.Draw();
-
-	// (ダブルバッファ)裏面
-	ScreenFlip();
 }
 
 void GameScene::Load()
