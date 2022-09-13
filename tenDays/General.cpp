@@ -38,17 +38,17 @@ namespace General
 			height = static_cast<int>(drawSize.y);
 		}
 
-		for (size_t y = 0; y * height < drawSize.y * 2; y++)
+		for (int y = 0; y * height < drawSize.y * 2; y++)
 		{
-			up = pos.y + (y * height);
+			up = static_cast<int>(pos.y) + (y * height);
 			bool isRect = (up + height) > (pos.y + drawSize.y);
 
-			for (size_t x = 0; x * width < drawSize.x * 2; x++)
+			for (int x = 0; x * width < drawSize.x * 2; x++)
 			{
 				int drawWidth = width;
 				int drawHeight = height;
 
-				left = pos.x + (x * width);
+				left = static_cast<int>(pos.x) + (x * width);
 				isRect |= (left + width) > (pos.x + drawSize.x);
 
 				if (isRect)

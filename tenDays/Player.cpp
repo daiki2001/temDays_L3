@@ -99,10 +99,10 @@ void Player::ChangeHitRod(const float rodAngle, const Vec2 rodSpeed)
 		pos.x = oldPos.x;
 		pos.x += rodSpeed.x;
 	}
-	float deg = rodAngle * (180 / 3.14);
+	float deg = rodAngle * (180.0f / 3.14f);
 
 	boundPower = boundPowerMax * (fabs(walkSpeed) / speedNormal);
-	bound = -boundPower * (1 - deg / 80.0);
+	bound = -boundPower * (1.0f - deg / 80.0f);
 	walkSpeed += speedNormal * (deg / 90.0f);
 	gravity = gravityPower;
 }
