@@ -145,19 +145,11 @@ void Player::SlopeSpeed()
 	//上り坂
 	if (walkSpeed > 0)
 	{
-		walkSpeed -= 0.01f;
-		if (walkSpeed < speedMin)
-		{
-			walkSpeed = speedMin;
-		}
+		walkSpeed -= 0.05f;	
 	}//下り坂
 	else
 	{
-		walkSpeed -= 0.01f;
-		if (fabs(walkSpeed) > speedMax)
-		{
-			walkSpeed = -speedMax;
-		}
+		walkSpeed -= 0.05f;
 	}
 }
 
