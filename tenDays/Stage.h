@@ -85,5 +85,14 @@ private://メンバ変数
 
 	int cubeBlock = -1; //ブロックの画像(正方形)
 	int triangleBlock = -1; //ブロックの画像(三角形)
+	//場所２
+	int cubeBlock2 = -1; //ブロックの画像(正方形)
+	int triangleBlock2 = -1; //ブロックの画像(三角形)
+	//場所３
+	int cubeBlock3 = -1; //ブロックの画像(正方形)
+	int triangleBlock3 = -1; //ブロックの画像(三角形)
+	//場所４
+	int cubeBlock4 = -1; //ブロックの画像(正方形)
+	int triangleBlock4 = -1; //ブロックの画像(三角形)
 };
 

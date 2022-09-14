@@ -90,17 +90,77 @@ void Stage::Draw(Vec2 scroll)
 	{
 		if (boxData[i]->type == BOX)
 		{
-			General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock, { 128.0f, 128.0f });
+			switch (stageNum)
+			{
+			case 1:
+			case 2:
+			case 3:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock, { 128.0f, 128.0f });
+				break;
+			case 4:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock2, { 128.0f, 128.0f });
+				break;
+			case 5:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock3, { 128.0f, 128.0f });
+				break;
+			case 6:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock4, { 128.0f, 128.0f });
+				break;
+			default:
+				break;
+			}
 		}
 		else if (boxData[i]->type == TRIANGLE)
 		{
-			DrawExtendGraph(static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y - boxData[i]->size.y - scroll.y),
-				static_cast<int>(boxData[i]->pos.x - boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y - scroll.y),
-				triangleBlock, true);
+			switch (stageNum)
+			{
+			case 1:
+			case 2:
+			case 3:
+				DrawExtendGraph(static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y - boxData[i]->size.y - scroll.y),
+					static_cast<int>(boxData[i]->pos.x - boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y - scroll.y),
+					triangleBlock, true);
+				break;
+			case 4:
+				DrawExtendGraph(static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y - boxData[i]->size.y - scroll.y),
+					static_cast<int>(boxData[i]->pos.x - boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y - scroll.y),
+					triangleBlock2, true);
+				break;
+			case 5:
+				DrawExtendGraph(static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y - boxData[i]->size.y - scroll.y),
+					static_cast<int>(boxData[i]->pos.x - boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y - scroll.y),
+					triangleBlock3, true);
+				break;
+			case 6:
+				DrawExtendGraph(static_cast<int>(boxData[i]->pos.x + boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y - boxData[i]->size.y - scroll.y),
+					static_cast<int>(boxData[i]->pos.x - boxData[i]->size.x), static_cast<int>(boxData[i]->pos.y + boxData[i]->size.y - scroll.y),
+					triangleBlock4, true);
+				break;
+			default:
+				break;
+			}
 		}
 		else if (boxData[i]->type == MOVEBOX)
 		{
-			General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock, { 128.0f, 128.0f });
+			switch (stageNum)
+			{
+			case 1:
+			case 2:
+			case 3:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock, { 128.0f, 128.0f });
+				break;
+			case 4:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock2, { 128.0f, 128.0f });
+				break;
+			case 5:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock3, { 128.0f, 128.0f });
+				break;
+			case 6:
+				General::TiringDraw(boxData[i]->pos - boxData[i]->size - scroll, boxData[i]->size * 2.0f, cubeBlock4, { 128.0f, 128.0f });
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }
@@ -119,6 +179,30 @@ void Stage::Load()
 	if (triangleBlock == -1)
 	{
 		triangleBlock = LoadGraph("./Resources/block/triangle/wallcube2.png");
+	}
+	if (cubeBlock2 == -1)
+	{
+		cubeBlock2 = LoadGraph("./Resources/block/cube/ekiwallcube.png");
+	}
+	if (triangleBlock2 == -1)
+	{
+		triangleBlock2 = LoadGraph("./Resources/block/triangle/ekiwallcube2.png");
+	}
+	if (cubeBlock3 == -1)
+	{
+		cubeBlock3 = LoadGraph("./Resources/block/cube/fujiwall1.png");
+	}
+	if (triangleBlock3 == -1)
+	{
+		triangleBlock3 = LoadGraph("./Resources/block/triangle/fujiwall2.png");
+	}
+	if (cubeBlock4 == -1)
+	{
+		cubeBlock4 = LoadGraph("./Resources/block/cube/moonwall1.png");
+	}
+	if (triangleBlock4 == -1)
+	{
+		triangleBlock4 = LoadGraph("./Resources/block/triangle/moonwall2.png");
 	}
 }
 
@@ -216,7 +300,7 @@ void Stage::StageFour()
 	boxData.push_back(new BoxData);//床
 	boxData[boxData.size() - 1]->pos = { 500.0f,600.0f };
 	boxData[boxData.size() - 1]->size = { 900.0f,20.0f };
-
+	boxData[boxData.size() - 1]->type = FLOOR;
 	boxData.push_back(new BoxData);//長方形
 	boxData[boxData.size() - 1]->pos = { 1200.0f,360.0f };
 	boxData[boxData.size() - 1]->size = { 30.0f,360.0f };
@@ -246,11 +330,11 @@ void Stage::StageFour()
 void Stage::StageFive()
 {
 	boxData.push_back(new BoxData);//床
-	boxData[boxData.size() - 1]->pos = { 500.0f,665.0f };
+	boxData[boxData.size() - 1]->pos = { 500.0f,590.0f };
 	boxData[boxData.size() - 1]->size = { 900.0f,20.0f };
-
+	boxData[boxData.size() - 1]->type = FLOOR;
 	boxData.push_back(new BoxData);//正方形
-	boxData[boxData.size() - 1]->pos = { 350.0f,615.0f };
+	boxData[boxData.size() - 1]->pos = { 350.0f,540.0f };
 	boxData[boxData.size() - 1]->size = { 30.0f,30.0f };
 
 	boxData.push_back(new BoxData);//長方形
@@ -307,7 +391,7 @@ void Stage::StageSix()
 	boxData.push_back(new BoxData);//床
 	boxData[boxData.size() - 1]->pos = { 500.0f,600.0f };
 	boxData[boxData.size() - 1]->size = { 900.0f,20.0f };
-
+	boxData[boxData.size() - 1]->type = FLOOR;
 	boxData.push_back(new BoxData);//長方形
 	boxData[boxData.size() - 1]->pos = { 1260.0f,380.0f };
 	boxData[boxData.size() - 1]->size = { 30.0f,220.0f };

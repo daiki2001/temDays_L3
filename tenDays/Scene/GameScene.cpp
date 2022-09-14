@@ -39,6 +39,9 @@ void GameScene::Init()
 	{
 		forestRes.Init(&background);
 	}
+
+	backGround.Load();
+
 }
 
 void GameScene::Update()
@@ -56,6 +59,7 @@ void GameScene::Update()
 	}
 
 	forestRes.Update();
+	backGround.Update(stage.GetStageNum());
 
 	if (goal.GetGoal())
 	{
@@ -63,7 +67,7 @@ void GameScene::Update()
 		{
 			if (stage.GetStageNum() == 6)
 			{
-				if (isSceneDest ==false)
+				if (isSceneDest == false)
 				{
 					isSceneDest = true;
 					nextScene = SceneChanger::Scene::Title;
@@ -193,6 +197,7 @@ void GameScene::Draw()
 	{
 		forestRes.Draw();
 	}
+	backGround.Draw(stage.GetStageNum(), scroll.GetScroll());
 
 	// オブジェクト
 	goal.Draw(scroll.GetScroll());
