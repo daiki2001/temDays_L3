@@ -1,6 +1,8 @@
 ﻿#include "Stage.h"
 #include "General.h"
 
+int Stage::stageNum = 1;
+
 Stage::Stage()
 {
 }

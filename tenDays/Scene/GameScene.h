@@ -19,6 +19,7 @@ private: //メンバ変数
 	Scroll scroll;	//スクロール
 	bool isNext; //次のステージに行くかどうか
 
+	int signboard; //操作説明の看板
 	int clear; //クリア時のテキスト
 	ForestResources forestRes; //森ステージのリソース
 
