@@ -80,7 +80,7 @@ void BackGround::Load()
 	huji[19] = LoadGraph("./Resources/fujiback/fuji20.png");
 	huji[20] = LoadGraph("./Resources/fujiback/fuji21.png");
 
-	moonLoop = LoadGraph("./Resources/moon/moonloop.png");
+	moonLoop = LoadGraph("./Resources/moon/unknown.png");
 	monnsky = LoadGraph("./Resources/moon/moonsky.png");
 	monnGround = LoadGraph("./Resources/moon/moon.ground.png");
 }
@@ -116,9 +116,9 @@ void BackGround::Draw(int stageNum, Vec2 scroll)
 		DrawGraph(0, -720 - scroll.y, huji[sakuraNum], TRUE);
 		break;
 	case 6:
-		DrawGraph(0, -720 - scroll.y, monnsky, TRUE);
+		//DrawGraph(0, -720 - scroll.y, monnsky, TRUE);
 		DrawGraph(0, -720 - scroll.y, moonLoop, TRUE);
-		DrawGraph(0, -720 - scroll.y, monnGround, TRUE);
+		//DrawGraph(0, -720 - scroll.y, monnGround, TRUE);
 		break;
 	default:
 		break;
