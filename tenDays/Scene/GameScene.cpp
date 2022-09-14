@@ -76,8 +76,12 @@ void GameScene::Update()
 			}
 			else
 			{
-				isNext = true;
-				changeAnimation.Start();
+				if (isSceneDest == false)
+				{
+					isSceneDest = true;
+					nextScene = SceneChanger::Scene::Select;
+					changeAnimation.Start();
+				}
 			}
 		}
 	}
@@ -193,7 +197,7 @@ void GameScene::Draw()
 		DrawGraph(General::WIN_WIDTH / 2 - 256, 480 - 128, signboard, true);
 	}
 
-	if (stage.GetStageNum() <= 3)
+	if (stage.GetAreaType() == AreaType::FOREST)
 	{
 		forestRes.Draw();
 	}
