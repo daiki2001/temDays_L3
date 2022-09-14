@@ -7,11 +7,13 @@ public:
 
 	~BackGround();
 
-	void Load();
+	void Load(const int& stageNum);
 
 	void Update(int stageNum);
 
 	void Draw(int stageNum, Vec2 scroll);
+
+	void Release();
 private:
 	void StationAnimation();
 
@@ -31,5 +33,8 @@ private:
 	int monnsky = -1;
 	int moonLoop = -1;
 
+	int ekiBgm = -1;
+	int fujiBgm = -1;
+	int moonBgm = -1;
 };
 
