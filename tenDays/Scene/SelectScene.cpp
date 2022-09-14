@@ -10,7 +10,8 @@ SelectScene::SelectScene(SceneChanger* sceneChanger) :
 	selectStage(1),
 	oldSelect(1),
 	scroll(General::WIN_HEIGHT * 3),
-	cursor(-1)
+	cursor(-1),
+	selectSound(-1)
 {
 	Load();
 	Init();
@@ -26,49 +27,86 @@ void SelectScene::Init()
 	selectStage = Stage::GetStageNum();
 	oldSelect = selectStage;
 	scroll = General::WIN_HEIGHT * (3 - Stage::GetAreaType());
+
+	ChangeVolumeSoundMem(0x80, General::defaultSound);
+	if (CheckSoundMem(General::defaultSound) == 0)
+	{
+		PlaySoundMem(General::defaultSound, DX_PLAYTYPE_LOOP);
+	}
 }
 
 void SelectScene::Update()
 {
-	oldSelect = selectStage;
+	static bool isAnimation = false;
 
-	if (Controller::SelectDown() || KeyInput::IsKeyTrigger(KEY_INPUT_DOWN))
-	{
-		selectStage--;
-		if (selectStage < 1)
-		{
-			selectStage = 1;
-		}
-	}
-	if (Controller::SelectUp() || KeyInput::IsKeyTrigger(KEY_INPUT_UP))
-	{
-		selectStage++;
-		if (selectStage > 6)
-		{
-			selectStage = 6;
-		}
-	}
-
-	if (selectStage != oldSelect)
-	{
-		Stage::SetStageNum(selectStage);
-		scroll = General::WIN_HEIGHT * (3 - Stage::GetAreaType());
-	}
-
-	if (isSceneDest)
+	if (isAnimation)
 	{
 		if (changeAnimation.GetChange())
 		{
-			sceneChanger->SceneChange(nextScene, true);
+			isAnimation = false;
+			scroll = General::WIN_HEIGHT * (3 - Stage::GetAreaType());
 		}
 	}
 	else
 	{
-		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+		oldSelect = selectStage;
+
+		if (changeAnimation.GetAnimation() == false)
 		{
-			isSceneDest = true;
-			nextScene = SceneChanger::Scene::Game;
-			changeAnimation.Start();
+			if (Controller::SelectDown() || KeyInput::IsKeyTrigger(KEY_INPUT_DOWN))
+			{
+				selectStage--;
+				if (selectStage < 1)
+				{
+					selectStage = 1;
+				}
+				PlaySoundMem(selectSound, DX_PLAYTYPE_BACK);
+			}
+			if (Controller::SelectUp() || KeyInput::IsKeyTrigger(KEY_INPUT_UP))
+			{
+				selectStage++;
+				if (selectStage > 6)
+				{
+					selectStage = 6;
+				}
+				PlaySoundMem(selectSound, DX_PLAYTYPE_BACK);
+			}
+		}
+
+		if (selectStage != oldSelect)
+		{
+			AreaType oldArea = Stage::GetAreaType();
+			Stage::SetStageNum(selectStage);
+
+			if (oldArea != Stage::GetAreaType())
+			{
+				isAnimation = true;
+				changeAnimation.Start();
+			}
+		}
+
+		if (isSceneDest)
+		{
+			if (changeAnimation.GetChange())
+			{
+				sceneChanger->SceneChange(nextScene, true);
+			}
+		}
+		else
+		{
+			if (changeAnimation.GetAnimation() == false)
+			{
+				if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+				{
+					isSceneDest = true;
+					nextScene = SceneChanger::Scene::Game;
+					changeAnimation.Start();
+					if (DeleteSoundMem(General::defaultSound) == 0)
+					{
+						General::defaultSound = -1;
+					}
+				}
+			}
 		}
 	}
 }
@@ -79,7 +117,7 @@ void SelectScene::Draw()
 	DrawGraph(0, 0 - scroll, background, true);
 
 	// オブジェクト
-	switch (selectStage)
+	switch (changeAnimation.GetChange() ? selectStage : oldSelect)
 	{
 	case 1:
 		DrawGraph(General::WIN_WIDTH / 2 - 100, General::WIN_HEIGHT / 2, cursor, true);
@@ -114,6 +152,14 @@ void SelectScene::Load()
 	{
 		cursor = LoadGraph("./Resources/select/teacherclick.png");
 	}
+	if (General::defaultSound == -1)
+	{
+		General::defaultSound = LoadSoundMem("./Resources/sound/BGM/0titlestageoption.mp3");
+	}
+	if (selectSound == -1)
+	{
+		selectSound = LoadSoundMem("./Resources/sound/SE/select.mp3");
+	}
 }
 
 void SelectScene::Release()
@@ -125,5 +171,9 @@ void SelectScene::Release()
 	if (DeleteGraph(cursor) == 0)
 	{
 		cursor = -1;
+	}
+	if (DeleteSoundMem(selectSound) == 0)
+	{
+		selectSound = -1;
 	}
 }

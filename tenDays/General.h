@@ -12,6 +12,8 @@ constexpr int WIN_HEIGHT = 720;
 // デグリー角 → ラジアン角
 constexpr float degree = 3.141592f / 180.0f;
 
+extern int defaultSound; //タイトル画面とセレクト画面のBGM
+
 // フレーム数
 class Frame
 {

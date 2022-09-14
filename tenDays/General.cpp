@@ -3,6 +3,8 @@
 
 namespace General
 {
+int defaultSound = -1;
+
 	int Frame::frame = 0;
 
 	void AllReset(Player* player, Goal* goal, Rod* rod, const int stageNum)
