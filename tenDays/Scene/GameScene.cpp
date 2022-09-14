@@ -40,7 +40,7 @@ void GameScene::Init()
 		forestRes.Init(&background);
 	}
 
-	backGround.Load();
+	backGround.Load(stage.GetStageNum());
 
 }
 
