@@ -2,10 +2,10 @@
 #include<math.h>
 bool Collision::CircleCollision(Vec2 circle1, Vec2 circle2, float radius1, float radius2)
 {
-	double disX = circle1.x - circle2.x;
-	double disY = circle1.y - circle2.y;
+	double disX = static_cast<double>(circle1.x - circle2.x);
+	double disY = static_cast<double>(circle1.y - circle2.y);
 	double d = disX * disX + disY * disY;
-	double r = (radius1 + radius2) * (radius1 + radius2);
+	double r = static_cast<double>((radius1 + radius2) * (radius1 + radius2));
 	return d < r;
 }
 

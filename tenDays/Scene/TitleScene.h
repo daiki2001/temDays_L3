@@ -12,7 +12,6 @@ private: //メンバ関数
 
 	int back[8]; //背景
 	int cloud;   //雲
-	int sound;   //BGM
 
 public: //メンバ関数
 	TitleScene(SceneChanger* sceneChanger);

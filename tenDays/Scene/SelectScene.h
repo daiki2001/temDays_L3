@@ -9,6 +9,7 @@ private: //メンバ変数
 	int scroll;      //スクロール値
 
 	int cursor;
+	int selectSound;
 
 public: //メンバ関数
 	SelectScene(SceneChanger* sceneChanger);
