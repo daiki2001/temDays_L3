@@ -60,6 +60,7 @@ void Stage::Update()
 {
 	for (int i = 0; i < boxData.size(); i++)
 	{
+		boxData[i]->oldPos = boxData[i]->pos;
 		if (boxData[i]->type == MOVEBOX)
 		{
 			if (boxData[i]->isMoveFlag == false)

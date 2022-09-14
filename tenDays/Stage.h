@@ -25,6 +25,7 @@ struct BoxData
 	Vec2 minPos = {};
 	Vec2 maxPos = {};
 	bool isMoveFlag = false;
+	Vec2 oldPos = {};
 };
 
 class Stage
@@ -76,6 +77,7 @@ public:
 
 	int GetBoxDataNum() { return boxData.size(); }
 
+	Vec2 GetBoxOldPos(int i) { if (boxData.size() > i) { return boxData[i]->oldPos; } return Vec2(); }
 
 	int GetType(int i) { if (boxData.size() > i) { return boxData[i]->type; }return 0; }
 
