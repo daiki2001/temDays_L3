@@ -9,6 +9,7 @@ public: //定数
 
 private: //メンバ変数
 	Particle particle[200];
+	int sound;
 
 public: //メンバ関数
 	PlayerClash();

@@ -7,6 +7,7 @@ private: //メンバ変数
 	Vec2 pos;    //座標
 	bool isGoal; //ゴールしてるかどうか
 	int graph;   //画像
+	int sound;   //SE
 
 public: //メンバ関数
 	Goal(const Vec2& pos);
