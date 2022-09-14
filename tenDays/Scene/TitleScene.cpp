@@ -88,7 +88,7 @@ void TitleScene::Update()
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
 			isSceneDest = true;
-			nextScene = SceneChanger::Scene::Game;
+			nextScene = SceneChanger::Scene::Select;
 			changeAnimation.Start();
 		}
 	}

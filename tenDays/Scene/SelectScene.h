@@ -5,6 +5,7 @@ class SelectScene : public BaseScene
 {
 private: //メンバ変数
 	int selectStage; //選択しているステージ
+	int oldSelect;   //前フレームに選択していたステージ
 	int scroll;      //スクロール値
 
 	int cursor;
