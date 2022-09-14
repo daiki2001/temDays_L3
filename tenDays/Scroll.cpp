@@ -17,6 +17,10 @@ void Scroll::Update(Vec2 playerPos, int stageNum)
 		{
 			scrollPos.y = minScroll.y;
 		}
+		if (scrollPos.y <= maxScroll.y)
+		{
+			scrollPos.y = maxScroll.y;
+		}
 	}
 	else
 	{

@@ -15,7 +15,7 @@ public:
 private:
 	Vec2 scrollPos = {};
 
-	Vec2 maxScroll = {};
+	Vec2 maxScroll = {0.0f,-720.0f};
 
 	Vec2 minScroll = {0.0f,0.0f};
 };

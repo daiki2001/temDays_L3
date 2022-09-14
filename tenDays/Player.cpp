@@ -69,7 +69,7 @@ void Player::Reset(const int stageNum)
 		pos = { 400.0f,200.0f };
 		break;
 	case 5:
-		pos = { 150.0f,570.0f };
+		pos = { 150.0f,540.0f };
 		break;
 	case 6:
 		pos = { 150.0f,560.0f };
