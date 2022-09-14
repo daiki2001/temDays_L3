@@ -103,8 +103,8 @@ void Evaluate::SetEvaluate(int stageNum)
 		stageEvaTime[1] = 5.0f;
 		break;
 	case 5:
-		stageEvaTime[0] = 5.0f;
-		stageEvaTime[1] = 5.0f;
+		stageEvaTime[0] = 30.0f;
+		stageEvaTime[1] = 60.0f;
 		break;
 	case 6:
 		stageEvaTime[0] = 5.0f;

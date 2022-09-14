@@ -74,4 +74,8 @@ void Goal::SetGoalPos(int stageNum)
 	{
 		pos = { 300.0f,-420.0f };
 	}
+	else if (stageNum == 5)
+	{
+		pos = { 1100.0f,-510.0f };
+	}
 }

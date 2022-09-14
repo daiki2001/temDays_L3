@@ -42,6 +42,13 @@ void Stage::CreateStage()
 		break;
 	case 4:
 		StageFour();
+		break;
+	case 5:
+		StageFive();
+		break;
+	case 6:
+		StageSix();
+		break;
 	default:
 		break;
 	}
@@ -188,7 +195,7 @@ void Stage::StageFour()
 	boxData[boxData.size() - 1]->size = { 30.0f,360.0f };
 
 	boxData.push_back(new BoxData);//長方形
-	boxData[boxData.size() - 1]->pos = { 300.0f,-40.0f };
+	boxData[boxData.size() - 1]->pos = { 300.0f,0.0f };
 	boxData[boxData.size() - 1]->size = { 280.0f,20.0f };
 
 	boxData.push_back(new BoxData);//長方形
@@ -200,11 +207,79 @@ void Stage::StageFour()
 
 
 	boxData.push_back(new BoxData);//長方形
-	boxData[boxData.size() - 1]->pos = { 265.0f,-380.0f };
-	boxData[boxData.size() - 1]->size = { 85.0f,20.0f };
+	boxData[boxData.size() - 1]->pos = { 290.0f,-350.0f };
+	boxData[boxData.size() - 1]->size = { 110.0f,20.0f };
 
 
 	boxData.push_back(new BoxData);//長方形
-	boxData[boxData.size() - 1]->pos = { 200.0f,-450.0f };
-	boxData[boxData.size() - 1]->size = { 20.0f,85.0f };
+	boxData[boxData.size() - 1]->pos = { 200.0f,-440.0f };
+	boxData[boxData.size() - 1]->size = { 20.0f,110.0f };
+}
+
+void Stage::StageFive()
+{
+	boxData.push_back(new BoxData);//床
+	boxData[boxData.size() - 1]->pos = { 500.0f,665.0f };
+	boxData[boxData.size() - 1]->size = { 900.0f,20.0f };
+
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 350.0f,615.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,30.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1230.0f,460.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,195.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 670.0f,400.0f };
+	boxData[boxData.size() - 1]->size = { 200.0f,35.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 460.0f,330.0f };
+	boxData[boxData.size() - 1]->size = { 200.0f,35.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 110.0f,260.0f };
+	boxData[boxData.size() - 1]->size = { 200.0f,35.0f };
+
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 940.0f,190.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 860.0f,110.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 780.0f,20.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 700.0f,-50.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+
+	boxData.push_back(new BoxData);//正方形
+	boxData[boxData.size() - 1]->pos = { 780.0f,-130.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 200.0f,-15.0f };
+	boxData[boxData.size() - 1]->size = { 200.0f,30.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1000.0f,-200.0f };
+	boxData[boxData.size() - 1]->size = { 260.0f,30.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1280.0f,-430.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,260.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1200.0f,-450.0f };
+	boxData[boxData.size() - 1]->size = { 160.0f,30.0f };
+}
+
+void Stage::StageSix()
+{
+
 }

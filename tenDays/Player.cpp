@@ -53,6 +53,14 @@ void Player::Reset(const int stageNum)
 	case 4:
 		pos = { 400.0f,200.0f };
 		break;
+	case 5:
+		pos = { 150.0f,570.0f };
+		break;
+	case 6:
+
+		break;
+	default:
+		break;
 	}
 	bound = 0.0f;
 	gravity = gravityPower;
