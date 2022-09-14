@@ -18,7 +18,7 @@ ForestResources::~ForestResources()
 void ForestResources::Init(int* background)
 {
 	DeleteGraph(*background);
-	*background = LoadGraph("./Resources/forestback/forestback.png");
+	*background = LoadGraph("./Resources/forestback/sky.png");
 	Load();
 }
 
@@ -43,7 +43,7 @@ void ForestResources::Load()
 	}
 	if (smallLeaf == -1)
 	{
-		smallLeaf = LoadGraph("./Resources/forestback/SmallLeaf.png");
+		//smallLeaf = LoadGraph("./Resources/forestback/SmallLeaf.png");
 	}
 	if (groundAndTree == -1)
 	{
@@ -88,8 +88,8 @@ void ForestResources::BigLeafAnimation()
 
 		if (animationCount >= maxCount)
 		{
-			bigLeafPos.x = 740.0f;
-			bigLeafPos.y = 404.0f;
+			bigLeafPos.x = 860.0f;
+			bigLeafPos.y = 420.0f;
 			animationCount -= maxCount;
 		}
 		else
