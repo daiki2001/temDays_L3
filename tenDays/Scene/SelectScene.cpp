@@ -8,6 +8,7 @@
 SelectScene::SelectScene(SceneChanger* sceneChanger) :
 	BaseScene(sceneChanger),
 	selectStage(1),
+	oldSelect(1),
 	scroll(General::WIN_HEIGHT * 3),
 	cursor(-1)
 {
@@ -23,11 +24,14 @@ SelectScene::~SelectScene()
 void SelectScene::Init()
 {
 	selectStage = Stage::GetStageNum();
-	scroll = General::WIN_HEIGHT * 3;
+	oldSelect = selectStage;
+	scroll = General::WIN_HEIGHT * (3 - Stage::GetAreaType());
 }
 
 void SelectScene::Update()
 {
+	oldSelect = selectStage;
+
 	if (Controller::SelectDown() || KeyInput::IsKeyTrigger(KEY_INPUT_DOWN))
 	{
 		selectStage--;
@@ -43,6 +47,12 @@ void SelectScene::Update()
 		{
 			selectStage = 6;
 		}
+	}
+
+	if (selectStage != oldSelect)
+	{
+		Stage::SetStageNum(selectStage);
+		scroll = General::WIN_HEIGHT * (3 - Stage::GetAreaType());
 	}
 
 	if (isSceneDest)
@@ -69,6 +79,29 @@ void SelectScene::Draw()
 	DrawGraph(0, 0 - scroll, background, true);
 
 	// オブジェクト
+	switch (selectStage)
+	{
+	case 1:
+		DrawGraph(General::WIN_WIDTH / 2 - 100, General::WIN_HEIGHT / 2, cursor, true);
+		break;
+	case 2:
+		DrawGraph(General::WIN_WIDTH / 2 - 200, General::WIN_HEIGHT / 2 - 200, cursor, true);
+		break;
+	case 3:
+		DrawGraph(General::WIN_WIDTH / 2 - 100, 0, cursor, true);
+		break;
+	case 4:
+		DrawGraph(General::WIN_WIDTH / 2 - 100, General::WIN_HEIGHT / 2 - 200, cursor, true);
+		break;
+	case 5:
+		DrawGraph(General::WIN_WIDTH / 2 - 150, General::WIN_HEIGHT / 2 - 190, cursor, true);
+		break;
+	case 6:
+		DrawGraph(310, 100, cursor, true);
+		break;
+	default:
+		break;
+	}
 }
 
 void SelectScene::Load()
