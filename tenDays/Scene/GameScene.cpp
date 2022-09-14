@@ -61,7 +61,7 @@ void GameScene::Update()
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			if (stage.GetStageNum() == 4)
+			if (stage.GetStageNum() == 5)
 			{
 				isSceneDest = true;
 				nextScene = SceneChanger::Scene::Title;
@@ -134,7 +134,7 @@ void GameScene::Update()
 		bool isIn = Collision::BoxCollision(player.GetPos(),
 			Vec2(General::WIN_WIDTH / 2.0f, 0),
 			Vec2(player.GetSize(), player.GetSize()),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT + 50));
+			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT * 2.0f));
 		if (isIn == false)
 		{
 			General::AllReset(&player, &goal, &rod, stage.GetStageNum());
