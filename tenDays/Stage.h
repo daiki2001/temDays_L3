@@ -32,10 +32,12 @@ class Stage
 private: //静的メンバ変数
 	//現在のステージ番号
 	static int stageNum;
+	static AreaType areaType;
 
 public: //静的メンバ関数
-	static void SetStageNum(const int& stageNum) { Stage::stageNum = stageNum; }
+	static void SetStageNum(const int& stageNum);
 	static int GetStageNum() { return stageNum; }
+	static AreaType GetAreaType() { return areaType; }
 public:
 	Stage();
 

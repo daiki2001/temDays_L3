@@ -2,6 +2,7 @@
 #include "General.h"
 
 int Stage::stageNum = 1;
+AreaType Stage::areaType = AreaType::FOREST;
 
 Stage::Stage()
 {
@@ -18,7 +19,6 @@ Stage::~Stage()
 
 void Stage::Init()
 {
-	stageNum = 1;
 	Load();
 	CreateStage();
 }
@@ -203,6 +203,27 @@ void Stage::Load()
 	if (triangleBlock4 == -1)
 	{
 		triangleBlock4 = LoadGraph("./Resources/block/triangle/moonwall2.png");
+	}
+}
+
+void Stage::SetStageNum(const int& stageNum)
+{
+	Stage::stageNum = stageNum;
+	if (Stage::stageNum <= 3)
+	{
+		areaType = AreaType::FOREST;
+	}
+	else if (Stage::stageNum <= 4)
+	{
+		areaType = AreaType::STATION;
+	}
+	else if (Stage::stageNum <= 5)
+	{
+		areaType = AreaType::FUJI;
+	}
+	else
+	{
+		areaType = AreaType::UNIVERSE;
 	}
 }
 
