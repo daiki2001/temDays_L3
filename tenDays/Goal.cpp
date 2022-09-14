@@ -56,14 +56,14 @@ void Goal::Draw(const Vec2& offset)
 
 	if (graph == -1)
 	{
-		DrawTriangle(drawPos.x - 10, drawPos.y - 10,
-					 drawPos.x - 10, drawPos.y + 10,
-					 drawPos.x + 20, drawPos.y + 0,
+		DrawTriangle(static_cast<int>(drawPos.x) - 10, static_cast<int>(drawPos.y) - 10,
+					 static_cast<int>(drawPos.x) - 10, static_cast<int>(drawPos.y) + 10,
+					 static_cast<int>(drawPos.x) + 20, static_cast<int>(drawPos.y) + 0,
 					 GetColor(0xFF, 0xFF, 0x00), true);
 	}
 	else
 	{
-		DrawGraph(drawPos.x - 32, drawPos.y - 32, graph, true);
+		DrawGraph(static_cast<int>(drawPos.x) - 32, static_cast<int>(drawPos.y) - 32, graph, true);
 	}
 }
 

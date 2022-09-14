@@ -2,12 +2,20 @@
 #include "Vec.h"
 #include <DxLib.h>
 #include <vector>
+
 enum StageType
 {
 	BOX,
 	TRIANGLE,
 	FLOOR,
 	MOVEBOX,
+};
+enum AreaType
+{
+	FOREST,   //森面
+	STATION,  //駅面
+	FUJI,     //富士山面
+	UNIVERSE, //宇宙面
 };
 struct BoxData
 {
@@ -21,6 +29,13 @@ struct BoxData
 
 class Stage
 {
+private: //静的メンバ変数
+	//現在のステージ番号
+	static int stageNum;
+
+public: //静的メンバ関数
+	static void SetStageNum(const int& stageNum) { Stage::stageNum = stageNum; }
+	static int GetStageNum() { return stageNum; }
 public:
 	Stage();
 
@@ -35,8 +50,6 @@ public:
 	void Draw(Vec2 scroll);
 
 	void StageAddOne();
-
-	int GetStageNum() { return stageNum; }
 private:
 
 	// ファイルの読み込み
@@ -59,13 +72,10 @@ public:
 
 
 	int GetType(int i) { if (boxData.size() > i) { return boxData[i]->type; }return 0; }
-private:
 
 private://メンバ変数
 
 	std::vector<BoxData*>boxData;
-	//現在のステージ番号
-	int stageNum = 1;
 
 	int cubeBlock = -1; //ブロックの画像(正方形)
 	int triangleBlock = -1; //ブロックの画像(三角形)

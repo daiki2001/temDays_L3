@@ -12,6 +12,7 @@ GameScene::GameScene(SceneChanger* sceneChanger) :
 	goal(General::WIN_WIDTH - 200, General::WIN_HEIGHT / 2 - 50),
 	stage{},
 	isNext(false),
+	signboard(-1),
 	clear(-1),
 	forestRes{},
 	startSound(-1)
@@ -180,6 +181,11 @@ void GameScene::Draw()
 {
 	// 背景
 	DrawGraph(0, 0, background, false);
+	if (stage.GetStageNum() == 1)
+	{
+		DrawGraph(General::WIN_WIDTH / 2 - 128, 480 - 128, signboard, true);
+	}
+
 	if (stage.GetStageNum() <= 3)
 	{
 		forestRes.Draw();
@@ -207,6 +213,10 @@ void GameScene::Draw()
 
 void GameScene::Load()
 {
+	if (signboard == -1)
+	{
+		signboard = LoadGraph("./Resources/notice.png");
+	}
 	if (clear == -1)
 	{
 		clear = LoadGraph("./Resources/Clear.png");
@@ -221,6 +231,10 @@ void GameScene::Load()
 void GameScene::Release()
 {
 	DeleteGraph(background);
+	if (DeleteGraph(signboard) == 0)
+	{
+		signboard = -1;
+	}
 	DeleteGraph(clear);
 	forestRes.Release();
 	DeleteSoundMem(startSound);

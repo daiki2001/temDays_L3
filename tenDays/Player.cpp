@@ -46,8 +46,8 @@ void Player::Update()
 
 void Player::Draw(Vec2 scroll)
 {
-	locusEffect.Draw(0.0f,-scroll.y);
-	clashEffect.Draw(0.0f, -scroll.y);
+	locusEffect.Draw(0, static_cast<int>(-scroll.y));
+	clashEffect.Draw(0, static_cast<int>(-scroll.y));
 
 	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y) - static_cast<int>(scroll.y), 0.5, playerDrawAngle, playerGraph, TRUE);
 }
