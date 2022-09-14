@@ -129,6 +129,10 @@ void Stage::StageOne()
 	boxData.push_back(new BoxData);
 	boxData[boxData.size() - 1]->pos = { 1000.0f,480.0f };
 	boxData[boxData.size() - 1]->size = { 120.0f,100.0f };
+
+	boxData.push_back(new BoxData);
+	boxData[boxData.size() - 1]->pos = { 1150.0f,280.0f };
+	boxData[boxData.size() - 1]->size = { 40.0f,300.0f };
 }
 
 void Stage::StageTwo()
@@ -227,8 +231,8 @@ void Stage::StageFive()
 	boxData[boxData.size() - 1]->size = { 30.0f,30.0f };
 
 	boxData.push_back(new BoxData);//長方形
-	boxData[boxData.size() - 1]->pos = { 1230.0f,460.0f };
-	boxData[boxData.size() - 1]->size = { 30.0f,195.0f };
+	boxData[boxData.size() - 1]->pos = { 1230.0f,440.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,220.0f };
 
 	boxData.push_back(new BoxData);//長方形
 	boxData[boxData.size() - 1]->pos = { 670.0f,400.0f };
@@ -241,10 +245,6 @@ void Stage::StageFive()
 	boxData.push_back(new BoxData);//長方形
 	boxData[boxData.size() - 1]->pos = { 110.0f,260.0f };
 	boxData[boxData.size() - 1]->size = { 200.0f,35.0f };
-
-	boxData.push_back(new BoxData);//正方形
-	boxData[boxData.size() - 1]->pos = { 940.0f,190.0f };
-	boxData[boxData.size() - 1]->size = { 40.0f,40.0f };
 
 	boxData.push_back(new BoxData);//正方形
 	boxData[boxData.size() - 1]->pos = { 860.0f,110.0f };
