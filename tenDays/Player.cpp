@@ -4,18 +4,29 @@
 #include<cmath>
 Player::Player() :
 	locusEffect{},
-	clashEffect{}
+	clashEffect{},
+	boundSound(-1)
 {
 }
 
 Player::~Player()
 {
+	if (DeleteSoundMem(boundSound) == 0)
+	{
+		boundSound = -1;
+	}
 }
 
 void Player::Init()
 {
 	playerGraph = LoadGraph("Resources/piyomaru.png");
 	locusEffect.Init();
+
+	if (boundSound == -1)
+	{
+		boundSound = LoadSoundMem("./Resources/sound/SE/jump.wav");
+		ChangeVolumeSoundMem(0x80, boundSound);
+	}
 }
 
 void Player::Update()
@@ -25,6 +36,10 @@ void Player::Update()
 	Bound();
 	Move();
 	WalkSpeedAccel();
+	if (isBoundFlag)
+	{
+		PlaySoundMem(boundSound, DX_PLAYTYPE_BACK);
+	}
 	isBoundFlag = false;
 	pos += speed;
 }

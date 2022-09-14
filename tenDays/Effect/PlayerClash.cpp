@@ -6,7 +6,8 @@ const int PlayerClash::aliveTime = 15;
 const int PlayerClash::createNum = 50;
 
 PlayerClash::PlayerClash() :
-	particle{}
+	particle{},
+	sound(-1)
 {
 	Init();
 }
@@ -16,6 +17,11 @@ void PlayerClash::Init()
 	for (size_t i = 0; i < sizeof(particle) / sizeof(particle[0]); i++)
 	{
 		particle[i].Init();
+	}
+	if (sound == -1)
+	{
+		sound = LoadSoundMem("./Resources/sound/SE/crash.mp3");
+		ChangeVolumeSoundMem(0x80, sound);
 	}
 }
 
@@ -86,4 +92,6 @@ void PlayerClash::Create(const Vec2& playerPos, const Vec2& playerSpeed)
 		particle[i].Create(playerPos, size, normVec * speedLength * speedRate);
 		j++;
 	}
+
+	PlaySoundMem(sound, DX_PLAYTYPE_BACK);
 }

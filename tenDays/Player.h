@@ -86,4 +86,6 @@ private://メンバ変数
 
 	PlayerLocus locusEffect; //軌跡
 	PlayerClash clashEffect; //衝突時のエフェクト
+
+	int boundSound; //跳ねた時のSE
 };
