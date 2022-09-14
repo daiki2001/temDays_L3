@@ -1,7 +1,7 @@
 #include "PushCollision.h"
 #include"Stage.h"
 Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
-	Vec2 boxPos, Vec2 boxSize, int boxType,
+	Vec2 boxPos, Vec2 boxSize, Vec2 boxOldPos, int boxType,
 	bool& isHit, bool& isHitGround, bool& isHitTriangle, bool& isCeiling)
 {
 	Vec2 pos = pPos;
@@ -15,7 +15,7 @@ Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 		{
 			//ã‚Ì–Ê
 			if (pPos.y + pSize > boxPos.y - boxSize.y && oldPos.y < pPos.y &&
-				oldPos.x + pSize > boxPos.x - boxSize.x && oldPos.x - pSize < boxPos.x + boxSize.x)
+				oldPos.x + pSize > boxOldPos.x - boxSize.x && oldPos.x - pSize < boxOldPos.x + boxSize.x)
 			{
 				pos.y = boxPos.y - boxSize.y - pSize;
 				isHitGround = true;
@@ -23,21 +23,21 @@ Vec2 PushCollision::PushPlayer2Box(Vec2 pPos, float pSize, Vec2 oldPos,
 			}
 			//‰º‚Ì–Ê
 			else if (pPos.y - pSize < boxPos.y + boxSize.y && oldPos.y > pPos.y &&
-				oldPos.x + pSize > boxPos.x - boxSize.x && oldPos.x - pSize < boxPos.x + boxSize.x)
+				oldPos.x + pSize > boxOldPos.x - boxSize.x && oldPos.x - pSize < boxOldPos.x + boxSize.x)
 			{
 				pos.y = boxPos.y + boxSize.y + pSize;
 				isCeiling = true;
 			}
 			//¶‚Ì–Ê
 			if (pPos.x + pSize > boxPos.x - boxSize.x && oldPos.x<pPos.x &&//speed.x > 0 &&
-				oldPos.y + pSize > boxPos.y - boxSize.y && oldPos.y - pSize < boxPos.y + boxSize.y)
+				oldPos.y + pSize > boxOldPos.y - boxSize.y && oldPos.y - pSize < boxOldPos.y + boxSize.y)
 			{
 				pos.x = boxPos.x - boxSize.x - pSize;
 				isHit = true;
 			}
 			//‰E‚Ì–Ê
 			else if (pPos.x - pSize < boxPos.x + boxSize.x && oldPos.x>pPos.x &&//speed.x < 0 &&
-				oldPos.y + pSize > boxPos.y - boxSize.y && oldPos.y - pSize < boxPos.y + boxSize.y)
+				oldPos.y + pSize > boxOldPos.y - boxSize.y && oldPos.y - pSize < boxOldPos.y + boxSize.y)
 			{
 				pos.x = boxPos.x + boxSize.x + pSize;
 				isHit = true;
