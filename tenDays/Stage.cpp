@@ -304,5 +304,62 @@ void Stage::StageFive()
 
 void Stage::StageSix()
 {
+	boxData.push_back(new BoxData);//床
+	boxData[boxData.size() - 1]->pos = { 500.0f,600.0f };
+	boxData[boxData.size() - 1]->size = { 900.0f,20.0f };
 
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1260.0f,380.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,220.0f };
+
+	boxData.push_back(new BoxData);//三角形
+	boxData[boxData.size() - 1]->pos = { 1040.0f,480.0f };
+	boxData[boxData.size() - 1]->size = { 200.0f,100.0f };
+	boxData[boxData.size() - 1]->type = TRIANGLE;
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 960.0f,60.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,160.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 760.0f,260.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,160.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 0.0f,400.0f };
+	boxData[boxData.size() - 1]->size = { 480.0f,30.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 0.0f,20.0f };
+	boxData[boxData.size() - 1]->size = { 500.0f,30.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 470.0f,-40.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,30.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1100.0f,-200.0f };
+	boxData[boxData.size() - 1]->size = { 150.0f,30.0f };
+	boxData[boxData.size() - 1]->minPos = { 600.0f,-190.0f };
+	boxData[boxData.size() - 1]->maxPos = { 1000.0f,-190.0f };
+	boxData[boxData.size() - 1]->type = MOVEBOX;
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 500.0f,-400.0f };
+	boxData[boxData.size() - 1]->size = { 150.0f,30.0f };
+	boxData[boxData.size() - 1]->minPos = { 300.0f,-190.0f };
+	boxData[boxData.size() - 1]->maxPos = { 900.0f,-190.0f };
+	boxData[boxData.size() - 1]->type = MOVEBOX;
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1250.0f,-300.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,120.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1250.0f,-660.0f };
+	boxData[boxData.size() - 1]->size = { 30.0f,120.0f };
+
+	boxData.push_back(new BoxData);//長方形
+	boxData[boxData.size() - 1]->pos = { 1190.0f,-560.0f };
+	boxData[boxData.size() - 1]->size = { 120.0f,30.0f };
 }
