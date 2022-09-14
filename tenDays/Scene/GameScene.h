@@ -22,6 +22,8 @@ private: //メンバ変数
 	int clear; //クリア時のテキスト
 	ForestResources forestRes; //森ステージのリソース
 
+	int startSound; //開始時の音
+
 public: //メンバ関数
 	GameScene(SceneChanger* sceneChanger);
 	~GameScene() override;

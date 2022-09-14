@@ -5,7 +5,8 @@
 Goal::Goal(const Vec2& pos) :
 	pos(pos),
 	isGoal(false),
-	graph(-1)
+	graph(-1),
+	sound(-1)
 {
 	Init();
 }
@@ -13,7 +14,8 @@ Goal::Goal(const Vec2& pos) :
 Goal::Goal(const int& posX, const int& posY) :
 	pos(static_cast<float>(posX), static_cast<float>(posY)),
 	isGoal(false),
-	graph(-1)
+	graph(-1),
+	sound(-1)
 {
 	Init();
 }
@@ -23,6 +25,11 @@ void Goal::Init()
 	if (graph == -1)
 	{
 		graph = LoadGraph("./Resources/goal/goal0912.png");
+	}
+	if (sound == -1)
+	{
+		sound = LoadSoundMem("./Resources/sound/SE/goal.mp3");
+		ChangeVolumeSoundMem(0x80, sound);
 	}
 }
 
@@ -37,6 +44,10 @@ void Goal::Update(const Vec2& playerPos)
 	static const int playerSize = 16;
 
 	isGoal = Collision::BoxCollision(pos, playerPos, { goalSize, goalSize }, { playerSize, playerSize });
+	if (isGoal)
+	{
+		PlaySoundMem(sound, DX_PLAYTYPE_BACK);
+	}
 }
 
 void Goal::Draw(const Vec2& offset)

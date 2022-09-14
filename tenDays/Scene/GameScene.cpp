@@ -13,7 +13,8 @@ GameScene::GameScene(SceneChanger* sceneChanger) :
 	stage{},
 	isNext(false),
 	clear(-1),
-	forestRes{}
+	forestRes{},
+	startSound(-1)
 {
 	Load();
 	Init();
@@ -50,6 +51,7 @@ void GameScene::Update()
 	if ((nowAnimation == false) && (oldAnimation == true))
 	{
 		evaluate.Start();
+		PlaySoundMem(startSound, DX_PLAYTYPE_BACK);
 	}
 
 	forestRes.Update();
@@ -129,7 +131,7 @@ void GameScene::Update()
 
 		// 画面外判定
 		bool isIn = Collision::BoxCollision(player.GetPos(),
-			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT / 2.0f),
+			Vec2(General::WIN_WIDTH / 2.0f, 0),
 			Vec2(player.GetSize(), player.GetSize()),
 			Vec2(General::WIN_WIDTH / 2.0f, General::WIN_HEIGHT * 2.0f));
 		if (isIn == false)
@@ -209,6 +211,11 @@ void GameScene::Load()
 	{
 		clear = LoadGraph("./Resources/Clear.png");
 	}
+	if (startSound == -1)
+	{
+		startSound = LoadSoundMem("./Resources/sound/SE/start.mp3");
+		ChangeVolumeSoundMem(0x80, startSound);
+	}
 }
 
 void GameScene::Release()
@@ -216,4 +223,5 @@ void GameScene::Release()
 	DeleteGraph(background);
 	DeleteGraph(clear);
 	forestRes.Release();
+	DeleteSoundMem(startSound);
 }
