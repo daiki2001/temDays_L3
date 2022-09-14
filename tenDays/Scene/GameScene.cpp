@@ -61,7 +61,7 @@ void GameScene::Update()
 	{
 		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 		{
-			if (stage.GetStageNum() == 5)
+			if (stage.GetStageNum() == 6)
 			{
 				if (isSceneDest ==false)
 				{
