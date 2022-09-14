@@ -63,9 +63,12 @@ void GameScene::Update()
 		{
 			if (stage.GetStageNum() == 5)
 			{
-				isSceneDest = true;
-				nextScene = SceneChanger::Scene::Title;
-				changeAnimation.Start();
+				if (isSceneDest ==false)
+				{
+					isSceneDest = true;
+					nextScene = SceneChanger::Scene::Title;
+					changeAnimation.Start();
+				}
 			}
 			else
 			{
@@ -140,7 +143,7 @@ void GameScene::Update()
 			General::AllReset(&player, &goal, &rod, stage.GetStageNum());
 		}
 
-		if (goal.GetGoal())
+		if (goal.GetGoal() && isSceneDest == false)
 		{
 			if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
 			{
@@ -183,7 +186,7 @@ void GameScene::Draw()
 	DrawGraph(0, 0, background, false);
 	if (stage.GetStageNum() == 1)
 	{
-		DrawGraph(General::WIN_WIDTH / 2 - 128, 480 - 128, signboard, true);
+		DrawGraph(General::WIN_WIDTH / 2 - 256, 480 - 128, signboard, true);
 	}
 
 	if (stage.GetStageNum() <= 3)

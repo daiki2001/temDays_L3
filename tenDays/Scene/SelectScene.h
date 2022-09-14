@@ -3,6 +3,12 @@
 
 class SelectScene : public BaseScene
 {
+private: //メンバ変数
+	int selectStage; //選択しているステージ
+	int scroll;      //スクロール値
+
+	int cursor;
+
 public: //メンバ関数
 	SelectScene(SceneChanger* sceneChanger);
 	~SelectScene() override;

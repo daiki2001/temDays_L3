@@ -24,7 +24,7 @@ void Player::Init()
 
 	if (boundSound == -1)
 	{
-		boundSound = LoadSoundMem("./Resources/sound/SE/jump.wav");
+		boundSound = LoadSoundMem("./Resources/sound/SE/crash.mp3");
 		ChangeVolumeSoundMem(0x80, boundSound);
 	}
 }

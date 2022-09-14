@@ -76,16 +76,21 @@ void TitleScene::Update()
 		player.ChangeFlag();
 	}
 
-	if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+	if (isSceneDest)
 	{
-		isSceneDest = true;
-		nextScene = SceneChanger::Scene::Game;
-		changeAnimation.Start();
+		if (changeAnimation.GetChange())
+		{
+			sceneChanger->SceneChange(nextScene, true);
+		}
 	}
-
-	if (isSceneDest && changeAnimation.GetChange())
+	else
 	{
-		sceneChanger->SceneChange(nextScene, true);
+		if (Controller::Decision_A() || KeyInput::IsKeyTrigger(KEY_INPUT_SPACE))
+		{
+			isSceneDest = true;
+			nextScene = SceneChanger::Scene::Game;
+			changeAnimation.Start();
+		}
 	}
 }
 
