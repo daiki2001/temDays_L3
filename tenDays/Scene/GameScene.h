@@ -7,7 +7,7 @@
 #include"Evaluate.h"
 #include"Scroll.h"
 #include "ForestResources.h"
-
+#include"BackGround.h"
 class GameScene : public BaseScene
 {
 private: //メンバ変数
@@ -17,6 +17,7 @@ private: //メンバ変数
 	Stage stage;   //ステージ
 	Evaluate evaluate;//評価
 	Scroll scroll;	//スクロール
+	BackGround backGround;//背景描画
 	bool isNext; //次のステージに行くかどうか
 
 	int signboard; //操作説明の看板
